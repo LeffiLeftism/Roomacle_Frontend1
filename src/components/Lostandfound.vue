@@ -1,13 +1,23 @@
 <template>
   <div id="lostandfound">
-    <h1>L and F</h1>
+    <LFpost thing="USB-Stick" description ="32GB blau mit roten Punkten" founddate="13-03-2021" founder="Januzaj, Visar"/>
   </div>
 </template>
 
+<script>
+import LFpost from "../components/LFpost.vue";
+export default {
+  components: {
+    LFpost,
+  },
+};
+</script>
+
 <style scoped>
 #lostandfound {
-  display: inline-block;
+  justify-content: space-around;
   width: 25%;
-  /*background-color:indianred;*/
+  background-color:indianred;
+  padding: 10px;
 }
 </style>
