@@ -1,44 +1,46 @@
 <template>
   <div id="app">
-      <Header title="This is the Header" />
-      <Room />
-      <Notifications />
-      <Lostandfound />
-      <Events />
-      <Navigation />
+    <Header
+      studienbereich="Angewandte Physik und Medizintechnik"
+      fachbereich="Ingenieurwissenschaften"
+    />
+    <Room />
+    <Notifications />
+    <Lostandfound />
+    <Events />
+    <Navigation />
   </div>
 </template>
 
 <script>
-import Header from  './components/Header.vue'
-import Navigation from  './components/Navigation.vue'
-import Notifications from  './components/Notifications.vue'
-import Events from  './components/Events.vue'
-import Lostandfound from  './components/Lostandfound.vue'
-import Room from  './components/Room.vue'
+import Header from "./components/Header.vue";
+import Navigation from "./components/Navigation.vue";
+import Notifications from "./components/Notifications.vue";
+import Events from "./components/Events.vue";
+import Lostandfound from "./components/Lostandfound.vue";
+import Room from "./components/Room.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Header,
     Navigation,
     Notifications,
     Events,
     Lostandfound,
-    Room
-  }
-}
+    Room,
+  },
+};
 </script>
 
 <style>
 #app {
+  box-sizing: border-box;
   height: 480px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin: 0;
-  padding: 0;
 }
 </style>
