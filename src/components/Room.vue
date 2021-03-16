@@ -18,8 +18,6 @@ export default {
   align-items: center;
   justify-content: space-around;
   width: 50%;
-  height: 20%;
-  background-color:rgb(126, 70, 165);
+  /*background-color: rgb(126, 70, 165);*/
 }
-
 </style>

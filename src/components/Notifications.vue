@@ -1,8 +1,16 @@
 <template>
   <div id="notifications">
-    <span class="textline">Notifications</span>
+    <span>{{ notification }}</span>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    notification: String,
+  },
+};
+</script>
 
 <style scoped>
 #notifications {
@@ -10,7 +18,6 @@
   align-items: center;
   justify-content: space-around;
   width: 50%;
-  height: 20%;
-  background-color:bisque;
+  /*background-color: bisque;*/
 }
 </style>

@@ -9,6 +9,6 @@
   display: inline-block;
   width: 25%;
   height: 65%;
-  background-color:indianred;
+  /*background-color:indianred;*/
 }
 </style>
