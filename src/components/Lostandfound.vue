@@ -8,7 +8,7 @@
 #lostandfound {
   display: inline-block;
   width: 25%;
-  height: 70%;
-  /*background-color:indianred;*/
+  height: 65%;
+  background-color:indianred;
 }
 </style>

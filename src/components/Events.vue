@@ -8,7 +8,7 @@
 #events {
   display: inline-block;
   width: 55%;
-  height: 70%;
+  height: 65%;
   /*background-color:darkseagreen;*/
 }
 </style>

@@ -1,14 +1,16 @@
 <template>
   <div id="notifications">
-    <h1>Notifications</h1>
+    <span class="textline">Notifications</span>
   </div>
 </template>
 
 <style scoped>
 #notifications {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
   width: 50%;
-  height: 15%;
-  /*background-color:bisque;*/
+  height: 20%;
+  background-color:bisque;
 }
 </style>
