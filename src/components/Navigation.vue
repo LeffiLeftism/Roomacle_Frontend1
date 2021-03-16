@@ -1,13 +1,29 @@
 <template>
   <div id="navigations">
-    <h1>Navigate</h1>
+    <Button imgName="home.png" />
+    <Button imgName="calender.png" />
+    <Button imgName="info.png" />
   </div>
 </template>
 
+<script>
+import Button from "../components/Button.vue";
+
+export default {
+  components: {
+    Button,
+  },
+};
+</script>
+
 <style scoped>
 #navigations {
-  display: inline-block;
-  width: 20%;
-  /*background-color:aquamarine;*/
+  display: inline-flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  object-fit: contain;
+  /*background-color: aquamarine;*/
+  padding: 3px 0;
+  width: 15%;
 }
 </style>
