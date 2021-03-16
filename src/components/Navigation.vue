@@ -8,7 +8,6 @@
 #navigations {
   display: inline-block;
   width: 20%;
-  height: 65%;
   /*background-color:aquamarine;*/
 }
 </style>

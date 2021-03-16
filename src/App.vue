@@ -8,9 +8,11 @@
       <Room roomnumber="A 317" />
       <Notifications notification="Notifications hier." />
     </div>
-    <Lostandfound />
-    <Events />
-    <Navigation />
+    <div style="display: flex; height: 65%">
+      <Lostandfound />
+      <Events />
+      <Navigation />
+    </div>
   </div>
 </template>
 
