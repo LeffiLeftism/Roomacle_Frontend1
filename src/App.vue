@@ -4,7 +4,7 @@
       studienbereich="Angewandte Physik und Medizintechnik"
       fachbereich="Ingenieurwissenschaften"
     />
-    <Room />
+    <Room roomnumber="A 317" />
     <Notifications />
     <Lostandfound />
     <Events />
@@ -42,5 +42,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.textline {
+  font-size: 4em;
+  font-weight: bold;
 }
 </style>
