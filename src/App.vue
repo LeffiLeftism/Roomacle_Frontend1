@@ -4,9 +4,9 @@
       studienbereich="Angewandte Physik und Medizintechnik"
       fachbereich="Ingenieurwissenschaften"
     />
-    <div style="display: flex">
+    <div style="display: flex; height: 20%">
       <Room roomnumber="A 317" />
-      <Notifications />
+      <Notifications notification="Notifications hier." />
     </div>
     <Lostandfound />
     <Events />
