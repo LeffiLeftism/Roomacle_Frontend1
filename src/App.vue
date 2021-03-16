@@ -1,23 +1,44 @@
 <template>
   <div id="app">
-    App
+      <Header title="This is the Header" />
+      <Room />
+      <Notifications />
+      <Lostandfound />
+      <Events />
+      <Navigation />
   </div>
 </template>
 
 <script>
+import Header from  './components/Header.vue'
+import Navigation from  './components/Navigation.vue'
+import Notifications from  './components/Notifications.vue'
+import Events from  './components/Events.vue'
+import Lostandfound from  './components/Lostandfound.vue'
+import Room from  './components/Room.vue'
 
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Header,
+    Navigation,
+    Notifications,
+    Events,
+    Lostandfound,
+    Room
+  }
 }
 </script>
 
 <style>
 #app {
+  height: 480px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0;
+  padding: 0;
 }
 </style>
