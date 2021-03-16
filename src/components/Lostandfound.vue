@@ -17,7 +17,7 @@ export default {
 #lostandfound {
   justify-content: space-around;
   width: 25%;
-  background-color:indianred;
-  padding: 10px;
+  padding: 5px;
+  /*background-color:indianred;*/
 }
 </style>

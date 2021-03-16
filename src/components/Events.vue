@@ -24,8 +24,9 @@ export default {
 <style scoped>
 #events {
   padding: 5px;
+  padding-right: 10px;
   display: inline-block;
   width: 60%;
-  background-color: darkseagreen;
+  /*background-color: darkseagreen;*/
 }
 </style>
