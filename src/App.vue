@@ -45,9 +45,4 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
-.textline {
-  font-size: 4em;
-  font-weight: bold;
-}
 </style>

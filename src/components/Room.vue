@@ -20,4 +20,9 @@ export default {
   width: 50%;
   /*background-color: rgb(126, 70, 165);*/
 }
+
+.textline {
+  font-size: 6em;
+  font-weight: bold;
+}
 </style>
