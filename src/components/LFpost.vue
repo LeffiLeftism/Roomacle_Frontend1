@@ -22,6 +22,7 @@ export default {
 <style>
 #lfpost {
   padding: 7px;
+  margin-bottom: 5px;
   text-align: left;
   background-color: rgb(192, 153, 228);
 }

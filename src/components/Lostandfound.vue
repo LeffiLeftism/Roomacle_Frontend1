@@ -1,6 +1,11 @@
 <template>
   <div id="lostandfound">
-    <LFpost thing="USB-Stick" description ="32GB blau mit roten Punkten" founddate="13-03-2021" founder="Januzaj, Visar"/>
+    <LFpost
+      thing="USB-Stick"
+      description="32GB blau mit roten Punkten"
+      founddate="13-03-2021"
+      founder="Januzaj, Visar"
+    />
   </div>
 </template>
 
@@ -18,6 +23,7 @@ export default {
   justify-content: space-around;
   width: 25%;
   padding: 5px;
+  overflow: scroll;
   /*background-color:indianred;*/
 }
 </style>

@@ -24,6 +24,7 @@ import Events from "./components/Events.vue";
 import Lostandfound from "./components/Lostandfound.vue";
 import Room from "./components/Room.vue";
 
+
 export default {
   name: "App",
   components: {
@@ -46,5 +47,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 </style>

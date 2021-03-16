@@ -27,6 +27,7 @@ export default {
   padding-right: 10px;
   display: inline-block;
   width: 60%;
+  overflow: scroll;
   /*background-color: darkseagreen;*/
 }
 </style>

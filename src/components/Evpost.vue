@@ -5,9 +5,9 @@
     {{ tStart }} - {{ tEnd }}
     <br />
     {{ dozent }}
-    <br/>
-    <span v-for="(item, index)  in members" v-bind:key ="index">
-        {{ item }}
+    <br />
+    <span v-for="(item, index) in members" v-bind:key="index">
+      {{ item }}
     </span>
   </div>
 </template>
@@ -28,6 +28,7 @@ export default {
 <style>
 #evpost {
   padding: 7px;
+  margin-bottom: 5px;
   text-align: left;
   background-color: rgb(75, 204, 243);
 }
