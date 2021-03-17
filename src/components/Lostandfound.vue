@@ -1,12 +1,12 @@
 <template>
   <div id="lostandfound">
-    <LFpost
+    <Post
       thing="USB-Stick"
       description="32GB blau mit roten Punkten"
       founddate="13-03-2021"
       founder="Januzaj, Visar"
     />
-    <LFpost
+    <Post
       thing="Regenschirm"
       description="Violett, schwarzer Griff"
       founddate="16-03-2021"
@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import LFpost from "../components/LFpost.vue";
+import Post from "../components/Post.vue";
 export default {
   components: {
-    LFpost,
+    Post,
   },
 };
 </script>

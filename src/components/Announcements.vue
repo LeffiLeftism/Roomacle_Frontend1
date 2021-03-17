@@ -1,36 +1,41 @@
 <template>
   <div id="announcement">
-    <LFpost
+    <Post
       thing="Verspätung"
       description="Wegen Stau 15 Minuten Verspätung"
       founddate="13:30"
       founder="Zinnen, Andreas"
+      v-bind:announcement="this.announcement"
     />
-    <LFpost
+    <Post
       thing="Mittagessen"
       description="Bin von 13:30 - 14:00 in der Mensa zusammen mit Andreas"
       founddate="16-03-2021"
       founder="Zinnen, Andreas"
+      v-bind:announcement="this.announcement"
     />
   </div>
 </template>
 
 <script>
-import LFpost from "./LFpost.vue";
+import Post from "./Post.vue";
 
 export default {
-  components: {
-    LFpost,
+  data() {
+    return {
+      announcement: true,
+    };
   },
-  props: {},
+  components: {
+    Post,
+  },
 };
 </script>
 
 <style scoped>
 #announcement {
-  padding: 5px;
-  align-items: center;
   justify-content: space-around;
+  padding: 5px;
   /*background-color: bisque;*/
 }
 </style>

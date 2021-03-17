@@ -4,7 +4,7 @@
       studienbereich="Angewandte Physik und Medizintechnik"
       fachbereich="Ingenieurwissenschaften"
     />
-    <div style="display: flex; height: 20%">
+    <div style="display: flex; height: 20%;">
       <Roomnumber roomnumber="A-317" />
       <Roominfo roomtype="Seminarraum" roomseats="30 Sitzplätze" />
     </div>
