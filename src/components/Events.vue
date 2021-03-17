@@ -1,12 +1,20 @@
 <template>
   <div id="events">
     <Evpost
-      v-bind:num="1234"
+      num="0815"
       name="iPPP"
       tStart="13:30"
       tEnd="15:00"
       dozent="Zinner, Andreas"
       v-bind:members="['iING', 'IWI', 'MB']"
+    />
+    <Evpost
+      num="3448"
+      name="GDK"
+      tStart="8:15"
+      tEnd="9:45"
+      dozent="Schweizer, Jochen"
+      v-bind:members="['iING']"
     />
   </div>
 </template>
@@ -23,10 +31,8 @@ export default {
 
 <style scoped>
 #events {
-  padding: 5px;
-  padding-right: 10px;
   display: inline-block;
-  width: 60%;
+  padding: 5px;
   overflow: scroll;
   /*background-color: darkseagreen;*/
 }

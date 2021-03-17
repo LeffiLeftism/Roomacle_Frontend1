@@ -1,5 +1,5 @@
 <template>
-  <div id="room">
+  <div id="roomnumber">
     <span class="textline">{{ roomnumber }}</span>
   </div>
 </template>
@@ -13,11 +13,13 @@ export default {
 </script>
 
 <style scoped>
-#room {
+#roomnumber {
+  border: grey solid 2px;
+  padding: 5px;
   display: inline-flex;
   align-items: center;
   justify-content: space-around;
-  width: 50%;
+  width: 45%;
   /*background-color: rgb(126, 70, 165);*/
 }
 

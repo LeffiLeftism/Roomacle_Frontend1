@@ -6,6 +6,12 @@
       founddate="13-03-2021"
       founder="Januzaj, Visar"
     />
+    <LFpost
+      thing="Regenschirm"
+      description="Violett, schwarzer Griff"
+      founddate="16-03-2021"
+      founder="Zinnen, Andreas"
+    />
   </div>
 </template>
 
@@ -21,9 +27,7 @@ export default {
 <style scoped>
 #lostandfound {
   justify-content: space-around;
-  width: 25%;
   padding: 5px;
-  overflow: scroll;
-  /*background-color:indianred;*/
+  /*background-color: indianred;*/
 }
 </style>

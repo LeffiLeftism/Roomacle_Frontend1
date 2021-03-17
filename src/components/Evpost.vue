@@ -15,7 +15,7 @@
 <script>
 export default {
   props: {
-    num: Number,
+    num: String,
     name: String,
     tStart: String,
     tEnd: String,

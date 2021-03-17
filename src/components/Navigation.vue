@@ -1,5 +1,5 @@
 <template>
-  <div id="navigations">
+  <div id="navigation">
     <Button imgName="home.png" />
     <Button imgName="calender.png" />
     <Button imgName="info.png" />
@@ -17,13 +17,11 @@ export default {
 </script>
 
 <style scoped>
-#navigations {
+#navigation {
   display: inline-flex;
   justify-content: space-evenly;
   flex-direction: column;
-  object-fit: contain;
+  padding: 5px;
   /*background-color: aquamarine;*/
-  padding: 3px 0;
-  width: 15%;
 }
 </style>

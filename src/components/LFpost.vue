@@ -4,7 +4,7 @@
     ><br />
     {{ description }}
     <br />
-    Zu finden bei: {{ founder }}
+    Erstellt von: {{ founder }}
   </div>
 </template>
 
@@ -15,12 +15,14 @@ export default {
     description: String,
     founddate: String,
     founder: String,
+    color: String,
   },
 };
 </script>
 
 <style>
 #lfpost {
+  max-width: 100%;
   padding: 7px;
   margin-bottom: 5px;
   text-align: left;

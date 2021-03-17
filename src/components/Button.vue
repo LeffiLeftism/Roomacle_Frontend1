@@ -27,6 +27,7 @@ export default {
 
 <style>
 #button {
+  padding: 1px;
   display: flex;
   justify-content: space-around;
   height: 100%;
@@ -45,6 +46,7 @@ button {
   font-weight: bold;
   font-style: italic;
   text-decoration: none;
+  overflow: hidden;
 }
 button:active {
   background-color: rgb(104, 104, 104);
@@ -54,5 +56,6 @@ button:active {
 
 img {
   max-height: 85px;
+  
 }
 </style>
