@@ -1,11 +1,10 @@
 <template>
-  <div id="lfpost" :class="[announcement === true ? 'announcement': 'noone']">
+  <div id="lfpost" :class="[announcement === true ? 'announcement' : 'noone']">
     <span class="textline">{{ founddate }} | {{ thing }}</span
     ><br />
     {{ description }}
     <br />
-    Erstellt von: {{ founder }} <br />
-    {{ announcement }}
+    Erstellt von: {{ founder }}
   </div>
 </template>
 
