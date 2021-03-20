@@ -3,191 +3,112 @@
     <v-dialog />
     <table id="table1" style="width: 100%; table-layout: fixed">
       <tr>
-        <th style="width: 15%">Std</th>
-        <th>Montag</th>
-        <th>Dienstag</th>
-        <th>Mittwoch</th>
-        <th>Donnerstag</th>
-        <th>Freitag</th>
-        <th>Samstag</th>
+        <th style="width: 20%">Std</th>
+        <th>Mo</th>
+        <th>Di</th>
+        <th>Mi</th>
+        <th>Do</th>
+        <th>Fr</th>
+        <th>Sa</th>
       </tr>
       <tr v-for="(n, hour_index) in 12" :key="hour_index">
-        <td>{{ hour_index + 1 }}. 8:15-9:45</td>
-        <td v-for="(n, day_index) in 6" :key="day_index">
-          <button
-            :id="10 * (hour_index + 1) + day_index"
-            @click="openModal(10 * (hour_index + 1) + day_index+1)"
-            :disabled="false"
+        <td>
+          <div
+            style="
+              display: inline-flex;
+              flex-grow: 3;
+              float: left;
+              padding-left: 5px;
+            "
           >
-            {{ hour_index+1 }} - {{ day_index+1 }}
+            {{ hour_index + 1 }}.
+          </div>
+          <div
+            style="
+              display: inline-flex;
+              flex-grow: 1;
+              float: right;
+              padding-right: 5px;
+            "
+          >
+            {{ db.time[hour_index].tStart }}-{{ db.time[hour_index].tEnd }}
+          </div>
+        </td>
+        <td
+          :id="10 * (hour_index + 1) + day_index + 1"
+          v-for="(n, day_index) in 6"
+          :key="day_index"
+        >
+          <button
+            @click="openModal(10 * (hour_index + 1) + day_index + 1)"
+            :disabled="true"
+            style="color: white; background: white"
+          >
+            {{ hour_index + 1 }} - {{ day_index + 1 }}
           </button>
         </td>
       </tr>
     </table>
-    <div id="neueTab"></div>
+    <!--<button @click="writeCalender">Update Calender</button>-->
   </div>
 </template>
 
 <script>
+import db from "../assets/data.json";
 export default {
   components: {},
   data() {
     return {
-      apple: [
-        {
-          num: "3333",
-          name: "Termin",
-          date: "2021-03-14",
-          tStart: "00:00",
-          tEnd: "13:45",
-          std: "1",
-        },
-        {
-          num: "0815",
-          name: "Discord Session",
-          date: "2021-03-16",
-          tStart: "08:15",
-          tEnd: "13:30",
-          std: "1",
-        },
-        {
-          num: "1444",
-          name: "Microcomputertechnik",
-          date: "2021-03-13",
-          tStart: "15:15",
-          tEnd: "16:45",
-          std: "1",
-        },
-        {
-          num: "6543",
-          name: "Lern to Play",
-          date: "2021-03-14",
-          tStart: "15:15",
-          tEnd: "17:15",
-          std: "1",
-        },
-      ],
-
-      items: [
-        {
-          Stunde: 1,
-          Montag: "ET1",
-          Dienstag: "GrPH",
-          Mittwoch: "",
-          Donnerstag: "Algebra VL",
-          Freitag: "MK-Prak",
-          Samstag: "Frei",
-        },
-        {
-          Stunde: 2,
-          Montag: "ET1",
-          Dienstag: "GrPH",
-          Mittwoch: "",
-          Donnerstag: "Algebra VL",
-          Freitag: "MK-Prak",
-          Samstag: "Frei",
-        },
-        {
-          Stunde: 3,
-          Montag: "MK-VL",
-          Dienstag: "TM1-Statik",
-          Mittwoch: "BWL",
-          Donnerstag: "GrPh",
-          Freitag: "CAD",
-          Samstag: "Frei",
-        },
-        {
-          Stunde: 4,
-          Montag: "MK-VL",
-          Dienstag: "TM1-Statik",
-          Mittwoch: "BWL",
-          Donnerstag: "GrPh",
-          Freitag: "CAD",
-          Samstag: "Frei",
-        },
-        {
-          Stunde: 5,
-          Montag: "KIT",
-          Dienstag: "BuT",
-          Mittwoch: "ET1",
-          Donnerstag: "Analysis-Prak",
-          Freitag: "Ana-VL",
-          Samstag: "Frei",
-        },
-        {
-          Stunde: 6,
-          Montag: "KIT",
-          Dienstag: "BuT",
-          Mittwoch: "ET1",
-          Donnerstag: "Analysis-Prak",
-          Freitag: "Ana-VL",
-          Samstag: "Mensa",
-        },
-        {
-          Stunde: 7,
-          Montag: "",
-          Dienstag: "",
-          Mittwoch: "",
-          Donnerstag: "Algebra-Prak",
-          Freitag: "CAD-A",
-          Samstag: "Mensa",
-        },
-        {
-          Stunde: 8,
-          Montag: "",
-          Dienstag: "",
-          Mittwoch: "GDK",
-          Donnerstag: "Algebra-Prak",
-          Freitag: "CAD-A",
-          Samstag: "Frei",
-        },
-        {
-          Stunde: 9,
-          Montag: "",
-          Dienstag: "",
-          Mittwoch: "GDK",
-          Donnerstag: "",
-          Freitag: "CAD-D",
-          Samstag: "Frei",
-        },
-        {
-          Stunde: 10,
-          Montag: "",
-          Dienstag: "",
-          Mittwoch: "GDK-Prak",
-          Donnerstag: "",
-          Freitag: "",
-          Samstag: "Frei",
-        },
-        {
-          Stunde: 11,
-          Montag: "",
-          Dienstag: "",
-          Mittwoch: "GDK-Prak",
-          Donnerstag: "",
-          Freitag: "",
-          Samstag: "Frei",
-        },
-        {
-          Stunde: 12,
-          Montag: "",
-          Dienstag: "",
-          Mittwoch: "",
-          Donnerstag: "",
-          Freitag: "",
-          Samstag: "Frei",
-        },
-      ],
+      db,
+      button_db_connect: [],
     };
   },
   methods: {
+    writeCalender() {
+      //console.log(this.button_data_connect);
+      let connection = [];
+      /*console.log("Connect-Array auf 0 gesetzt");
+      console.log(connection);*/
+      for (const _id in this.db.veranstaltungen) {
+        if (Object.hasOwnProperty.call(this.db.veranstaltungen, _id)) {
+          const element = this.db.veranstaltungen[_id];
+          //console.log(element);
+          let day = new Date(element.date).getDay();
+          //console.log(day);
+          let cellID = element.std * 10 + day;
+          let buttonName = element.name_short;
+          let cell = document.getElementById(cellID);
+          cell.firstChild.innerText = buttonName;
+          cell.firstChild.style.background = "lightgrey";
+          cell.firstChild.style.color = "black";
+          cell.firstChild.disabled = false;
+          /*console.log(
+            "Updated Button-text in cell with ID: " +
+              cellID +
+              " to " +
+              buttonName
+          );*/
+          let combi = [cellID, element._id];
+          connection.push(combi);
+        }
+      }
+      /*console.log("Connect-Array erstellt");
+      console.log(connection);*/
+      this.button_db_connect = connection;
+    },
     print2console(content) {
       console.log(content);
     },
-    openModal(buttonID) {
+    openModal(CellID) {
+      let index = this.button_db_connect.findIndex((element) =>
+        element.includes(CellID)
+      );
+      let data = this.db.veranstaltungen[index];
       this.$modal.show("dialog", {
-        title: "Button with ID: " + buttonID,
-        text: "Lorem ipsum dolor sit amet, ...",
+        title: data.name,
+        text: `Veranstaltung: ${data.name} <br>
+        Veranstaltungsnummer: ${data.num}<br>
+        Datum: ${data.date}`,
       });
     },
     getRandomRgb(index) {
@@ -200,23 +121,24 @@ export default {
     },
   },
   mounted() {
+    this.writeCalender();
     //this.generate_table();
   },
 };
 </script>
+
+
+
 
 <style scoped>
 table,
 td,
 th {
   border: 1px solid black;
+  padding: 0;
 }
 #table1 {
   border-spacing: 0;
-  padding: 0;
-}
-td {
-  padding: 0;
 }
 button {
   margin: 0;

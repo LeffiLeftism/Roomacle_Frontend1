@@ -56,6 +56,5 @@ button:active {
 
 img {
   max-height: 85px;
-  
 }
 </style>

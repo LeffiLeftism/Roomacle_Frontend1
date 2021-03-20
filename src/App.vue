@@ -4,7 +4,7 @@
     <!-- Headlines are allways the same. They are not gonna change. -->
     <Header
       studienbereich="Angewandte Physik und Medizintechnik"
-      fachbereich="Ingenieurwissenschaften"
+      fachbereich="Ing. Wissenschaften"
     />
     <div style="display: flex; height: 20%">
       <Roomnumber roomnumber="A-317" />

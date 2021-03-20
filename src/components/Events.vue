@@ -1,30 +1,24 @@
 <template>
   <div id="events">
-    <Evpost
-      num="0815"
-      name="iPPP"
-      tStart="13:30"
-      tEnd="15:00"
-      dozent="Zinner, Andreas"
-      v-bind:members="['iING', 'IWI', 'MB']"
-    />
-    <Evpost
-      num="3448"
-      name="GDK"
-      tStart="8:15"
-      tEnd="9:45"
-      dozent="Schweizer, Jochen"
-      v-bind:members="['iING']"
-    />
+    <div v-for="(item, index) in db.veranstaltungen" :key="index">
+      <Evpost :termin="db.veranstaltungen[index]" :time="db.time" />
+    </div>
+    <!--<Evpost />-->
   </div>
 </template>
 
 <script>
 import Evpost from "../components/Evpost.vue";
+import db from "../assets/data.json";
 
 export default {
   components: {
     Evpost,
+  },
+  data() {
+    return {
+      db,
+    };
   },
 };
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div id="header">
     <img id="logo" src="../assets/logo.png" alt="Logo HSRM" style="padding: 2px" />
-    <span class="headertext">{{ fachbereich }}</span>
-    <span class="headertext">{{ studienbereich }}</span>
+    <span class="headertext">FB: {{ fachbereich }}</span>
+    <span class="headertext">SB: {{ studienbereich }}</span>
     <span class="headertext">{{ this.time }}<br />{{ this.date }}</span>
   </div>
 </template>
@@ -77,6 +77,7 @@ export default {
 
 .headertext {
   font-weight: bold;
-  max-width: 20%;
+  max-width: 50%;
+  padding: 3px;
 }
 </style>

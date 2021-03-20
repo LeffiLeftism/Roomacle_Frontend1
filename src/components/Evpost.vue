@@ -1,26 +1,19 @@
 <template>
   <div id="evpost">
-    <span class="textline">{{ num }} | {{ name }}</span
+    <span class="textline">{{ termin.num }} | {{ termin.name }}</span
     ><br />
-    {{ tStart }} - {{ tEnd }}
+    Findet am {{ termin.date }} von {{ time[termin.std - 1].tStart }} bis
+    {{ time[termin.std - 1].tEnd }} statt
     <br />
-    {{ dozent }}
-    <br />
-    <span v-for="(item, index) in members" v-bind:key="index">
-      {{ item }}
-    </span>
+    {{ termin.dozent }}
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    num: String,
-    name: String,
-    tStart: String,
-    tEnd: String,
-    dozent: String,
-    members: Array,
+    termin: Object,
+    time: Array,
   },
 };
 </script>
