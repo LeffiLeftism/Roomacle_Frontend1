@@ -1,6 +1,6 @@
 <template>
   <div id="header">
-    <img id="logo" src="../assets/logo.png" alt="Logo HSRM" style="" />
+    <img id="logo" src="../assets/logo.png" alt="Logo HSRM" style="padding: 2px" />
     <span class="headertext">{{ fachbereich }}</span>
     <span class="headertext">{{ studienbereich }}</span>
     <span class="headertext">{{ this.time }}<br />{{ this.date }}</span>
@@ -66,12 +66,12 @@ export default {
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  height: 15%;
+  height: 10%;
   /*background-color:aqua;*/
 }
 
 #logo {
-  max-height: 60px;
+  max-height: 100%;
   max-width: 25%;
 }
 

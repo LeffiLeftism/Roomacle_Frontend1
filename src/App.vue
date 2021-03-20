@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-
+    <!-- Calender view -->
     <!-- Headlines are allways the same. They are not gonna change. -->
     <Header
       studienbereich="Angewandte Physik und Medizintechnik"
@@ -11,8 +11,6 @@
       <Roominfo roomtype="Seminarraum" roomseats="30 Sitzplätze" />
     </div>
 
-
-
     <!-- Bottom content changes with Navigation-Buttons -->
     <div class="bottom">
       <Calender />
@@ -20,7 +18,8 @@
     </div>
 
     <hr />
-
+    
+    <!-- Home view -->
     <Header
       studienbereich="Angewandte Physik und Medizintechnik"
       fachbereich="Ingenieurwissenschaften"
@@ -38,54 +37,6 @@
       <Navigation />
     </div>
 
-    <hr />
-
-    <div style="width: 55%">
-      <b-button-group>
-        <b-button :disabled="false">
-          Button 1 <br />
-          bnt1
-        </b-button>
-        <b-button :disabled="false">Button 2</b-button>
-        <b-button :disabled="true">Button 3</b-button>
-        <b-button :disabled="false">Button 4</b-button>
-        <b-button :disabled="false">Button 5</b-button>
-        <b-button :disabled="false">Button 6</b-button>
-      </b-button-group>
-      <br />
-      <b-button-group>
-        <b-button :disabled="false">Button 1</b-button>
-        <b-button :disabled="false">Button 2</b-button>
-        <b-button :disabled="false">Button 3</b-button>
-        <b-button :disabled="true">Button 4</b-button>
-        <b-button :disabled="false">Button 5</b-button>
-        <b-button :disabled="true">Button 6</b-button>
-      </b-button-group>
-      <br />
-      <b-button-group>
-        <b-button :disabled="true">Button 1</b-button>
-        <b-button :disabled="false">Button 2</b-button>
-        <b-button :disabled="false">Button 3</b-button>
-        <b-button :disabled="false">Button 4</b-button>
-        <b-button :disabled="false">Button 5</b-button>
-        <b-button :disabled="false">Button 6</b-button>
-      </b-button-group>
-    </div>
-
-    <br />
-    <button @click="$vm2.open('modal-2')">Open normal modal</button>
-    <vue-modal-2
-      @on-close="$vm2.close('modal-2')"
-      name="modal-2"
-      :headerOptions="{
-        title: 'Informations',
-      }"
-      noFooter
-    >
-      <div>
-        <p>This modal has no footer</p>
-      </div>
-    </vue-modal-2>
   </div>
 </template>
 
@@ -112,9 +63,7 @@ export default {
     Calender,
   },
   data() {
-    return {
-      
-    };
+    return {};
   },
   methods: {
     open() {
@@ -123,7 +72,11 @@ export default {
     close() {
       this.$vm2.close("modal-1");
     },
+    print2console(content) {
+      console.log(content);
+    },
   },
+  created() {},
 };
 </script>
 
@@ -140,7 +93,7 @@ export default {
 }
 .bottom {
   display: flex;
-  height: 65%;
+  height: 70%;
 }
 #notifications {
   display: block;

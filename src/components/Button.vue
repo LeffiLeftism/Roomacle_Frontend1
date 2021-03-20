@@ -1,6 +1,6 @@
 <template>
   <div id="button">
-    <button>
+    <button class="btnNavigation">
       <img :src="resolve_img_url(imgName)" />
     </button>
   </div>
@@ -33,7 +33,7 @@ export default {
   height: 100%;
 }
 
-button {
+.btnNavigation {
   width: 100%;
   background-color: rgb(163, 163, 163);
   border-radius: 13px;

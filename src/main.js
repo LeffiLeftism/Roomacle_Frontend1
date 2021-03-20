@@ -1,4 +1,4 @@
-import '@babel/polyfill'
+//import '@babel/polyfill'
 import 'mutationobserver-shim'
 import Vue from 'vue'
 import App from './App.vue'
@@ -8,9 +8,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './plugins/bootstrap-vue'
 
-import Modal from "@burhanahmeed/vue-modal-2";
+import VModal from 'vue-js-modal'
 
-Vue.use(Modal);
+Vue.use(VModal, { dialog: true })
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
