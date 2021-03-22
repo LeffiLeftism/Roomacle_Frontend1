@@ -148,6 +148,15 @@
             "std": 6,
             "date": "2021-03-23",
             "dozent": "Prof. Dr. Cumhur Baspinar"
+        },
+        {
+            "_id": 11,
+            "num": "1111",
+            "name": "Kalender Erfolg",
+            "name_short": "KE",
+            "std": 3,
+            "date": "2021-03-23",
+            "dozent": "Alex"
         }
     ]
 }

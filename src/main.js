@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './plugins/bootstrap-vue'
 
+import store from "./store";
+
 import VModal from 'vue-js-modal'
 
 Vue.use(VModal, { dialog: true })
@@ -16,5 +18,6 @@ Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
 new Vue({
+  store,
   render: h => h(App),
 }).$mount('#app')

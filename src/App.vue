@@ -6,16 +6,18 @@
       studienbereich="Angewandte Physik und Medizintechnik"
       fachbereich="Ing. Wissenschaften"
     />
-    <div style="display: flex; height: 20%">
-      <Roomnumber roomnumber="A-317" />
-      <Roominfo roomtype="Seminarraum" roomseats="30 Sitzplätze" />
+    
+    <!-- "Bottom" and "Top" content changes with Navigation-Buttons -->
+    <div id="top" style="display: flex; height: 20%">
+      <CalenderSwitch />
     </div>
 
-    <!-- Bottom content changes with Navigation-Buttons -->
     <div class="bottom">
       <Calender />
       <Navigation />
     </div>
+
+
 
     <hr />
     
@@ -49,6 +51,7 @@ import Lostandfound from "./components/Lostandfound.vue";
 import Roomnumber from "./components/Roomnumber";
 import Roominfo from "./components/Roominfo";
 import Calender from "./components/Calender.vue";
+import CalenderSwitch from "./components/CalenderSwitch.vue";
 
 export default {
   name: "App",
@@ -61,6 +64,7 @@ export default {
     Roomnumber,
     Roominfo,
     Calender,
+    CalenderSwitch,
   },
   data() {
     return {};

@@ -1,7 +1,11 @@
 <template>
   <div id="events">
     <div v-for="(item, index) in db.veranstaltungen" :key="index">
-      <Evpost :termin="db.veranstaltungen[index]" :time="db.time" />
+      <Evpost
+        v-if="db.veranstaltungen[index].date == todayDate"
+        :termin="db.veranstaltungen[index]"
+        :time="db.time"
+      />
     </div>
     <!--<Evpost />-->
   </div>
@@ -18,7 +22,12 @@ export default {
   data() {
     return {
       db,
+      todayDate: this.$store.state.calender.today.testDate//`${this.$store.state.calender.today.year}-${this.$store.state.calender.today.month}-${this.$store.state.calender.today.day}`,
     };
+  },
+  computed: {},
+  created() {
+    //console.log(this.todayDate);
   },
 };
 </script>
