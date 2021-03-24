@@ -12,7 +12,7 @@ import store from "./store";
 
 import VModal from 'vue-js-modal'
 
-Vue.use(VModal, { dialog: true })
+Vue.use(VModal)
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false

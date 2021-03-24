@@ -1,6 +1,6 @@
 <template>
   <div style="overflow: scroll; width: 85%">
-    <v-dialog />
+    <!--<v-dialog />-->
     <table id="table1" style="width: 100%; table-layout: fixed">
       <tr>
         <th style="width: 20%">Std</th>
@@ -57,6 +57,8 @@
 
 <script>
 import db from "../assets/data.json";
+import Popup from "../components/Popup.vue";
+
 export default {
   components: {},
   data() {
@@ -65,11 +67,7 @@ export default {
       button_db_connect: [],
     };
   },
-  computed: {
-    weekStartDay() {
-      return this.$store.state.calender.weekStart.day;
-    },
-  },
+  computed: {},
   methods: {
     writeCalender() {
       this.resetCalender();
@@ -95,12 +93,15 @@ export default {
       let weekEndYear = this.$store.state.calender.weekEnd.year;
 
       let weekEndDate = new Date(weekEndYear, weekEndMonth - 1, weekEndDay);
+      weekEndDate.setHours(23,59,59,999);
       //console.log(weekEndDate);
 
-      for (const _id in this.db.veranstaltungen) {
-        if (Object.hasOwnProperty.call(this.db.veranstaltungen, _id)) {
-          const element = this.db.veranstaltungen[_id];
+      for (const vIndex in this.db.veranstaltungen) {
+        if (Object.hasOwnProperty.call(this.db.veranstaltungen, vIndex)) {
+          const element = this.db.veranstaltungen[vIndex];
           let dt = new Date(element.date);
+            console.log(dt);
+            console.log(weekEndDate);
           if (dt >= weekStartDate && dt <= weekEndDate) {
             //console.log(element);
             let day = new Date(element.date).getDay();
@@ -138,7 +139,7 @@ export default {
               " to " +
               buttonName
           );*/
-            let combi = [cellID, element._id];
+            let combi = [cellID, vIndex];
             connection.push(combi);
           }
         }
@@ -167,17 +168,14 @@ export default {
         }
       }
     },
-    //error when cellID = buttonid ?!?
     openModal(CellID) {
       let index = this.button_db_connect.findIndex((element) =>
         element.includes(CellID)
       );
-      let data = this.db.veranstaltungen[index];
-      this.$modal.show("dialog", {
-        title: data.name,
-        text: `Veranstaltung: ${data.name} <br>
-        Veranstaltungsnummer: ${data.num}<br>
-        Datum: ${data.date}`,
+      let vIndex = this.button_db_connect[index][1];
+      this.$modal.show(Popup, {
+        termin: db.veranstaltungen[vIndex],
+        times: db.time,
       });
     },
     getRandomRgb(index) {
@@ -190,16 +188,19 @@ export default {
     },
   },
   watch: {
-    weekStartDay: function () {
-      //console.log('Changed weekStartDay');
-      this.writeCalender();
+    "$store.state.calender.weekStart.day": {
+      handler: function () {
+        /*console.log("Changed weekStartDay");
+        console.log(this.$store.state.calender.weekStart.day);*/
+        this.writeCalender();
+      },
     },
   },
-  mounted() {
-    //this.writeCalender();
-    //this.generate_table();
-  },
   created() {},
+  mounted() {
+    console.log("Calender is mounted");
+    this.writeCalender();
+  },
 };
 </script>
 
@@ -223,7 +224,7 @@ button {
   width: 100%;
   border: 0;
 }
-.termin:onclick{
+.termin:onclick {
   background: red;
 }
 </style>

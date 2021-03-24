@@ -1,6 +1,6 @@
 <template>
   <div id="button">
-    <button class="btnNavigation">
+    <button class="btnNavigation" @click="setScreen()">
       <img :src="resolve_img_url(imgName)" />
     </button>
   </div>
@@ -15,11 +15,15 @@ export default {
   },
   props: {
     imgName: String,
+    screen: String,
   },
   methods: {
     resolve_img_url: function (path) {
       let images = require.context("../assets/", false, /\.png$|\.jpg$/);
       return images("./" + path);
+    },
+    setScreen() {
+      this.$store.state.screen = this.screen;
     },
   },
 };

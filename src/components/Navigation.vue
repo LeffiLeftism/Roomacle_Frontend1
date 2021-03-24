@@ -1,8 +1,8 @@
 <template>
   <div id="navigation">
-    <Button imgName="home.png" />
-    <Button imgName="calender.png" />
-    <Button imgName="info.png" />
+    <Button imgName="home.png" screen ="0"/>
+    <Button imgName="calender.png" screen ="1"/>
+    <Button imgName="info.png" screen ="2"/>
   </div>
 </template>
 

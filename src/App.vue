@@ -1,44 +1,42 @@
 <template>
   <div id="app">
-    <!-- Calender view -->
     <!-- Headlines are allways the same. They are not gonna change. -->
     <Header
       studienbereich="Angewandte Physik und Medizintechnik"
       fachbereich="Ing. Wissenschaften"
     />
-    
     <!-- "Bottom" and "Top" content changes with Navigation-Buttons -->
-    <div id="top" style="display: flex; height: 20%">
-      <CalenderSwitch />
-    </div>
+    <div class="maxSize" v-if="this.$store.state.screen == 0">
+      <!-- Home view -->
 
-    <div class="bottom">
-      <Calender />
-      <Navigation />
-    </div>
-
-
-
-    <hr />
-    
-    <!-- Home view -->
-    <Header
-      studienbereich="Angewandte Physik und Medizintechnik"
-      fachbereich="Ingenieurwissenschaften"
-    />
-    <div style="display: flex; height: 20%">
-      <Roomnumber roomnumber="A-317" />
-      <Roominfo roomtype="Seminarraum" roomseats="30 Sitzplätze" />
-    </div>
-    <div class="bottom">
-      <div id="notifications">
-        <Announcements />
-        <Lostandfound />
+      <div id="top" style="display: flex; height: 20%">
+        <Roomnumber roomnumber="A-317" />
+        <Roominfo roomtype="Seminarraum" roomseats="30 Sitzplätze" />
       </div>
-      <Events />
-      <Navigation />
+      <div class="bottom">
+        <div id="notifications">
+          <Announcements />
+          <Lostandfound />
+        </div>
+        <Events />
+        <Navigation />
+      </div>
     </div>
 
+    <div class="maxSize" v-else-if="this.$store.state.screen == 1">
+      <!-- Calender view -->
+      <div id="top" style="display: flex; height: 20%">
+        <CalenderSwitch />
+      </div>
+
+      <div class="bottom">
+        <Calender />
+        <Navigation />
+      </div>
+    </div>
+    <div class="maxSize" v-else>
+      <Navigation/>
+    </div>
   </div>
 </template>
 
@@ -69,6 +67,11 @@ export default {
   data() {
     return {};
   },
+  computed: {
+    test() {
+      return this.$store.state.screen;
+    },
+  },
   methods: {
     open() {
       this.$vm2.open("modal-1");
@@ -95,10 +98,6 @@ export default {
   color: #2c3e50;
   padding: 0 5px;
 }
-.bottom {
-  display: flex;
-  height: 70%;
-}
 #notifications {
   display: block;
   box-sizing: border-box;
@@ -114,6 +113,14 @@ export default {
 #navigation {
   min-width: 15%;
   width: 15%;
+}
+.bottom {
+  display: flex;
+  height: 70%;
+}
+.maxSize {
+  width: 100%;
+  height: 100%;
 }
 ::-webkit-scrollbar {
   display: none;
