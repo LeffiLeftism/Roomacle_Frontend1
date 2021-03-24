@@ -38,14 +38,16 @@
           :id="10 * (hour_index + 1) + day_index + 1"
           v-for="(n, day_index) in 6"
           :key="day_index"
+          @click="openModal(10 * (hour_index + 1) + day_index + 1)"
         >
-          <button
+          <!--<button
             @click="openModal(10 * (hour_index + 1) + day_index + 1)"
             :disabled="true"
             style="color: white; background: white"
+            class="terminbutton"
           >
             {{ hour_index + 1 }} - {{ day_index + 1 }}
-          </button>
+          </button>-->
         </td>
       </tr>
     </table>
@@ -64,9 +66,9 @@ export default {
     };
   },
   computed: {
-    weekStartDay () {
+    weekStartDay() {
       return this.$store.state.calender.weekStart.day;
-    }
+    },
   },
   methods: {
     writeCalender() {
@@ -103,13 +105,33 @@ export default {
             //console.log(element);
             let day = new Date(element.date).getDay();
             //console.log(day);
-            let cellID = element.std * 10 + day;
+            let cellID = element.std_start * 10 + day;
             let buttonName = element.name_short;
             let cell = document.getElementById(cellID);
-            cell.firstChild.innerText = buttonName;
+            /*cell.firstChild.innerText = buttonName;
             cell.firstChild.style.background = "lightgrey";
             cell.firstChild.style.color = "black";
-            cell.firstChild.disabled = false;
+            cell.firstChild.disabled = false;*/
+
+            cell.innerText = buttonName;
+            cell.style.background = "lightgrey";
+            cell.style.color = "black";
+            //cell.disabled = false;
+
+            let duration = element.duration;
+            if (duration > 1) {
+              //console.log("Duration " + _id + " " + duration);
+              cell.rowSpan = duration;
+              for (let index = 1; index < duration; index++) {
+                let hiddenID = cellID + 10 * index;
+                //console.log("CellID: " + cellID);
+                //console.log("Duration: " + index);
+                //console.log("Hidden: " + hiddenID);
+                //console.log("Index: " + index);
+                document.getElementById(hiddenID).style.display = "none";
+              }
+            }
+
             /*console.log(
             "Updated Button-text in cell with ID: " +
               cellID +
@@ -124,16 +146,24 @@ export default {
       /*console.log("Connect-Array erstellt");
       console.log(connection);*/
       this.button_db_connect = connection;
+
+      //document.getElementById("62").rowSpan = "2";
+      //
     },
     resetCalender() {
       for (let hour_index = 0; hour_index < db.time.length; hour_index++) {
         for (let day_index = 0; day_index < 6; day_index++) {
           let CellID = (hour_index + 1) * 10 + day_index + 1;
           let cell = document.getElementById(CellID);
-          cell.firstChild.innerText = '';
+          /*cell.firstChild.innerText = CellID;
           cell.firstChild.style.background = "white";
-          cell.firstChild.style.color = "white";
-          cell.firstChild.disabled = true;
+          cell.firstChild.style.color = "grey";
+          cell.firstChild.disabled = true;*/
+          cell.innerText = CellID;
+          cell.style.background = "white";
+          cell.style.color = "white";
+          cell.rowSpan = "1";
+          cell.style.display = "table-cell";
         }
       }
     },
@@ -160,13 +190,13 @@ export default {
     },
   },
   watch: {
-    weekStartDay: function() {
+    weekStartDay: function () {
       //console.log('Changed weekStartDay');
       this.writeCalender();
-    }
+    },
   },
   mounted() {
-    this.writeCalender();
+    //this.writeCalender();
     //this.generate_table();
   },
   created() {},
@@ -192,5 +222,8 @@ button {
   height: 100%;
   width: 100%;
   border: 0;
+}
+.termin:onclick{
+  background: red;
 }
 </style>

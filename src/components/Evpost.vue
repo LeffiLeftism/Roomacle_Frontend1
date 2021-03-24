@@ -2,8 +2,8 @@
   <div id="evpost">
     <span class="textline">{{ termin.num }} | {{ termin.name }}</span
     ><br />
-    Findet am {{ termin.date }} von {{ time[termin.std - 1].tStart }} bis
-    {{ time[termin.std - 1].tEnd }} statt
+    Findet am {{ termin.date }} von {{ time[termin.std_start - 1].tStart }} bis
+    {{ time[termin.std_start - 1].tEnd }} statt
     <br />
     {{ termin.dozent }}
   </div>
