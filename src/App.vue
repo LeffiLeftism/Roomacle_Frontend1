@@ -34,8 +34,12 @@
         <Navigation />
       </div>
     </div>
-    <div class="maxSize" v-else>
-      <Navigation/>
+    <div class="maxSize" v-else-if="this.$store.state.screen == 2">
+      <div id="top" style="display: flex; height: 20%"></div>
+      <div class="bottom">
+        <Generator />
+        <Navigation />
+      </div>
     </div>
   </div>
 </template>
@@ -50,6 +54,7 @@ import Roomnumber from "./components/Roomnumber";
 import Roominfo from "./components/Roominfo";
 import Calender from "./components/Calender.vue";
 import CalenderSwitch from "./components/CalenderSwitch.vue";
+import Generator from "./components/Generator.vue";
 
 export default {
   name: "App",
@@ -63,6 +68,7 @@ export default {
     Roominfo,
     Calender,
     CalenderSwitch,
+    Generator,
   },
   data() {
     return {};
