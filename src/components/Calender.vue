@@ -93,15 +93,15 @@ export default {
       let weekEndYear = this.$store.state.calender.weekEnd.year;
 
       let weekEndDate = new Date(weekEndYear, weekEndMonth - 1, weekEndDay);
-      weekEndDate.setHours(23,59,59,999);
+      weekEndDate.setHours(23, 59, 59, 999);
       //console.log(weekEndDate);
 
       for (const vIndex in this.db.veranstaltungen) {
         if (Object.hasOwnProperty.call(this.db.veranstaltungen, vIndex)) {
           const element = this.db.veranstaltungen[vIndex];
           let dt = new Date(element.date);
-            console.log(dt);
-            console.log(weekEndDate);
+          //console.log(dt);
+          //console.log(weekEndDate);
           if (dt >= weekStartDate && dt <= weekEndDate) {
             //console.log(element);
             let day = new Date(element.date).getDay();
@@ -169,14 +169,18 @@ export default {
       }
     },
     openModal(CellID) {
-      let index = this.button_db_connect.findIndex((element) =>
-        element.includes(CellID)
-      );
-      let vIndex = this.button_db_connect[index][1];
-      this.$modal.show(Popup, {
-        termin: db.veranstaltungen[vIndex],
-        times: db.time,
-      });
+      try {
+        let index = this.button_db_connect.findIndex((element) =>
+          element.includes(CellID)
+        );
+        let vIndex = this.button_db_connect[index][1];
+        this.$modal.show(Popup, {
+          termin: db.veranstaltungen[vIndex],
+          times: db.time,
+        });
+      } catch (err) {
+        console.log("Clicked on Non-Event cell in calendar.")
+      }
     },
     getRandomRgb(index) {
       var num = Math.round(0xffffff * Math.random());
@@ -198,7 +202,7 @@ export default {
   },
   created() {},
   mounted() {
-    console.log("Calender is mounted");
+    //console.log("Calender is mounted");
     this.writeCalender();
   },
 };
