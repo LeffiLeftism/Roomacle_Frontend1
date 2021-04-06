@@ -1,5 +1,5 @@
 <template>
-  <div id="person" @click="printConsole(num)">
+  <div class="personSingle" @click="openModal()">
     <div class="picture">
       <img
         class="profilePic"
@@ -7,16 +7,31 @@
         alt="profile picture"
       />
     </div>
-    <div class="test1">Visar Januzaj, M.Sc.</div>
+    <div class="personName">
+      {{this.person.name}}, {{this.person.titel}}
+    </div>
   </div>
 </template>
 
 <script>
+import PersonPopup from "../components/PersonPopup.vue";
+
 export default {
   props: {
-    num: String,
+    num: Number,
+    person: Object,
   },
   methods: {
+    openModal() {
+      
+      try {
+        this.$modal.show(PersonPopup, {
+          num: this.num,
+          person: this.person});
+      } catch (err) {
+        console.log("Error on person.");
+      }
+    },
     img_url: function (path) {
       let images = require.context(
         "../assets/ProfilPictures/",
@@ -34,36 +49,35 @@ export default {
 </script>
 
 <style scoped>
-#person {
+.personSingle {
   /*padding: 25px;*/
   display: inline-flex;
   border: 1px solid black;
-  width: 50%;
-  height: 50%;
+  margin: 2px;
+  width: calc(50% - 4px);
+  height: calc(50% - 4px);
 }
-.picture {
+.personSingle .picture {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 30%;
-  background: red;
 }
-.profilePic {
+.personSingle .profilePic {
   padding: 5px;
   max-height: 100%;
   max-width: 100%;
   width: auto;
   height: 80%;
 }
-.test1 {
+.personSingle .personName {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 70%;
   height: 100%;
   padding: 10px;
-  background: chartreuse;
   font-size: 1.5em;
 }
 </style>

@@ -57,7 +57,7 @@
 
 <script>
 import db from "../assets/data.json";
-import Popup from "./Popup.vue";
+import CalendarPopup from "./CalendarPopup.vue";
 
 export default {
   components: {},
@@ -174,7 +174,7 @@ export default {
           element.includes(CellID)
         );
         let vIndex = this.button_db_connect[index][1];
-        this.$modal.show(Popup, {
+        this.$modal.show(CalendarPopup, {
           termin: db.veranstaltungen[vIndex],
           times: db.time,
         });

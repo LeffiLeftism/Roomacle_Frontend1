@@ -1,5 +1,5 @@
 <template>
-  <div id="popup">
+  <div class="calendarPopup">
     <header>{{ termin.num }} | {{ termin.name }}</header>
     <div id="body">
       <div class="spec">Beginn:</div>
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style scoped>
-#popup {
+.calendarPopup {
   border: 5px grey solid;
   padding: 5px;
   height: 100%;

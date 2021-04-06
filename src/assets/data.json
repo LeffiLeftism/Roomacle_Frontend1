@@ -49,6 +49,44 @@
             "tEnd": "18:15"
         }
     ],
+    "persons": [
+        {
+            "name": "Visar Januzaj",
+            "titel": "M.Sc.",
+            "email": "Visar.Januzaj@hs-rm.de",
+            "homepage": "https://www.hs-rm.de/de/hochschule/personen/januzaj-visar/",
+            "telefon": "+49 (0) 6142 898 4433",
+            "room": "A2-118",
+            "sprechzeit": "Nach Vereinbarung"
+        },
+        {
+            "name": "Snoopy",
+            "titel": "Prof.Dr.",
+            "email": "Snoopy@peanuts.de",
+            "homepage": "https://de.wikipedia.org/wiki/Die_Peanuts",
+            "telefon": "",
+            "room": "ZDF",
+            "sprechzeit": "Täglich um 15 Uhr"
+        },
+        {
+            "name": "Dolittle",
+            "titel": "Dr.",
+            "email": "dolittle@filme.de",
+            "homepage": "",
+            "telefon": "0815-313234",
+            "room": "USA-Filme",
+            "sprechzeit": "Gestern"
+        },
+        {
+            "name": "Vielzulangername",
+            "titel": "Oscar, Bambi",
+            "email": "langelangelangelangelange@e-mail.adresse.de",
+            "homepage": "vielvielvielvielzuvieltextzeichen.net",
+            "telefon": "123456789123456789123456789000123456789",
+            "room": "USA-Filme",
+            "sprechzeit": "Gestern"
+        }
+    ],
     "veranstaltungen": [
         {
             "_id": 0,

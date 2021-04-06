@@ -14,7 +14,7 @@
         <Roominfo roomtype="Seminarraum" roomseats="30 Sitzplätze" />
       </div>
       <div class="bottom">
-        <div id="notifications">
+        <div class="notifications">
           <Announcements />
           <Lostandfound />
         </div>
@@ -41,7 +41,7 @@
     <div class="maxSize" v-else-if="this.$store.state.screen == 2">
       <div id="top" style="display: flex; height: 20%"></div>
       <div class="bottom">
-        <Generator />
+        <CalendarGenerator />
         <Navigation />
       </div>
     </div>
@@ -53,10 +53,21 @@
     />
     <div style="display: flex; height: 20%">
       <Roomnumber roomnumber="A-317" />
-      <Roominfo roomtype="Seminarraum" roomseats="30 Sitzplätze" />
+      <div
+        class="notifications"
+        style="
+          width: 60%;
+          border: grey solid 2px;
+          border-left: 1px;
+          padding: 5px;
+        "
+      >
+        <Announcements />
+      </div>
+      <!--Roominfo roomtype="Seminarraum" roomseats="30 Sitzplätze" /-->
     </div>
     <div class="bottom">
-      <AllPersons />
+      <PersonsAll />
       <Navigation />
     </div>
   </div>
@@ -72,8 +83,8 @@ import Roomnumber from "./components/Roomnumber";
 import Roominfo from "./components/Roominfo";
 import Calendar from "./components/Calendar.vue";
 import CalendarSwitch from "./components/CalendarSwitch.vue";
-import Generator from "./components/Generator.vue";
-import AllPersons from "./components/AllPersons.vue";
+import CalendarGenerator from "./components/CalenderGenerator.vue";
+import PersonsAll from "./components/PersonsAll.vue";
 
 export default {
   name: "App",
@@ -87,8 +98,8 @@ export default {
     Roominfo,
     Calendar,
     CalendarSwitch,
-    Generator,
-    AllPersons,
+    CalendarGenerator,
+    PersonsAll,
   },
   data() {
     return {};
@@ -124,14 +135,6 @@ export default {
   color: #2c3e50;
   padding: 0 5px;
 }
-#notifications {
-  display: block;
-  box-sizing: border-box;
-  margin: 0 1px;
-  overflow: scroll;
-  min-width: 25%;
-  width: 35%;
-}
 #events {
   min-width: 25%;
   width: 55%;
@@ -139,6 +142,13 @@ export default {
 #navigation {
   min-width: 15%;
   width: 15%;
+}
+.notifications {
+  display: block;
+  box-sizing: border-box;
+  overflow: scroll;
+  min-width: 25%;
+  width: 35%;
 }
 .bottom {
   display: flex;
@@ -148,7 +158,7 @@ export default {
   width: 100%;
   height: 100%;
 }
-.content{
+.content {
   width: 85%;
 }
 ::-webkit-scrollbar {
