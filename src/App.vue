@@ -5,11 +5,11 @@
       studienbereich="Angewandte Physik und Medizintechnik"
       fachbereich="Ing. Wissenschaften"
     />
-    <!-- "Bottom" and "Top" content changes with Navigation-Buttons -->
-    <div class="maxSize" v-if="this.$store.state.screen == 0">
-      <!-- Home view -->
 
-      <div id="top" style="display: flex; height: 20%">
+    <!-- "Bottom" and "Top" content changes with Navigation-Buttons -->
+    <!-- Home view -->
+    <div class="maxSize" v-if="this.$store.state.screen == 0">
+      <div style="display: flex; height: 20%">
         <Roomnumber roomnumber="A-317" />
         <Roominfo roomtype="Seminarraum" roomseats="30 Sitzplätze" />
       </div>
@@ -22,6 +22,7 @@
         <Navigation />
       </div>
     </div>
+    <!-- End home view -->
 
     <!-- Calendar view -->
     <div class="maxSize" v-else-if="this.$store.state.screen == 1">
@@ -34,6 +35,7 @@
         <Navigation />
       </div>
     </div>
+    <!-- End Calendar view -->
 
     <!-- Info view -->
     <div class="maxSize" v-else-if="this.$store.state.screen == 2">
@@ -42,6 +44,20 @@
         <Generator />
         <Navigation />
       </div>
+    </div>
+    <!-- End Info view -->
+
+    <Header
+      studienbereich="Angewandte Physik und Medizintechnik"
+      fachbereich="Ing. Wissenschaften"
+    />
+    <div style="display: flex; height: 20%">
+      <Roomnumber roomnumber="A-317" />
+      <Roominfo roomtype="Seminarraum" roomseats="30 Sitzplätze" />
+    </div>
+    <div class="bottom">
+      <AllPersons />
+      <Navigation />
     </div>
   </div>
 </template>
@@ -57,6 +73,7 @@ import Roominfo from "./components/Roominfo";
 import Calendar from "./components/Calendar.vue";
 import CalendarSwitch from "./components/CalendarSwitch.vue";
 import Generator from "./components/Generator.vue";
+import AllPersons from "./components/AllPersons.vue";
 
 export default {
   name: "App",
@@ -71,6 +88,7 @@ export default {
     Calendar,
     CalendarSwitch,
     Generator,
+    AllPersons,
   },
   data() {
     return {};
@@ -129,6 +147,9 @@ export default {
 .maxSize {
   width: 100%;
   height: 100%;
+}
+.content{
+  width: 85%;
 }
 ::-webkit-scrollbar {
   display: none;

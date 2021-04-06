@@ -7,7 +7,6 @@
         :time="db.time"
       />
     </div>
-    <!--<Evpost />-->
   </div>
 </template>
 

@@ -1,7 +1,17 @@
 <template>
   <div id="button">
     <button class="btnNavigation" @click="setScreen()">
-      <img :src="img_url(imgName)" />
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 100%;
+        "
+      >
+        <img :src="img_url(imgName)" />
+      </div>
     </button>
   </div>
 </template>
@@ -34,9 +44,12 @@ export default {
   padding: 1px;
   display: flex;
   justify-content: space-around;
-  height: 100%;
+  height: 33%;
 }
-
+#button img {
+  max-height: 100%;
+  max-width: 100%;
+}
 .btnNavigation {
   width: 100%;
   background-color: rgb(163, 163, 163);
@@ -56,9 +69,5 @@ button:active {
   background-color: rgb(104, 104, 104);
   position: relative;
   top: 2px;
-}
-
-img {
-  max-height: 85px;
 }
 </style>
