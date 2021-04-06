@@ -23,17 +23,19 @@
       </div>
     </div>
 
+    <!-- Calendar view -->
     <div class="maxSize" v-else-if="this.$store.state.screen == 1">
-      <!-- Calender view -->
       <div id="top" style="display: flex; height: 20%">
-        <CalenderSwitch />
+        <CalendarSwitch />
       </div>
 
       <div class="bottom">
-        <Calender />
+        <Calendar />
         <Navigation />
       </div>
     </div>
+
+    <!-- Info view -->
     <div class="maxSize" v-else-if="this.$store.state.screen == 2">
       <div id="top" style="display: flex; height: 20%"></div>
       <div class="bottom">
@@ -52,8 +54,8 @@ import Events from "./components/Events.vue";
 import Lostandfound from "./components/Lostandfound.vue";
 import Roomnumber from "./components/Roomnumber";
 import Roominfo from "./components/Roominfo";
-import Calender from "./components/Calender.vue";
-import CalenderSwitch from "./components/CalenderSwitch.vue";
+import Calendar from "./components/Calendar.vue";
+import CalendarSwitch from "./components/CalendarSwitch.vue";
 import Generator from "./components/Generator.vue";
 
 export default {
@@ -66,8 +68,8 @@ export default {
     Lostandfound,
     Roomnumber,
     Roominfo,
-    Calender,
-    CalenderSwitch,
+    Calendar,
+    CalendarSwitch,
     Generator,
   },
   data() {

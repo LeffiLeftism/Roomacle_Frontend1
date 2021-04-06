@@ -1,5 +1,5 @@
 <template>
-  <div id="calenderswitch">
+  <div id="calendarswitch">
     <button class="textbutton" @click="setDateAdjust(-7)">&lt;</button>
     <span class="textline">{{ weekStart }} - {{ weekEnd }}</span>
     <!--<span class="textline"> {{ this.weekStart }} - {{ this.weekEnd }}</span>-->
@@ -17,10 +17,10 @@ export default {
   },
   computed: {
     weekStart() {
-      return `${this.$store.state.calender.weekStart.day}.${this.$store.state.calender.weekStart.month}.${this.$store.state.calender.weekStart.year}`;
+      return `${this.$store.state.calendar.weekStart.day}.${this.$store.state.calendar.weekStart.month}.${this.$store.state.calendar.weekStart.year}`;
     },
     weekEnd() {
-      return `${this.$store.state.calender.weekEnd.day}.${this.$store.state.calender.weekEnd.month}.${this.$store.state.calender.weekEnd.year}`;
+      return `${this.$store.state.calendar.weekEnd.day}.${this.$store.state.calendar.weekEnd.month}.${this.$store.state.calendar.weekEnd.year}`;
     },
   },
   methods: {
@@ -82,7 +82,7 @@ export default {
 </script>
 
 <style scoped>
-#calenderswitch {
+#calendarswitch {
   display: inline-flex;
   align-items: center;
   justify-content: space-around;

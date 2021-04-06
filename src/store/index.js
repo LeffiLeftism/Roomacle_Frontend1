@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        calender: {
+        calendar: {
             today: {
                 day: '',
                 month: '',
@@ -28,26 +28,26 @@ export default new Vuex.Store({
     getters: {},
     mutations: {
         changeWeekStart (state, payload) {
-            state.calender.weekStart.day = payload.day;
-            state.calender.weekStart.month = payload.month;
-            state.calender.weekStart.year = payload.year;
+            state.calendar.weekStart.day = payload.day;
+            state.calendar.weekStart.month = payload.month;
+            state.calendar.weekStart.year = payload.year;
         },
         changeWeekEnd (state, payload) {
-            state.calender.weekEnd.day = payload.day;
-            state.calender.weekEnd.month = payload.month;
-            state.calender.weekEnd.year = payload.year;
+            state.calendar.weekEnd.day = payload.day;
+            state.calendar.weekEnd.month = payload.month;
+            state.calendar.weekEnd.year = payload.year;
         },
         setToday (state, payload) {
-            state.calender.today.day = payload.day;
-            state.calender.today.month = payload.month;
-            state.calender.today.year = payload.year;
+            state.calendar.today.day = payload.day;
+            state.calendar.today.month = payload.month;
+            state.calendar.today.year = payload.year;
         },
         setScreen (state, payload) {
             switch (payload) {
                 case "HOME":
                     state.screen = 0;
                     break;
-                case "CALENDER":
+                case "CALENDAR":
                     state.screen = 1;
                     break;
                 case "INFO":

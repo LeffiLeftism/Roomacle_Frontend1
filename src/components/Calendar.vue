@@ -51,13 +51,13 @@
         </td>
       </tr>
     </table>
-    <!--<button @click="resetCalender">Reset Calender</button>-->
+    <!--<button @click="resetCalendar">Reset Calendar</button>-->
   </div>
 </template>
 
 <script>
 import db from "../assets/data.json";
-import Popup from "../components/Popup.vue";
+import Popup from "./Popup.vue";
 
 export default {
   components: {},
@@ -69,17 +69,17 @@ export default {
   },
   computed: {},
   methods: {
-    writeCalender() {
-      this.resetCalender();
-      //console.log('write calender');
+    writeCalendar() {
+      this.resetCalendar();
+      //console.log('write calendar');
       //console.log(this.button_data_connect);
       let connection = [];
       /*console.log("Connect-Array auf 0 gesetzt");
       console.log(connection);*/
 
-      let weekStartDay = this.$store.state.calender.weekStart.day;
-      let weekStartMonth = this.$store.state.calender.weekStart.month;
-      let weekStartYear = this.$store.state.calender.weekStart.year;
+      let weekStartDay = this.$store.state.calendar.weekStart.day;
+      let weekStartMonth = this.$store.state.calendar.weekStart.month;
+      let weekStartYear = this.$store.state.calendar.weekStart.year;
 
       let weekStartDate = new Date(
         weekStartYear,
@@ -88,9 +88,9 @@ export default {
       );
       //console.log(weekStartDate);
 
-      let weekEndDay = this.$store.state.calender.weekEnd.day;
-      let weekEndMonth = this.$store.state.calender.weekEnd.month;
-      let weekEndYear = this.$store.state.calender.weekEnd.year;
+      let weekEndDay = this.$store.state.calendar.weekEnd.day;
+      let weekEndMonth = this.$store.state.calendar.weekEnd.month;
+      let weekEndYear = this.$store.state.calendar.weekEnd.year;
 
       let weekEndDate = new Date(weekEndYear, weekEndMonth - 1, weekEndDay);
       weekEndDate.setHours(23, 59, 59, 999);
@@ -151,7 +151,7 @@ export default {
       //document.getElementById("62").rowSpan = "2";
       //
     },
-    resetCalender() {
+    resetCalendar() {
       for (let hour_index = 0; hour_index < db.time.length; hour_index++) {
         for (let day_index = 0; day_index < 6; day_index++) {
           let CellID = (hour_index + 1) * 10 + day_index + 1;
@@ -192,18 +192,18 @@ export default {
     },
   },
   watch: {
-    "$store.state.calender.weekStart.day": {
+    "$store.state.calendar.weekStart.day": {
       handler: function () {
         /*console.log("Changed weekStartDay");
-        console.log(this.$store.state.calender.weekStart.day);*/
-        this.writeCalender();
+        console.log(this.$store.state.calendar.weekStart.day);*/
+        this.writeCalendar();
       },
     },
   },
   created() {},
   mounted() {
-    //console.log("Calender is mounted");
-    this.writeCalender();
+    //console.log("Calendar is mounted");
+    this.writeCalendar();
   },
 };
 </script>

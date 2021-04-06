@@ -1,7 +1,7 @@
 <template>
   <div id="button">
     <button class="btnNavigation" @click="setScreen()">
-      <img :src="resolve_img_url(imgName)" />
+      <img :src="img_url(imgName)" />
     </button>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     screen: String,
   },
   methods: {
-    resolve_img_url: function (path) {
+    img_url: function (path) {
       let images = require.context("../assets/", false, /\.png$|\.jpg$/);
       return images("./" + path);
     },

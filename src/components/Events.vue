@@ -22,12 +22,9 @@ export default {
   data() {
     return {
       db,
-      todayDate: this.$store.state.calender.today.testDate//`${this.$store.state.calender.today.year}-${this.$store.state.calender.today.month}-${this.$store.state.calender.today.day}`,
+      todayDate: this.$store.state.calendar.today.testDate,
+      //`${this.$store.state.calendar.today.year}-${this.$store.state.calendar.today.month}-${this.$store.state.calendar.today.day}`,
     };
-  },
-  computed: {},
-  created() {
-    //console.log(this.todayDate);
   },
 };
 </script>
