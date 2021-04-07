@@ -83,7 +83,7 @@ import Roomnumber from "./components/Roomnumber";
 import Roominfo from "./components/Roominfo";
 import Calendar from "./components/Calendar.vue";
 import CalendarSwitch from "./components/CalendarSwitch.vue";
-import CalendarGenerator from "./components/CalenderGenerator.vue";
+import CalendarGenerator from "./components/CalendarGenerator.vue";
 import PersonsAll from "./components/PersonsAll.vue";
 
 export default {
