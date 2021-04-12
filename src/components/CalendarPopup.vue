@@ -4,7 +4,7 @@
     <div id="body">
       <div class="spec">Beginn:</div>
       <div class="desc">
-        {{ termin.date }} um {{ times[termin.std_start - 1].tStart }}
+        {{ termin.date.start }} um {{ times[termin.std_start - 1].tStart }}
       </div>
       <div class="spec">Ende:</div>
       <div class="desc">
