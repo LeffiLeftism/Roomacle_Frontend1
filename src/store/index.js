@@ -61,6 +61,15 @@ export default new Vuex.Store({
                     break;
             }
         },
+        importTimings(state, payload) {
+            state.timings = payload.data;
+        },
+        importMeetings(state, payload) {
+            state.meetings = payload.data;
+        },
+        importPersons(state, payload) {
+            state.persons = payload.data;
+        },
     },
     actions: {}
 });

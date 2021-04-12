@@ -1,6 +1,8 @@
 <template>
   <div style="overflow: scroll; width: 85%">
     <!--<v-dialog />-->
+    <!--button @click="recieveData()" style="height: 40px">Recieve</button>
+    <button @click="test()" style="height: 40px">Write</button-->
     <table id="table1" style="width: 100%; table-layout: fixed">
       <tr>
         <th style="width: 20%">Std</th>
@@ -11,7 +13,10 @@
         <th>Fr</th>
         <th>Sa</th>
       </tr>
-      <tr v-for="(n, hour_index) in db.time" :key="hour_index">
+      <tr
+        v-for="(item, hour_index) in this.$store.state.timings"
+        :key="hour_index"
+      >
         <td>
           <div
             style="
@@ -31,7 +36,7 @@
               padding-right: 5px;
             "
           >
-            {{ db.time[hour_index].tStart }}-{{ db.time[hour_index].tEnd }}
+            {{ item.tStart }}-{{ item.tEnd }}
           </div>
         </td>
         <td
@@ -47,14 +52,14 @@
 </template>
 
 <script>
-import db from "../assets/data.json";
+//import db from "../assets/data.json";
 import CalendarPopup from "./CalendarPopup.vue";
 
 export default {
   components: {},
   data() {
     return {
-      db,
+      //db,
       button_db_connect: [],
     };
   },
@@ -77,7 +82,7 @@ export default {
         weekStartMonth - 1,
         weekStartDay
       );
-      //console.log(weekStartDate);
+      //console.log('WeekStartDate '+weekStartDate);
 
       let weekEndDay = this.$store.state.calendar.weekEnd.day;
       let weekEndMonth = this.$store.state.calendar.weekEnd.month;
@@ -85,54 +90,67 @@ export default {
 
       let weekEndDate = new Date(weekEndYear, weekEndMonth - 1, weekEndDay);
       weekEndDate.setHours(23, 59, 59, 999);
-      //console.log(weekEndDate);
+      //console.log('WeekEndDate '+weekEndDate);
 
-      for (const vIndex in this.db.veranstaltungen) {
-        if (Object.hasOwnProperty.call(this.db.veranstaltungen, vIndex)) {
-          const element = this.db.veranstaltungen[vIndex];
-          let dt = new Date(element.date);
-          //console.log(dt);
-          //console.log(weekEndDate);
-          if (dt >= weekStartDate && dt <= weekEndDate) {
-            //console.log(element);
-            let day = new Date(element.date).getDay();
-            //console.log(day);
-            let cellID = element.std_start * 10 + day;
-            let buttonName = element.name_short;
-            let cell = document.getElementById(cellID);
-            /*cell.firstChild.innerText = buttonName;
+      //console.log("Comlete meetings: " + this.$store.state.meetings);
+      for (const vIndex in this.$store.state.meetings) {
+        const element = this.$store.state.meetings[vIndex];
+        //let dateStart = new Date(element.date);
+        let dateStart = new Date(element.date.start);
+        let dateEnd = new Date(element.date.end);
+        let WdateStart = this.ISOweek(dateStart);
+        let WweekStartDate = this.ISOweek(weekStartDate);
+        let weekDif = (WweekStartDate - WdateStart) % element.date.repeatedly;
+        //console.log("dateStart " + dateStart);
+        //console.log("dateEnd " + dateEnd);
+        //console.log("WdateStart " + dateStart);
+        //console.log("WweekStartDate " + weekStartDate);
+        //console.log("weekDif " + weekDif);
+        //console.log(dt);
+        //console.log(weekEndDate);
+        if (
+          (element.date.infinity == true || weekStartDate < dateEnd) &&
+          weekEndDate > dateStart &&
+          weekDif == 0
+        ) {
+          //console.log(element);
+          let day = new Date(element.date.start).getDay();
+          //console.log(day);
+          let cellID = element.std_start * 10 + day;
+          let buttonName = element.name_short;
+          let cell = document.getElementById(cellID);
+          /*cell.firstChild.innerText = buttonName;
             cell.firstChild.style.background = "lightgrey";
             cell.firstChild.style.color = "black";
             cell.firstChild.disabled = false;*/
 
-            cell.innerText = buttonName;
-            cell.style.background = "lightgrey";
-            cell.style.color = "black";
-            //cell.disabled = false;
+          cell.innerText = buttonName;
+          cell.style.background = "lightgrey";
+          cell.style.color = "black";
+          //cell.disabled = false;
 
-            let duration = element.duration;
-            if (duration > 1) {
-              //console.log("Duration " + _id + " " + duration);
-              cell.rowSpan = duration;
-              for (let index = 1; index < duration; index++) {
-                let hiddenID = cellID + 10 * index;
-                //console.log("CellID: " + cellID);
-                //console.log("Duration: " + index);
-                //console.log("Hidden: " + hiddenID);
-                //console.log("Index: " + index);
-                document.getElementById(hiddenID).style.display = "none";
-              }
+          let duration = element.duration;
+          if (duration > 1) {
+            //console.log("Duration " + _id + " " + duration);
+            cell.rowSpan = duration;
+            for (let index = 1; index < duration; index++) {
+              let hiddenID = cellID + 10 * index;
+              //console.log("CellID: " + cellID);
+              //console.log("Duration: " + index);
+              //console.log("Hidden: " + hiddenID);
+              //console.log("Index: " + index);
+              document.getElementById(hiddenID).style.display = "none";
             }
+          }
 
-            /*console.log(
+          /*console.log(
             "Updated Button-text in cell with ID: " +
               cellID +
               " to " +
               buttonName
           );*/
-            let combi = [cellID, vIndex];
-            connection.push(combi);
-          }
+          let combi = [cellID, vIndex];
+          connection.push(combi);
         }
       }
       /*console.log("Connect-Array erstellt");
@@ -143,7 +161,12 @@ export default {
       //
     },
     resetCalendar() {
-      for (let hour_index = 0; hour_index < db.time.length; hour_index++) {
+      //console.log("Reset Calendar");
+      for (
+        let hour_index = 0;
+        hour_index < this.$store.state.timings.length;
+        hour_index++
+      ) {
         for (let day_index = 0; day_index < 6; day_index++) {
           let CellID = (hour_index + 1) * 10 + day_index + 1;
           let cell = document.getElementById(CellID);
@@ -166,8 +189,8 @@ export default {
         );
         let vIndex = this.button_db_connect[index][1];
         this.$modal.show(CalendarPopup, {
-          termin: db.veranstaltungen[vIndex],
-          times: db.time,
+          termin: this.$store.state.meetings[vIndex],
+          times: this.$store.state.timings,
         });
       } catch (err) {
         console.log("Clicked on Non-Event cell in calendar.");
@@ -180,6 +203,20 @@ export default {
       var b = num & 255;
       document.getElementById(index).style.backgroundColor =
         "rgb(" + r + ", " + g + ", " + b + ")";
+    },
+
+    ISOweek(dt) {
+      //console.log("Date " + dt);
+      //console.log("Date.day " + dt.getDay());
+      var tdt = new Date(dt.valueOf());
+      var dayn = (dt.getDay() + 6) % 7;
+      tdt.setDate(tdt.getDate() - dayn + 3);
+      var firstThursday = tdt.valueOf();
+      tdt.setMonth(0, 1);
+      if (tdt.getDay() !== 4) {
+        tdt.setMonth(0, 1 + ((4 - tdt.getDay() + 7) % 7));
+      }
+      return 1 + Math.ceil((firstThursday - tdt) / 604800000);
     },
 
     //////////////////////////////////////////////////////////////////////////////////////////
@@ -259,8 +296,9 @@ export default {
   },
   created() {},
   mounted() {
-    //console.log("Calendar is mounted");
     this.recieveData();
+  },
+  updated() {
     this.writeCalendar();
   },
 };
