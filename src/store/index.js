@@ -5,6 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        timings: [],
+        meetings: [],
+        persons: [],
         calendar: {
             today: {
                 day: '',
@@ -27,22 +30,22 @@ export default new Vuex.Store({
     },
     getters: {},
     mutations: {
-        changeWeekStart (state, payload) {
+        changeWeekStart(state, payload) {
             state.calendar.weekStart.day = payload.day;
             state.calendar.weekStart.month = payload.month;
             state.calendar.weekStart.year = payload.year;
         },
-        changeWeekEnd (state, payload) {
+        changeWeekEnd(state, payload) {
             state.calendar.weekEnd.day = payload.day;
             state.calendar.weekEnd.month = payload.month;
             state.calendar.weekEnd.year = payload.year;
         },
-        setToday (state, payload) {
+        setToday(state, payload) {
             state.calendar.today.day = payload.day;
             state.calendar.today.month = payload.month;
             state.calendar.today.year = payload.year;
         },
-        setScreen (state, payload) {
+        setScreen(state, payload) {
             switch (payload) {
                 case "HOME":
                     state.screen = 0;

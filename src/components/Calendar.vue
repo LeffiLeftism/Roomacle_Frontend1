@@ -39,16 +39,7 @@
           v-for="(n, day_index) in 6"
           :key="day_index"
           @click="openModal(10 * (hour_index + 1) + day_index + 1)"
-        >
-          <!--<button
-            @click="openModal(10 * (hour_index + 1) + day_index + 1)"
-            :disabled="true"
-            style="color: white; background: white"
-            class="terminbutton"
-          >
-            {{ hour_index + 1 }} - {{ day_index + 1 }}
-          </button>-->
-        </td>
+        ></td>
       </tr>
     </table>
     <!--<button @click="resetCalendar">Reset Calendar</button>-->
@@ -179,7 +170,7 @@ export default {
           times: db.time,
         });
       } catch (err) {
-        console.log("Clicked on Non-Event cell in calendar.")
+        console.log("Clicked on Non-Event cell in calendar.");
       }
     },
     getRandomRgb(index) {
@@ -190,6 +181,72 @@ export default {
       document.getElementById(index).style.backgroundColor =
         "rgb(" + r + ", " + g + ", " + b + ")";
     },
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+
+    sendData: async function () {
+      console.log("Send all Data");
+      const data = {};
+      data.timings = this.$store.state.timings;
+      data.meetings = this.$store.state.meetings;
+      data.persons = this.$store.state.persons;
+      console.log(data);
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+      const response = await fetch("/send", options);
+      const json = await response.json();
+      console.log("Response:");
+      console.log(json);
+    },
+    recieveData: async function () {
+      let response;
+      console.log("Recieve all Data");
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      let data = {
+        type: "",
+      };
+      let json = [];
+
+      data.type = "timings";
+      options.body = JSON.stringify(data);
+      response = await fetch("/recieve", options);
+      json.timings = await response.json();
+
+      data.type = "meetings";
+      options.body = JSON.stringify(data);
+      response = await fetch("/recieve", options);
+      json.meetings = await response.json();
+
+      data.type = "persons";
+      options.body = JSON.stringify(data);
+      response = await fetch("/recieve", options);
+      json.persons = await response.json();
+
+      this.$store.commit("importTimings", {
+        data: json.timings,
+      });
+      this.$store.commit("importMeetings", {
+        data: json.meetings,
+      });
+      this.$store.commit("importPersons", {
+        data: json.persons,
+      });
+
+      console.log("Response:");
+      console.log(json);
+    },
+
+    //////////////////////////////////////////////////////////////////////////////////////////
   },
   watch: {
     "$store.state.calendar.weekStart.day": {
@@ -203,6 +260,7 @@ export default {
   created() {},
   mounted() {
     //console.log("Calendar is mounted");
+    this.recieveData();
     this.writeCalendar();
   },
 };

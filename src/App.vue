@@ -39,9 +39,11 @@
 
     <!-- Info view -->
     <div class="maxSize" v-else-if="this.$store.state.screen == 2">
-      <div id="top" style="display: flex; height: 20%"></div>
+      <div id="top" style="display: flex; height: 20%">
+
+      </div>
       <div class="bottom">
-        <CalendarGenerator />
+        <!--CalendarGenerator /-->
         <Navigation />
       </div>
     </div>
@@ -83,7 +85,7 @@ import Roomnumber from "./components/Roomnumber";
 import Roominfo from "./components/Roominfo";
 import Calendar from "./components/Calendar.vue";
 import CalendarSwitch from "./components/CalendarSwitch.vue";
-import CalendarGenerator from "./components/CalendarGenerator.vue";
+//import CalendarGenerator from "./components/CalendarGenerator.vue";
 import PersonsAll from "./components/PersonsAll.vue";
 
 export default {
@@ -98,7 +100,7 @@ export default {
     Roominfo,
     Calendar,
     CalendarSwitch,
-    CalendarGenerator,
+    //CalendarGenerator,
     PersonsAll,
   },
   data() {
