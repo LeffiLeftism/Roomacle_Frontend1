@@ -2,10 +2,14 @@
   <div id="evpost">
     <span class="textline">{{ termin.num }} | {{ termin.name }}</span
     ><br />
-    Findet am {{ termin.date }} von {{ time[termin.std_start - 1].tStart }} bis
-    {{ time[termin.std_start - 1].tEnd }} statt
+    Von {{ time[termin.std_start - 1].tStart }} bis
+    {{ time[termin.std_start - 1].tEnd }} Uhr
     <br />
-    {{ termin.dozent }}
+    Studiengänge: {{ termin.studigang }}
+    <br />
+    Semester: {{ termin.semester }}
+    <br />
+    DozentIn: {{ termin.dozent }}
   </div>
 </template>
 
