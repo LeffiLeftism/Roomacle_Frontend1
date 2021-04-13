@@ -12,7 +12,13 @@ import store from "./store";
 
 import VModal from 'vue-js-modal'
 
-Vue.use(VModal)
+Vue.use(VModal, {
+  dynamicDefaults: {
+    height: 'auto',
+    adaptive: true,
+    //scrollable: true,
+  }
+})
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
