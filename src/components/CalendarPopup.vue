@@ -2,14 +2,23 @@
   <div class="calendarPopup">
     <header>{{ termin.num }} | {{ termin.name }}</header>
     <div id="body">
-      <div class="spec">Beginn:</div>
-      <div class="desc">
-        {{ termin.date.start }} um {{ times[termin.std_start - 1].tStart }}
+      <div class="description">Beginn:</div>
+      <div class="content">
+        {{ times[termin.std_start - 1].tStart }}
       </div>
-      <div class="spec">Ende:</div>
-      <div class="desc">
+      <div class="description">Ende:</div>
+      <div class="content">
         {{ times[termin.std_start + termin.duration - 1 - 1].tEnd }}
       </div>
+      <div class="description">Wdh.:</div>
+      <div class="content" v-if="termin.date.repeatedly == 1">wöchentlich</div>
+      <div class="content" v-else>alle {{ termin.date.repeatedly }} Wochen</div>
+      <div class="description">Studiengänge:</div>
+      <div class="content">{{ termin.studigang }}</div>
+      <div class="description">Semester:</div>
+      <div class="content">{{ termin.semester }}</div>
+      <div class="description">Dozent:</div>
+      <div class="content">{{ termin.dozent }}</div>
     </div>
   </div>
 </template>
@@ -19,6 +28,17 @@ export default {
   props: {
     termin: Object,
     times: Array,
+  },
+  computed: {
+    endOfWeek() {
+      let eow =
+        this.$store.state.calendar.weekEnd.year +
+        "-" +
+        this.$store.state.calendar.weekEnd.month +
+        "-" +
+        this.$store.state.calendar.weekEnd.day;
+      return eow;
+    },
   },
   methods: {
     writeContent() {},
@@ -43,11 +63,11 @@ header {
   font-size: 1.3em;
   padding: 5px;
 }
-.spec {
+.description {
   display: inline-flex;
   width: 25%;
 }
-.desc {
+.content {
   display: inline-flex;
   width: 75%;
 }
