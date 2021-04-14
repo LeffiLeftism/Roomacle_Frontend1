@@ -220,7 +220,7 @@ export default {
     },
 
     //////////////////////////////////////////////////////////////////////////////////////////
-
+    /*
     sendData: async function () {
       console.log("Send all Data");
       const data = {};
@@ -239,49 +239,7 @@ export default {
       const json = await response.json();
       console.log("Response:");
       console.log(json);
-    },
-    recieveData: async function () {
-      let response;
-      console.log("Recieve all Data");
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      let data = {
-        type: "",
-      };
-      let json = [];
-
-      data.type = "timings";
-      options.body = JSON.stringify(data);
-      response = await fetch("/recieve", options);
-      json.timings = await response.json();
-
-      data.type = "meetings";
-      options.body = JSON.stringify(data);
-      response = await fetch("/recieve", options);
-      json.meetings = await response.json();
-
-      data.type = "persons";
-      options.body = JSON.stringify(data);
-      response = await fetch("/recieve", options);
-      json.persons = await response.json();
-
-      this.$store.commit("importTimings", {
-        data: json.timings,
-      });
-      this.$store.commit("importMeetings", {
-        data: json.meetings,
-      });
-      this.$store.commit("importPersons", {
-        data: json.persons,
-      });
-
-      console.log("Response:");
-      console.log(json);
-    },
+    },*/
 
     //////////////////////////////////////////////////////////////////////////////////////////
   },
@@ -295,9 +253,7 @@ export default {
     },
   },
   created() {},
-  mounted() {
-    this.recieveData();
-  },
+  mounted() {},
   updated() {
     this.writeCalendar();
   },

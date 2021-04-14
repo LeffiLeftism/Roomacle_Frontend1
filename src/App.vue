@@ -39,9 +39,7 @@
 
     <!-- Info view -->
     <div class="maxSize" v-else-if="this.$store.state.screen == 2">
-      <div id="top" style="display: flex; height: 20%">
-
-      </div>
+      <div id="top" style="display: flex; height: 20%"></div>
       <div class="bottom">
         <!--CalendarGenerator /-->
         <Navigation />
@@ -112,6 +110,56 @@ export default {
     },
   },
   methods: {
+    recieveData: async function () {
+      let response;
+      console.log("Recieve all Data");
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      let data = {
+        type: "",
+      };
+      let json = [];
+
+      data.type = "timings";
+      options.body = JSON.stringify(data);
+      response = await fetch("/recieve", options);
+      json.timings = await response.json();
+
+      data.type = "meetings";
+      options.body = JSON.stringify(data);
+      response = await fetch("/recieve", options);
+      json.meetings = await response.json();
+
+      data.type = "persons";
+      options.body = JSON.stringify(data);
+      response = await fetch("/recieve", options);
+      json.persons = await response.json();
+
+      data.type = "setup";
+      options.body = JSON.stringify(data);
+      response = await fetch("/recieve", options);
+      json.setup = await response.json();
+
+      this.$store.commit("importTimings", {
+        data: json.timings,
+      });
+      this.$store.commit("importMeetings", {
+        data: json.meetings,
+      });
+      this.$store.commit("importPersons", {
+        data: json.persons,
+      });
+      this.$store.commit("importSetup", {
+        data: json.setup,
+      });
+
+      console.log("Response:");
+      console.log(json);
+    },
     open() {
       this.$vm2.open("modal-1");
     },
@@ -123,6 +171,9 @@ export default {
     },
   },
   created() {},
+  mounted() {
+    this.recieveData();
+  },
 };
 </script>
 
