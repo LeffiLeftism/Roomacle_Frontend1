@@ -1,19 +1,17 @@
 <template>
-  <div id="roomnumber">
-    <span class="textline">{{ roomnumber }}</span>
+  <div id="roomnumberComp">
+    <span id="roomnumber" class="textline">R.Num</span>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    roomnumber: String,
-  },
+  props: {},
 };
 </script>
 
 <style scoped>
-#roomnumber {
+#roomnumberComp {
   border: grey solid 2px;
   padding: 5px;
   display: inline-flex;

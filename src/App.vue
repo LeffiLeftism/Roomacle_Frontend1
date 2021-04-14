@@ -1,17 +1,14 @@
 <template>
   <div id="app">
     <!-- Headlines are allways the same. They are not gonna change. -->
-    <Header
-      studienbereich="Angewandte Physik und Medizintechnik"
-      fachbereich="Ing. Wissenschaften"
-    />
+    <Header />
 
     <!-- "Bottom" and "Top" content changes with Navigation-Buttons -->
     <!-- Home view -->
     <div class="maxSize" v-if="this.$store.state.screen == 0">
       <div style="display: flex; height: 20%">
-        <Roomnumber roomnumber="A-317" />
-        <Roominfo roomtype="Seminarraum" roomseats="30 Sitzplätze" />
+        <Roomnumber />
+        <Roominfo />
       </div>
       <div class="bottom">
         <div class="notifications">
@@ -47,12 +44,9 @@
     </div>
     <!-- End Info view -->
 
-    <Header
-      studienbereich="Angewandte Physik und Medizintechnik"
-      fachbereich="Ing. Wissenschaften"
-    />
+    <Header />
     <div style="display: flex; height: 20%">
-      <Roomnumber roomnumber="A-317" />
+      <Roomnumber />
       <div
         class="notifications"
         style="
@@ -154,7 +148,7 @@ export default {
         data: json.persons,
       });
       this.$store.commit("importSetup", {
-        data: json.setup,
+        data: json.setup[0],
       });
 
       console.log("Response:");
@@ -173,6 +167,33 @@ export default {
   created() {},
   mounted() {
     this.recieveData();
+  },
+  watch: {
+    "$store.state.setup": {
+      handler: function () {
+        let setup = this.$store.state.setup;
+        document.getElementById("roomnumber").textContent = setup.room.num;
+        document.getElementById("fachbereich").textContent = setup.fachbereich;
+        document.getElementById("studienbereich").textContent =
+          setup.studienbereich;
+        switch (setup.room.type) {
+          case "buero":
+            document.getElementById("roomtype").textContent = "Büro";
+            document.getElementById("roomseats").textContent = "";
+            break;
+          case "vl":
+            document.getElementById("roomtype").textContent =
+              "Vorlesung/Seminarraumm";
+            document.getElementById("roomseats").textContent =
+              setup.room.seats + " Sitzplätze";
+            break;
+          default:
+            document.getElementById("roomtype").textContent = "No valid Type";
+            break;
+        }
+        console.log("Setup geupdated");
+      },
+    },
   },
 };
 </script>

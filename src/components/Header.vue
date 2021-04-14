@@ -1,8 +1,17 @@
 <template>
   <div id="header">
-    <img id="logo" src="../assets/logo.png" alt="Logo HSRM" style="padding: 2px" />
-    <span class="headertext">FB: {{ fachbereich }}</span>
-    <span class="headertext">SB: {{ studienbereich }}</span>
+    <img
+      id="logo"
+      src="../assets/logo.png"
+      alt="Logo HSRM"
+      style="padding: 2px"
+    />
+    <span class="headertext"
+      >FB: <span id="fachbereich">Fachbereich</span></span
+    >
+    <span class="headertext"
+      >SB: <span id="studienbereich"> Studienbereich</span></span
+    >
     <span class="headertext">{{ this.time }}<br />{{ this.date }}</span>
   </div>
 </template>
@@ -27,18 +36,15 @@ export default {
       return `${this.day}.${this.month}.${this.year}`;
     },
   },
-  props: {
-    fachbereich: String,
-    studienbereich: String,
-  },
+  props: {},
   methods: {
-    setToday: function() {
-    let dt = new Date();
-    this.$store.commit("setToday", {
-      day: this.fillUpTens(dt.getDate()),
-      month: this.fillUpTens(dt.getMonth() + 1),
-      year: this.fillUpTens(dt.getFullYear()),
-    });
+    setToday: function () {
+      let dt = new Date();
+      this.$store.commit("setToday", {
+        day: this.fillUpTens(dt.getDate()),
+        month: this.fillUpTens(dt.getMonth() + 1),
+        year: this.fillUpTens(dt.getFullYear()),
+      });
     },
     refreshTime: function () {
       var date = new Date();
@@ -66,9 +72,9 @@ export default {
     },
   },
   watch: {
-    day: function() {
+    day: function () {
       this.setToday();
-    }
+    },
   },
   created() {
     this.setToday();

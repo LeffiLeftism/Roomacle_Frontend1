@@ -1,15 +1,16 @@
 <template>
   <div id="roominfo">
-    <span class="textline">{{ roomtype }}<br />{{ roomseats }}</span>
+    <span class="textline">
+      <span id="roomtype">Raumtyp</span>
+      <br />
+      <span id="roomseats">Raumsitze</span>
+    </span>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    roomtype: String,
-    roomseats: String,
-  },
+  props: {},
 };
 </script>
 
