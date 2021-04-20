@@ -2,13 +2,14 @@
   <div>
     <div
       class="lfpost"
-      :class="[announcement === true ? 'announcement' : '']"
+      :class="[this.postContent.announcement === true ? 'announcement' : '']"
     >
-      <span class="textline">{{ founddate }} | {{ thing }}</span
+      <span class="textline"
+        >{{ this.postContent.date }} | {{ this.postContent.time }} </span
       ><br />
-      {{ description }}
+      {{ this.postContent.content }}
       <br />
-      Erstellt von: {{ founder }}
+      Erstellt von: {{ this.postContent.creator }}
     </div>
   </div>
 </template>
@@ -16,12 +17,7 @@
 <script>
 export default {
   props: {
-    thing: String,
-    description: String,
-    founddate: String,
-    founder: String,
-    color: String,
-    announcement: Boolean,
+    postContent: Object,
   },
   created() {},
 };

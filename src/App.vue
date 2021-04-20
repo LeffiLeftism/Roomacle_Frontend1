@@ -38,6 +38,7 @@
     <div class="maxSize" v-else-if="this.$store.state.screen == 2">
       <div id="top" style="display: flex; height: 20%"></div>
       <div class="bottom">
+        <button @click="readFile()">Import Data</button>
         <!--CalendarGenerator /-->
         <Navigation />
       </div>
@@ -72,13 +73,13 @@ import Header from "./components/Header.vue";
 import Navigation from "./components/Navigation.vue";
 import Announcements from "./components/Announcements.vue";
 import Events from "./components/Events.vue";
-import Lostandfound from "./components/Lostandfound.vue";
 import Roomnumber from "./components/Roomnumber";
 import Roominfo from "./components/Roominfo";
 import Calendar from "./components/Calendar.vue";
 import CalendarSwitch from "./components/CalendarSwitch.vue";
-//import CalendarGenerator from "./components/CalendarGenerator.vue";
 import PersonsAll from "./components/PersonsAll.vue";
+
+import db from "./assets/data.json";
 
 export default {
   name: "App",
@@ -87,16 +88,16 @@ export default {
     Navigation,
     Announcements,
     Events,
-    Lostandfound,
     Roomnumber,
     Roominfo,
     Calendar,
     CalendarSwitch,
-    //CalendarGenerator,
     PersonsAll,
   },
   data() {
-    return {};
+    return {
+      db,
+    };
   },
   computed: {
     test() {
@@ -104,6 +105,13 @@ export default {
     },
   },
   methods: {
+    readFile() {
+      this.$store.state.timings = db.timings;
+      this.$store.state.persons = db.persons;
+      this.$store.state.meetings = db.meetings;
+      this.$store.state.announcements = db.announcements;
+      this.$store.state.setup = db.setup;
+    },
     recieveData: async function () {
       let response;
       console.log("Recieve all Data");
@@ -133,6 +141,11 @@ export default {
       response = await fetch("/recieve", options);
       json.persons = await response.json();
 
+      data.type = "announcements";
+      options.body = JSON.stringify(data);
+      response = await fetch("/recieve", options);
+      json.announcements = await response.json();
+
       data.type = "setup";
       options.body = JSON.stringify(data);
       response = await fetch("/recieve", options);
@@ -147,12 +160,17 @@ export default {
       this.$store.commit("importPersons", {
         data: json.persons,
       });
+      this.$store.commit("importAnnouncements", {
+        data: json.announcements,
+      });
       this.$store.commit("importSetup", {
         data: json.setup[0],
       });
+      console.log(this.$store.state.setup);
 
       console.log("Response:");
       console.log(json);
+      console.log(this.$store.state);
     },
     open() {
       this.$vm2.open("modal-1");

@@ -1,18 +1,9 @@
 <template>
   <div id="announcement">
     <Post
-      thing="Verspätung"
-      description="Wegen Stau 15 Minuten Verspätung"
-      founddate="13:30"
-      founder="Zinnen, Andreas"
-      v-bind:announcement="this.announcement"
-    />
-    <Post
-      thing="Mittagessen"
-      description="Bin von 13:30 - 14:00 in der Mensa zusammen mit Andreas"
-      founddate="16-03-2021"
-      founder="Zinnen, Andreas"
-      v-bind:announcement="this.announcement"
+      v-for="(item, index) in this.$store.state.announcements"
+      :key="index"
+      :postContent="item"
     />
   </div>
 </template>
@@ -22,9 +13,7 @@ import Post from "./Post.vue";
 
 export default {
   data() {
-    return {
-      announcement: true,
-    };
+    return {};
   },
   components: {
     Post,
