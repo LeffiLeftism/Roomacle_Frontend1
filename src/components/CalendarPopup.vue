@@ -53,11 +53,6 @@ export default {
   padding: 5px;
   height: 100%;
 }
-header {
-  font-weight: bolder;
-  font-size: 2em;
-  padding: 5px;
-}
 #body {
   text-align: left;
   font-size: 1.3em;
