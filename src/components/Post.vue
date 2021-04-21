@@ -1,23 +1,37 @@
 <template>
-  <div>
+  <div @click="openModal()">
     <div
       class="lfpost"
       :class="[this.postContent.announcement === true ? 'announcement' : '']"
     >
       <span class="textline"
-        >{{ this.postContent.date }} | {{ this.postContent.time }} </span
+        >{{ this.postContent.date }}
+        <span v-if="this.postContent.time"
+          >| {{ this.postContent.time }}</span
+        > </span
       ><br />
       {{ this.postContent.content }}
-      <br />
-      Erstellt von: {{ this.postContent.creator }}
     </div>
   </div>
 </template>
 
 <script>
+import AnnouncementsPopupVue from "./AnnouncementsPopup.vue";
+
 export default {
   props: {
     postContent: Object,
+  },
+  methods: {
+    openModal() {
+      try {
+        this.$modal.show(AnnouncementsPopupVue, {
+          postContent: this.postContent
+        });
+      } catch (err) {
+        console.log("Clicked on Non-Event cell in calendar.");
+      }
+    },
   },
   created() {},
 };

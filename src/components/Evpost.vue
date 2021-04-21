@@ -1,5 +1,5 @@
 <template>
-  <div id="evpost">
+  <div id="evpost" @click="openModal()">
     <span class="textline">{{ termin.num }} | {{ termin.name }}</span
     ><br />
     Von {{ time[termin.std_start - 1].tStart }} bis
@@ -14,10 +14,25 @@
 </template>
 
 <script>
+import CalendarPopup from "./CalendarPopup.vue";
+
 export default {
+  components() {},
   props: {
     termin: Object,
     time: Array,
+  },
+  methods: {
+    openModal() {
+      try {
+        this.$modal.show(CalendarPopup, {
+          termin: this.termin,
+          times: this.$store.state.timings,
+        });
+      } catch (err) {
+        console.log("Error in Evpost running Popup.");
+      }
+    },
   },
 };
 </script>

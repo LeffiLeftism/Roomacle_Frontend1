@@ -4,6 +4,7 @@
       v-for="(item, index) in this.$store.state.announcements"
       :key="index"
       :postContent="item"
+      @click="openModal()"
     />
   </div>
 </template>
@@ -17,6 +18,8 @@ export default {
   },
   components: {
     Post,
+  },
+  methods: {
   },
 };
 </script>

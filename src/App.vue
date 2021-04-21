@@ -235,6 +235,11 @@ export default {
   min-width: 15%;
   width: 15%;
 }
+header {
+  font-weight: bolder;
+  font-size: 2em;
+  padding: 5px;
+}
 .notifications {
   display: block;
   box-sizing: border-box;
