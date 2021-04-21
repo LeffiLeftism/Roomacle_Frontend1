@@ -1,6 +1,8 @@
 <template>
   <div id="roomnumberComp">
-    <span id="roomnumber" class="textline">R.Num</span>
+    <span id="roomnumber" class="textline">{{
+      this.$store.state.setup.room.num
+    }}</span>
   </div>
 </template>
 

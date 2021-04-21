@@ -3,7 +3,7 @@
     <div v-for="(item, index) in this.$store.state.meetings" :key="index">
       <Evpost
         v-if="
-          (item.date.infinity == true || today < item.date.end)"
+          (item.date.infinity == true || todayDate < item.date.end)"
         :termin="item"
         :time="$store.state.timings"
       />
@@ -13,7 +13,6 @@
 
 <script>
 import Evpost from "../components/Evpost.vue";
-import db from "../assets/data.json";
 
 export default {
   components: {
@@ -21,7 +20,6 @@ export default {
   },
   data() {
     return {
-      db,
       todayDate: this.$store.state.calendar.today.testDate,
       //`${this.$store.state.calendar.today.year}-${this.$store.state.calendar.today.month}-${this.$store.state.calendar.today.day}`,
     };
@@ -42,7 +40,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$store.state.timings);
 /*
           (item.date.infinity == true || today < item.date.end) &&
           today > item.date.start &&

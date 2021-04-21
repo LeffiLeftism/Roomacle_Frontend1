@@ -248,6 +248,7 @@
             "time": "11:45",
             "content": "Hier steht irdengwann mal Text!!!",
             "creator": "Alex",
+            "title": "USB-Stick 32GB",
             "announcement": true
         },
         {
@@ -255,6 +256,7 @@
             "time": "13:51",
             "content": "Auch hier kann Text stehen",
             "creator": "Visar",
+            "title": "Test Titel",
             "announcement": true
         },
         {
@@ -262,6 +264,7 @@
             "time": "13:45",
             "content": "Lost1",
             "creator": "Alex",
+            "title": "Test Alex Titel",
             "announcement": false
         },
         {
@@ -269,6 +272,7 @@
             "time": "",
             "content": "Lost2",
             "creator": "Visar",
+            "title": "Titel Test",
             "announcement": false
         }
     ],

@@ -1,69 +1,102 @@
 <template>
   <div id="app">
-    <!-- Headlines are allways the same. They are not gonna change. -->
-    <Header />
-
-    <!-- "Bottom" and "Top" content changes with Navigation-Buttons -->
-    <!-- Home view -->
-    <div class="maxSize" v-if="this.$store.state.screen == 0">
-      <div style="display: flex; height: 20%">
-        <Roomnumber />
-        <Roominfo />
-      </div>
-      <div class="bottom">
-        <div class="notifications">
-          <Announcements />
-          <Lostandfound />
+    <!--------------------------------------Büroräume--------------------------------------->
+    <div class="maxSize" v-if="this.$store.state.setup.room">
+      <div class="maxSize" v-if="this.$store.state.setup.room.type == 'buero'">
+        <!-- Home view -->
+        <div class="maxSize" v-if="this.$store.state.screen == 0">
+          <Header />
+          <div class="top" style="display: flex; height: 20%; overflow: hidden">
+            <Roomnumber />
+            <div class="notifications" style="width: 55%">
+              <Announcements />
+            </div>
+          </div>
+          <div class="bottom">
+            <PersonsAll />
+            <Navigation />
+          </div>
         </div>
-        <Events />
-        <Navigation />
+        <!-- End Home view -->
+        <!-- Calendar view -->
+        <div class="maxSize" v-else-if="this.$store.state.screen == 1">
+          <Header />
+          <div class="top" style="display: flex; height: 20%"></div>
+          <div class="bottom">
+            <div class="bottomSpacer"></div>
+            <Navigation />
+          </div>
+        </div>
+        <!-- End Calendar view -->
+        <!-- Info view -->
+        <div class="maxSize" v-else-if="this.$store.state.screen == 2">
+          <Header />
+          <div class="top" style="display: flex; height: 20%">
+            <Roomnumber />
+            <Roominfo />
+          </div>
+          <div class="bottom">
+            <div style="width: 85%">
+              <button @click="readFile()">Import Data</button>
+              <button @click="recieveData()">Recieve Data</button>
+            </div>
+            <Navigation />
+          </div>
+        </div>
+        <!-- End Info view -->
       </div>
-    </div>
-    <!-- End home view -->
+      <!--------------------------------------Büroräume Ende--------------------------------------->
+      <!--------------------------------------Vorlesungsräume--------------------------------------->
+      <div class="maxSize" v-if="this.$store.state.setup.room.type == 'vl'">
+        <div class="maxSize" v-if="this.$store.state.screen == 0">
+          <Header />
+          <div style="display: flex; height: 20%">
+            <Roomnumber />
+            <Roominfo />
+          </div>
+          <div class="bottom">
+            <div class="notifications">
+              <Announcements />
+            </div>
+            <Events />
+            <Navigation />
+          </div>
+        </div>
 
-    <!-- Calendar view -->
-    <div class="maxSize" v-else-if="this.$store.state.screen == 1">
-      <div id="top" style="display: flex; height: 20%">
-        <CalendarSwitch />
+        <!-- Calendar view -->
+        <div class="maxSize" v-else-if="this.$store.state.screen == 1">
+          <Header />
+          <div class="top" style="display: flex; height: 20%">
+            <CalendarSwitch />
+          </div>
+          <div class="bottom">
+            <Calendar />
+            <Navigation />
+          </div>
+        </div>
+        <!-- End Calendar view -->
+        <!-- Info view -->
+        <div class="maxSize" v-else-if="this.$store.state.screen == 2">
+          <Header />
+          <div class="top" style="display: flex; height: 20%">
+            <Roomnumber />
+            <Roominfo />
+          </div>
+          <div class="bottom">
+            <div style="width: 85%">
+              <button @click="readFile()">Import Data</button>
+              <button @click="recieveData()">Recieve Data</button>
+            </div>
+            <Navigation />
+          </div>
+        </div>
+        <!-- End Info view -->
+        <!-- -->
       </div>
-
-      <div class="bottom">
-        <Calendar />
-        <Navigation />
-      </div>
+      <!--------------------------------------Vorlesungsräume Ende--------------------------------------->
     </div>
-    <!-- End Calendar view -->
-
-    <!-- Info view -->
-    <div class="maxSize" v-else-if="this.$store.state.screen == 2">
-      <div id="top" style="display: flex; height: 20%"></div>
-      <div class="bottom">
-        <button @click="readFile()">Import Data</button>
-        <!--CalendarGenerator /-->
-        <Navigation />
-      </div>
-    </div>
-    <!-- End Info view -->
-
-    <Header />
-    <div style="display: flex; height: 20%">
-      <Roomnumber />
-      <div
-        class="notifications"
-        style="
-          width: 60%;
-          border: grey solid 2px;
-          border-left: 1px;
-          padding: 5px;
-        "
-      >
-        <Announcements />
-      </div>
-      <!--Roominfo roomtype="Seminarraum" roomseats="30 Sitzplätze" /-->
-    </div>
-    <div class="bottom">
-      <PersonsAll />
-      <Navigation />
+    <div class="maxSize" v-else>
+      <button class="maxSize" @click="readFile()">IMPORT</button>
     </div>
   </div>
 </template>
@@ -99,11 +132,7 @@ export default {
       db,
     };
   },
-  computed: {
-    test() {
-      return this.$store.state.screen;
-    },
-  },
+  computed: {},
   methods: {
     readFile() {
       this.$store.state.timings = db.timings;
@@ -186,33 +215,7 @@ export default {
   mounted() {
     this.recieveData();
   },
-  watch: {
-    "$store.state.setup": {
-      handler: function () {
-        let setup = this.$store.state.setup;
-        document.getElementById("roomnumber").textContent = setup.room.num;
-        document.getElementById("fachbereich").textContent = setup.fachbereich;
-        document.getElementById("studienbereich").textContent =
-          setup.studienbereich;
-        switch (setup.room.type) {
-          case "buero":
-            document.getElementById("roomtype").textContent = "Büro";
-            document.getElementById("roomseats").textContent = "";
-            break;
-          case "vl":
-            document.getElementById("roomtype").textContent =
-              "Vorlesung/Seminarraumm";
-            document.getElementById("roomseats").textContent =
-              setup.room.seats + " Sitzplätze";
-            break;
-          default:
-            document.getElementById("roomtype").textContent = "No valid Type";
-            break;
-        }
-        console.log("Setup geupdated");
-      },
-    },
-  },
+  watch: {},
 };
 </script>
 
@@ -250,6 +253,9 @@ header {
 .bottom {
   display: flex;
   height: 70%;
+}
+.bottomSpacer {
+  width: 85%;
 }
 .maxSize {
   width: 100%;

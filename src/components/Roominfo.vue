@@ -1,9 +1,14 @@
 <template>
   <div id="roominfo">
-    <span class="textline">
-      <span id="roomtype">Raumtyp</span>
+    <span class="textline" v-if="this.$store.state.setup.room.type == 'buero'">
+      <span id="roomtype">Büro</span>
+    </span>
+    <span class="textline" v-if="this.$store.state.setup.room.type == 'vl'">
+      <span id="roomtype">Vorlesungsraum</span>
       <br />
-      <span id="roomseats">Raumsitze</span>
+      <span id="roomseats"
+        >Sitzplätze: {{ this.$store.state.setup.room.seats }}</span
+      >
     </span>
   </div>
 </template>

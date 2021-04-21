@@ -240,7 +240,6 @@ export default {
       console.log("Response:");
       console.log(json);
     },*/
-
     //////////////////////////////////////////////////////////////////////////////////////////
   },
   watch: {
@@ -253,7 +252,9 @@ export default {
     },
   },
   created() {},
-  mounted() {},
+  mounted() {
+    this.writeCalendar();
+  },
   updated() {
     this.writeCalendar();
   },

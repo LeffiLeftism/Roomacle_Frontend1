@@ -28,6 +28,9 @@ export default {
 #announcement {
   justify-content: space-around;
   padding: 5px;
+  width: auto;
+  height: 100%;
+  overflow: scroll;
   /*background-color: bisque;*/
 }
 </style>

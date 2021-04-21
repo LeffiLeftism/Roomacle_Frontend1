@@ -14,7 +14,6 @@ import VModal from 'vue-js-modal'
 
 Vue.use(VModal, {
   dynamicDefaults: {
-    height: 'auto',
     adaptive: true,
     //scrollable: true,
   }

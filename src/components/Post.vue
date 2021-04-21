@@ -4,12 +4,12 @@
       class="lfpost"
       :class="[this.postContent.announcement === true ? 'announcement' : '']"
     >
-      <span class="textline"
-        >{{ this.postContent.date }}
-        <span v-if="this.postContent.time"
-          >| {{ this.postContent.time }}</span
-        > </span
-      ><br />
+      <span class="textline">
+        {{ this.postContent.date }}
+        <span v-if="this.postContent.time">| {{ this.postContent.time }}</span>
+        <span v-if="this.postContent.title">| {{ this.postContent.title }}</span>
+      </span>
+        <br />
       {{ this.postContent.content }}
     </div>
   </div>
