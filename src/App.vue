@@ -37,6 +37,7 @@
           </div>
           <div class="bottom">
             <div style="width: 85%">
+              <button @click="openModal()">Open InputSite</button>
               <button @click="readFile()">Import Data</button>
               <button @click="recieveData()">Recieve Data</button>
             </div>
@@ -84,6 +85,7 @@
           </div>
           <div class="bottom">
             <div style="width: 85%">
+              <button @click="openModal()">Open InputSite</button>
               <button @click="readFile()">Import Data</button>
               <button @click="recieveData()">Recieve Data</button>
             </div>
@@ -111,6 +113,7 @@ import Roominfo from "./components/Roominfo";
 import Calendar from "./components/Calendar.vue";
 import CalendarSwitch from "./components/CalendarSwitch.vue";
 import PersonsAll from "./components/PersonsAll.vue";
+import InputSite from "./components/InputSite.vue";
 
 import db from "./assets/data.json";
 
@@ -201,14 +204,19 @@ export default {
       console.log(json);
       console.log(this.$store.state);
     },
-    open() {
-      this.$vm2.open("modal-1");
-    },
-    close() {
-      this.$vm2.close("modal-1");
-    },
     print2console(content) {
       console.log(content);
+    },
+    openModal() {
+      try {
+        this.$modal.show(
+          InputSite,
+          {},
+          { adaptive: false, width: "800", height: "400" }
+        );
+      } catch (err) {
+        console.log("CError on InputSite Popup.");
+      }
     },
   },
   created() {},

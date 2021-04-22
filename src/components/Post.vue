@@ -27,7 +27,7 @@ export default {
       try {
         this.$modal.show(AnnouncementsPopupVue, {
           postContent: this.postContent
-        });
+        }, { height: 'auto'});
       } catch (err) {
         console.log("Clicked on Non-Event cell in calendar.");
       }

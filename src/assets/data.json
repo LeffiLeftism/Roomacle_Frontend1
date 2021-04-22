@@ -279,7 +279,7 @@
     "setup": {
         "room": {
             "num": "A-317",
-            "type": "buero",
+            "type": "vl",
             "seats": "30"
         },
         "fachbereich": "Ing. Wissenschaften",
