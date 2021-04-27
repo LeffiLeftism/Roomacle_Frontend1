@@ -2,15 +2,13 @@
   <div @click="openModal()">
     <div
       class="lfpost"
-      :class="[this.postContent.announcement === true ? 'announcement' : '']"
+      :class="[this.postContent.pinned === true ? 'announcement' : '']"
     >
       <span class="textline">
         {{ this.postContent.date }}
         <span v-if="this.postContent.time">| {{ this.postContent.time }}</span>
-        <span v-if="this.postContent.title">| {{ this.postContent.title }}</span>
+        <span v-if="this.postContent.title"> | {{ this.postContent.title }}</span>
       </span>
-        <br />
-      {{ this.postContent.content }}
     </div>
   </div>
 </template>
@@ -39,9 +37,9 @@ export default {
 
 <style>
 .lfpost {
-  border: black dotted 5px;
+  border: black dotted 2px;
   max-width: 100%;
-  padding: 7px;
+  padding: 0 7px;
   margin-bottom: 5px;
   text-align: left;
 }

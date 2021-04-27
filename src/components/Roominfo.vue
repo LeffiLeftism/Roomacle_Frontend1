@@ -21,7 +21,7 @@ export default {
 
 <style scoped>
 #roominfo {
-  border: grey solid 2px;
+  /*border: grey solid 2px;*/
   border-left: 1px;
   padding-left: 10px;
   display: inline-flex;

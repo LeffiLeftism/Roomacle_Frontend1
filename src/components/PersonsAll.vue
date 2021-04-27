@@ -1,25 +1,22 @@
 <template>
   <div class="content PersonsAll">
     <PersonSingle
-      v-for="(item, index) in db.persons"
+      v-for="(item, index) in this.$store.state.persons"
       :key="index"
       :num="index + 1"
-      :person="db.persons[index]"
+      :person="item"
     />
   </div>
 </template>
 <script>
 import PersonSingle from "./PersonSingle.vue";
-import db from "../assets/data.json";
 
 export default {
   components: {
     PersonSingle,
   },
   data() {
-    return {
-      db,
-    };
+    return {};
   },
 };
 </script>

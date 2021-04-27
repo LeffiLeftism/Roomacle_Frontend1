@@ -5,14 +5,16 @@
     </div>
     <div class="content">
       <h3>{{ this.person.name }}, {{ this.person.titel }}</h3>
-      <br />
       E-Mail: {{ this.person.email }}
-      <br />
-      <span type="link"> Homepage: {{ this.person.homepage }} </span>
       <br />
       Telefon: {{ this.person.telefon }}
       <br />
-      Sprechzeiten: {{ this.person.sprechzeit }}
+      Sprechzeiten: {{ this.person.visitTime }}
+      <br />
+    </div>
+    <div v-if="this.person.homepage" class="QRcode">
+      Homepage:
+      <qr-code :size="128" :text="this.person.homepage"></qr-code>
     </div>
   </div>
 </template>
@@ -37,6 +39,10 @@ export default {
 </script>
 
 <style scoped>
+.QRcode {
+  height: 100%;
+  margin-left: 10px;
+}
 .personPopup {
   display: flex;
   border: 5px grey solid;
@@ -44,18 +50,17 @@ export default {
   height: 100%;
 }
 .personPopup .picture {
-  border-right: 1px grey solid;
-  display: flex;
-  justify-content: center;
+  /*border-right: 1px grey solid;*/
+  text-align: center;
   width: 40%;
   height: 100%;
 }
 .personPopup .picture img {
-  width: 100%;
-  height: auto;
+  max-width: 100%;
+  max-height: 300px;
 }
 .personPopup .content {
-    padding: 5px;
+  padding: 5px;
   width: 50%;
 }
 </style>

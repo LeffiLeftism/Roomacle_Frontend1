@@ -14,12 +14,12 @@ export default {
 
 <style scoped>
 #roomnumberComp {
-  border: grey solid 2px;
+  border-right: grey solid 2px;
   padding: 5px;
   display: inline-flex;
   align-items: center;
   justify-content: space-around;
-  width: 45%;
+  width: calc((85% / 2) + 1px);
   /*background-color: rgb(126, 70, 165);*/
 }
 

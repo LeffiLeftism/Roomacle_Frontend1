@@ -1,18 +1,28 @@
 <template>
   <div id="header">
-    <img
-      id="logo"
-      src="../assets/logo.png"
-      alt="Logo HSRM"
-      style="padding: 2px"
-    />
-    <span class="headertext"
-      >FB: <span id="fachbereich">Fachbereich</span></span
-    >
-    <span class="headertext"
-      >SB: <span id="studienbereich"> Studienbereich</span></span
-    >
-    <span class="headertext">{{ this.time }}<br />{{ this.date }}</span>
+      <img
+        id="logo"
+        src="../assets/logo.png"
+        alt="Logo HSRM"
+        style="padding: 2px"
+      />
+    <span class="evenSpacing">
+      <span class="headertext"
+        >FB:
+        <span id="fachbereich" v-if="this.$store.state.setup.studienbereich">{{
+          this.$store.state.setup.studienbereich
+        }}</span>
+        <span id="fachbereich" v-else>Fachbereich</span>
+      </span>
+      <span class="headertext"
+        >SB:
+        <span id="studienbereich" v-if="this.$store.state.setup.fachbereich">
+          {{ this.$store.state.setup.fachbereich }}</span
+        >
+        <span id="studienbereich" v-else> Studienbereich</span>
+      </span>
+      <span class="headertext">{{ this.time }}<br />{{ this.date }}</span>
+    </span>
   </div>
 </template>
 
@@ -89,7 +99,6 @@ export default {
 #header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
   width: 100%;
   height: 10%;
   /*background-color:aqua;*/
@@ -99,10 +108,14 @@ export default {
   max-height: 100%;
   max-width: 25%;
 }
-
 .headertext {
   font-weight: bold;
-  max-width: 50%;
   padding: 3px;
+}
+.evenSpacing {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 75%
 }
 </style>

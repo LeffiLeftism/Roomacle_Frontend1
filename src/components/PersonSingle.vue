@@ -27,7 +27,10 @@ export default {
       try {
         this.$modal.show(PersonPopup, {
           num: this.num,
-          person: this.person});
+          person: this.person},
+          {
+            width: '700px',
+          });
       } catch (err) {
         console.log("Error on person.");
       }

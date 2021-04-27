@@ -80,9 +80,9 @@
         {
             "name": "Vielzulangername",
             "titel": "Oscar, Bambi",
-            "email": "langelangelangelangelange@e-mail.adresse.de",
+            "email": "langelangelangelange@e-mail.adresse.de",
             "homepage": "https://vielvielvielvielzuvieltextzeichen.net",
-            "telefon": "123456789123456789123456789000123456789",
+            "telefon": "123456789123456",
             "room": "GB-Filme",
             "visitTime": "Gestern"
         }
@@ -279,7 +279,7 @@
     "setup": {
         "room": {
             "num": "A-317",
-            "type": "vl",
+            "type": "buero",
             "seats": "30"
         },
         "fachbereich": "Ing. Wissenschaften",
