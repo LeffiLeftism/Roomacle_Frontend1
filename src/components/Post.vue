@@ -1,5 +1,8 @@
 <template>
-  <div @click="openModal()">
+  <div
+    @click="openModal()"
+    v-if="!this.postContent.pinned || this.postContent.timerActive"
+  >
     <div
       class="lfpost"
       :class="[this.postContent.pinned === true ? 'announcement' : '']"
@@ -11,8 +14,7 @@
           class="timer"
           :id="this.index + 'timer'"
           v-if="this.postContent.timerActive"
-          >Countdown nicht vorhanden</span
-        >
+        ></span>
       </span>
     </div>
   </div>
@@ -72,7 +74,7 @@ export default {
       try {
         document.getElementById(index + "timer").innerHTML = text;
       } catch (error) {
-        this.postContent.timerActive = false;
+        //console.log(error);
       }
 
       // If the count down is finished, write some text
@@ -80,7 +82,7 @@ export default {
         try {
           document.getElementById(index + "timer").innerHTML = "ABGELAUFEN";
         } catch (error) {
-          this.postContent.timerActive = false;
+          //console.log(error);
         }
         this.postContent.timerActive = false;
       }
@@ -89,7 +91,7 @@ export default {
   mounted() {
     let x;
     if (this.postContent.timerActive) {
-          this.$store.state.timer_running += 1;
+      this.$store.state.timer_running += 1;
       x = setInterval(() => {
         if (this.postContent.timerActive) {
           console.log("Update Timer");
