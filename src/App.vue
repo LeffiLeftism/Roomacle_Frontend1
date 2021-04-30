@@ -6,11 +6,9 @@
         <!-- Home view -->
         <div class="maxSize" v-if="this.$store.state.screen == 0">
           <Header />
-          <div class="top" style="display: flex; height: 20%; overflow: hidden">
+          <div class="top" style="display: flex; height: 20%">
             <Roomnumber />
-            <div class="notifications" style="width: 55%">
-              <Announcements />
-            </div>
+            <Roominfo />
           </div>
           <div class="bottom">
             <PersonsAll />
@@ -37,6 +35,9 @@
           </div>
           <div class="bottom">
             <div style="width: 85%">
+              <div class="notifications" style="width: 55%">
+                <Announcements />
+              </div>
               <button @click="openModal()">Open InputSite</button>
               <button @click="readFile()">Import Data</button>
               <button @click="recieveData()">Recieve Data</button>
