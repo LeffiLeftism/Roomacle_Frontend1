@@ -249,7 +249,9 @@
             "content": "Hier steht irdengwann mal Text!!!",
             "creator": "Alex",
             "title": "USB-Stick 32GB",
-            "announcement": true
+            "pinned": true,
+            "countDownDate": "2021-04-30T17:07",
+            "timerActive": true
         },
         {
             "date": "2021-04-19",
@@ -257,7 +259,9 @@
             "content": "Auch hier kann Text stehen",
             "creator": "Visar",
             "title": "Test Titel",
-            "announcement": true
+            "pinned": true,
+            "countDownDate": "2021-04-30T17:08",
+            "timerActive": true
         },
         {
             "date": "2021-05-01",
@@ -265,7 +269,9 @@
             "content": "Lost1",
             "creator": "Alex",
             "title": "Test Alex Titel",
-            "announcement": false
+            "pinned": false,
+            "countDownDate": "",
+            "timerActive": false
         },
         {
             "date": "2021-05-02",
@@ -273,13 +279,15 @@
             "content": "Lost2",
             "creator": "Visar",
             "title": "Titel Test",
-            "announcement": false
+            "pinned": false,
+            "countDownDate": "",
+            "timerActive": false
         }
     ],
     "setup": {
         "room": {
             "num": "A-317",
-            "type": "buero",
+            "type": "vl",
             "seats": "30"
         },
         "fachbereich": "Ing. Wissenschaften",

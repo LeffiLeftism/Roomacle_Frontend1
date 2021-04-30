@@ -4,6 +4,7 @@
       v-for="(item, index) in this.$store.state.announcements"
       :key="index"
       :postContent="item"
+      :index="index"
       @click="openModal()"
     />
   </div>
@@ -19,7 +20,9 @@ export default {
   components: {
     Post,
   },
-  methods: {
+  methods: {},
+  created() {
+    this.$store.state.timer_running = 0;
   },
 };
 </script>

@@ -17,7 +17,7 @@
 import CalendarPopup from "./CalendarPopup.vue";
 
 export default {
-  components() {},
+  components: {},
   props: {
     termin: Object,
     time: Array,

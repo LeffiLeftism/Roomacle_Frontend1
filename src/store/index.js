@@ -29,6 +29,7 @@ export default new Vuex.Store({
             }
         },
         screen: 0,
+        timer_running: '0',
     },
     getters: {},
     mutations: {

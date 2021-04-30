@@ -48,6 +48,7 @@
       </div>
       <!--------------------------------------Büroräume Ende--------------------------------------->
       <!--------------------------------------Vorlesungsräume--------------------------------------->
+      <!-- Home view -->
       <div class="maxSize" v-if="this.$store.state.setup.room.type == 'vl'">
         <div class="maxSize" v-if="this.$store.state.screen == 0">
           <Header />
@@ -63,6 +64,7 @@
             <Navigation />
           </div>
         </div>
+        <!-- Home view end -->
 
         <!-- Calendar view -->
         <div class="maxSize" v-else-if="this.$store.state.screen == 1">
@@ -99,6 +101,11 @@
     </div>
     <div class="maxSize" v-else>
       <button class="maxSize" @click="readFile()">IMPORT</button>
+    </div>
+    <!--------------------------------------Test Zone--------------------------------------->
+    <div v-if="false">
+      <button @click="testPlus()">+</button>
+      <button @click="testMinus()">-</button>
     </div>
   </div>
 </template>
@@ -137,6 +144,16 @@ export default {
   },
   computed: {},
   methods: {
+    testPlus() {
+      console.log("TestPlus");
+      this.$store.state.timer_running += 1;
+      console.log(this.$store.state.timer_running);
+    },
+    testMinus() {
+      console.log("TestMinus");
+      this.$store.state.timer_running -= 1;
+      console.log(this.$store.state.timer_running);
+    },
     readFile() {
       this.$store.state.timings = db.timings;
       this.$store.state.persons = db.persons;
