@@ -104,7 +104,7 @@
       <button class="maxSize" @click="readFile()">IMPORT</button>
     </div>
     <!--------------------------------------Test Zone--------------------------------------->
-    <div v-if="false">
+    <div v-if="true">
       <button @click="testPlus()">+</button>
       <button @click="testMinus()">-</button>
     </div>
@@ -145,22 +145,108 @@ export default {
   },
   computed: {},
   methods: {
+    startTimer(postContent) {
+      let x;
+      if (postContent.timerActive && !postContent.started) {
+        postContent.show = true;
+        this.$store.state.timer_running++;
+        x = setInterval(() => {
+          /*console.log(
+            "Started: " + postContent.started + " | End: " + postContent.ended
+          );*/
+          if (postContent.timerActive && !postContent.ended) {
+            //console.log("Update Timer");
+            this.setTimer(postContent);
+            postContent.started = true;
+          } else if (postContent.ended) {
+            clearInterval(x);
+            console.log("End Timer");
+            this.$store.state.timer_running--;
+            postContent.started = false;
+            postContent.ended = false;
+            postContent.timerActive = false;
+            postContent.show = false;
+          }
+        }, 1000);
+      }
+    },
+    setTimer(postContent) {
+      let index = this.index;
+      // Set the date we're counting down to
+      let countDownDate = new Date(postContent.countDownDate);
+
+      // Get today's date and time
+      var now = new Date().getTime();
+
+      // Find the distance between now and the count down date
+      var distance = countDownDate.getTime() - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      hours = this.fillUpTens(hours);
+      minutes = this.fillUpTens(minutes);
+      seconds = this.fillUpTens(seconds);
+
+      // Display the result in the element with id="demo"
+      let text = "";
+      if (days > 0) {
+        text += days + "d ";
+      }
+      text += hours + "h " + minutes + "m " + seconds + "s ";
+
+      postContent.timerCountdown = text;
+
+      try {
+        document.getElementById(index + "timer").innerHTML = text;
+      } catch (error) {
+        //console.log(error);
+      }
+
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        try {
+          document.getElementById(index + "timer").innerHTML = "ABGELAUFEN";
+        } catch (error) {
+          //console.log(error);
+        }
+        postContent.ended = true;
+        //this.postContent.timerActive = false;
+      }
+    },
     testPlus() {
+      console.log(this.$store.state.timer_running);
       console.log("TestPlus");
-      this.$store.state.timer_running += 1;
+      this.$store.state.timer_running++;
       console.log(this.$store.state.timer_running);
     },
     testMinus() {
+      console.log(this.$store.state.timer_running);
       console.log("TestMinus");
-      this.$store.state.timer_running -= 1;
+      this.$store.state.timer_running--;
       console.log(this.$store.state.timer_running);
     },
     readFile() {
-      this.$store.state.timings = db.timings;
-      this.$store.state.persons = db.persons;
-      this.$store.state.meetings = db.meetings;
-      this.$store.state.announcements = db.announcements;
-      this.$store.state.setup = db.setup;
+      this.$store.commit("importTimings", {
+        data: db.timings,
+      });
+      this.$store.commit("importMeetings", {
+        data: indexedDB.meetings,
+      });
+      this.$store.commit("importPersons", {
+        data: db.persons,
+      });
+      this.$store.commit("importAnnouncements", {
+        data: db.announcements,
+      });
+      this.$store.commit("importSetup", {
+        data: db.setup,
+      });
     },
     recieveData: async function () {
       let response;
@@ -216,6 +302,7 @@ export default {
       this.$store.commit("importSetup", {
         data: json.setup[0],
       });
+
       console.log(this.$store.state.setup);
 
       console.log("Response:");
@@ -252,13 +339,20 @@ export default {
   },
   created() {
     this.setToday();
+    console.log("Create APP");
   },
   mounted() {
     this.recieveData();
+    this.$store.state.announcements.forEach((element) => {
+      this.startTimer(element);
+    });
   },
   watch: {
-    day: function () {
-      this.setToday();
+    "$store.state.announcements": function () {
+      //console.log("Got new Timer");
+      this.$store.state.announcements.forEach((element) => {
+        this.startTimer(element);
+      });
     },
   },
 };

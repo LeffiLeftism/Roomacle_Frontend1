@@ -21,9 +21,7 @@ export default {
     Post,
   },
   methods: {},
-  created() {
-    this.$store.state.timer_running = 0;
-  },
+  created() {},
 };
 </script>
 
