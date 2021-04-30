@@ -235,12 +235,31 @@ export default {
         console.log("CError on InputSite Popup.");
       }
     },
+    setToday: function () {
+      let dt = new Date();
+      this.$store.commit("setToday", {
+        day: this.fillUpTens(dt.getDate()),
+        month: this.fillUpTens(dt.getMonth() + 1),
+        year: this.fillUpTens(dt.getFullYear()),
+      });
+    },
+    fillUpTens(number) {
+      if (number < 10) number = "0" + number;
+      else number = String(number);
+      return number;
+    },
   },
-  created() {},
+  created() {
+    this.setToday();
+  },
   mounted() {
     this.recieveData();
   },
-  watch: {},
+  watch: {
+    day: function () {
+      this.setToday();
+    },
+  },
 };
 </script>
 

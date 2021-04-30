@@ -2,8 +2,7 @@
   <div id="events">
     <div v-for="(item, index) in this.$store.state.meetings" :key="index">
       <Evpost
-        v-if="
-          (item.date.infinity == true || todayDate < item.date.end)"
+        v-if="item.date.infinity == true || todayDate < item.date.end"
         :termin="item"
         :time="$store.state.timings"
       />
@@ -20,7 +19,7 @@ export default {
   },
   data() {
     return {
-      todayDate: this.$store.state.calendar.today.testDate,
+      todayDate: "", //this.$store.state.calendar.today.testDate,
       //`${this.$store.state.calendar.today.year}-${this.$store.state.calendar.today.month}-${this.$store.state.calendar.today.day}`,
     };
   },
@@ -40,15 +39,24 @@ export default {
     },
   },
   mounted() {
-/*
+    /*
           (item.date.infinity == true || today < item.date.end) &&
           today > item.date.start &&
           (this.ISOweek(today) - this.ISOweek(item.date.start)) %
             item.date.repeatedly ==
             0
 */
-
-
+  },
+  updated() {
+    this.todayDate = new Date(
+      this.$store.state.calendar.today.year,
+      this.$store.state.calendar.today.month,
+      this.$store.state.calendar.todayy.day,
+      0,
+      0,
+      0,
+      0
+    );
   },
 };
 </script>

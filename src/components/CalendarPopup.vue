@@ -11,7 +11,8 @@
         {{ times[termin.std_start + termin.duration - 1 - 1].tEnd }}
       </div>
       <div class="description">Wdh.:</div>
-      <div class="content" v-if="termin.date.repeatedly == 1">wöchentlich</div>
+      <div class="content" v-if="termin.date.repeatedly == 0">einmalig</div>
+      <div class="content" v-else-if="termin.date.repeatedly == 1">wöchentlich</div>
       <div class="content" v-else>alle {{ termin.date.repeatedly }} Wochen</div>
       <div class="description">Studiengänge:</div>
       <div class="content">{{ termin.studigang }}</div>

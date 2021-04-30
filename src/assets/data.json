@@ -91,14 +91,14 @@
         {
             "id": 0,
             "num": "3344",
-            "name": "Aufbaukurs C++",
+            "name": "Aufbaukurs C++ ALLA",
             "name_short": "iAufC",
             "std_start": 1,
             "duration": 2,
             "date": {
-                "start": "2021-03-15",
-                "repeatedly": 1,
-                "end": "",
+                "start": "2021-04-30",
+                "repeatedly": 0,
+                "end": "2021-05-01",
                 "infinity": true
             },
             "semester": "3+4",
@@ -287,7 +287,7 @@
     "setup": {
         "room": {
             "num": "A-317",
-            "type": "vl",
+            "type": "buero",
             "seats": "30"
         },
         "fachbereich": "Ing. Wissenschaften",

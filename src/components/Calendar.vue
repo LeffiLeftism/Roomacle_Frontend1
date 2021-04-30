@@ -100,7 +100,12 @@ export default {
         let dateEnd = new Date(element.date.end);
         let WdateStart = this.ISOweek(dateStart);
         let WweekStartDate = this.ISOweek(weekStartDate);
-        let weekDif = (WweekStartDate - WdateStart) % element.date.repeatedly;
+        let weekDif;
+        if (element.date.repeatedly == 0) {
+          weekDif = 0;
+        } else {
+          weekDif = (WweekStartDate - WdateStart) % element.date.repeatedly;
+        }
         //console.log("dateStart " + dateStart);
         //console.log("dateEnd " + dateEnd);
         //console.log("WdateStart " + dateStart);

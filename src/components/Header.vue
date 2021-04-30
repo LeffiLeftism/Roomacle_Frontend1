@@ -48,14 +48,6 @@ export default {
   },
   props: {},
   methods: {
-    setToday: function () {
-      let dt = new Date();
-      this.$store.commit("setToday", {
-        day: this.fillUpTens(dt.getDate()),
-        month: this.fillUpTens(dt.getMonth() + 1),
-        year: this.fillUpTens(dt.getFullYear()),
-      });
-    },
     refreshTime: function () {
       var date = new Date();
       this.year = date.getFullYear();
@@ -75,19 +67,8 @@ export default {
       }
       return i;
     },
-    fillUpTens(number) {
-      if (number < 10) number = "0" + number;
-      else number = String(number);
-      return number;
-    },
-  },
-  watch: {
-    day: function () {
-      this.setToday();
-    },
   },
   created() {
-    this.setToday();
     setInterval(() => {
       this.refreshTime();
     }, 1000);
