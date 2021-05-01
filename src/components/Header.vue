@@ -1,11 +1,11 @@
 <template>
   <div id="header">
-      <img
-        id="logo"
-        src="../assets/logo.png"
-        alt="Logo HSRM"
-        style="padding: 2px"
-      />
+    <img
+      id="logo"
+      src="../assets/logo.png"
+      alt="Logo HSRM"
+      style="padding: 2px"
+    />
     <span class="evenSpacing">
       <span class="headertext"
         >FB:
@@ -60,6 +60,8 @@ export default {
       this.day = this.checkTime(this.day);
       this.minute = this.checkTime(this.minute);
       this.second = this.checkTime(this.second);
+      this.$store.state.calendar.today.hour = this.hour;
+      this.$store.state.calendar.today.minute = this.minute;
     },
     checkTime: function (i) {
       if (i < 10) {
@@ -97,6 +99,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  width: 75%
+  width: 75%;
 }
 </style>

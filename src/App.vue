@@ -104,7 +104,7 @@
       <button class="maxSize" @click="readFile()">IMPORT</button>
     </div>
     <!--------------------------------------Test Zone--------------------------------------->
-    <div v-if="true">
+    <div v-if="false">
       <button @click="testPlus()">+</button>
       <button @click="testMinus()">-</button>
     </div>
@@ -236,7 +236,7 @@ export default {
         data: db.timings,
       });
       this.$store.commit("importMeetings", {
-        data: indexedDB.meetings,
+        data: db.meetings,
       });
       this.$store.commit("importPersons", {
         data: db.persons,
@@ -327,7 +327,7 @@ export default {
       let dt = new Date();
       this.$store.commit("setToday", {
         day: this.fillUpTens(dt.getDate()),
-        month: this.fillUpTens(dt.getMonth() + 1),
+        month: this.fillUpTens(dt.getMonth()),
         year: this.fillUpTens(dt.getFullYear()),
       });
     },

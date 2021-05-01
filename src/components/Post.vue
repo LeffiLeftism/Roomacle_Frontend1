@@ -1,7 +1,10 @@
 <template>
   <div
     @click="openModal()"
-    v-if="!this.postContent.pinned || this.postContent.timerActive"
+    v-if="
+      (!this.postContent.pinned || this.postContent.timerActive) &&
+      checkDate(this.postContent.date)
+    "
   >
     <div
       class="lfpost"
@@ -31,11 +34,41 @@ export default {
       timer_end: false,
     };
   },
+  computed: {
+    today: function () {
+      let date = new Date(
+        this.$store.state.calendar.today.year,
+        this.$store.state.calendar.today.month,
+        this.$store.state.calendar.today.day,
+        0,
+        0,
+        0,
+        0
+      );
+      return date;
+    },
+  },
   props: {
     postContent: Object,
     index: Number,
   },
   methods: {
+    checkDate(dt) {
+      let date = new Date(dt);
+      date.setHours(0, 0, 0, 0);
+
+      /*console.log("_______________");
+      console.log(this.today);
+      console.log(date);
+      console.log("------------");
+      console.log(date.getTime() == this.today.getTime());*/
+
+      if (date.getTime() == this.today.getTime()) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     test() {
       console.log("Hi");
     },
@@ -54,10 +87,10 @@ export default {
     },
   },
   created() {
-    console.log("Created Post.vue");
+    //console.log("Created Post.vue");
   },
   mounted() {
-    console.log("Mounted Post.vue");
+    //console.log("Mounted Post.vue");
     if (this.postContent.show) {
       this.postContent.show = false;
       let y = setInterval(() => {
@@ -67,7 +100,7 @@ export default {
               this.index + "timer"
             ).innerHTML = this.postContent.timerCountdown;
           } catch (error) {
-            console.log(error);
+            //console.log(error);
           }
         } else if (this.postContent.ended && !this.postContent.show) {
           clearInterval(y);

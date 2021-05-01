@@ -15,7 +15,9 @@ export default new Vuex.Store({
                 day: '',
                 month: '',
                 year: '',
-                testDate: '2021-03-15'
+                testDate: '2021-03-15',
+                hour: '',
+                minute: ''
             },
             weekStart: {
                 day: '',
@@ -30,6 +32,8 @@ export default new Vuex.Store({
         },
         screen: 0,
         timer_running: '0',
+        room_bussy: false,
+        upcomming_Meeting: false,
     },
     getters: {},
     mutations: {

@@ -94,9 +94,9 @@
             "name": "Aufbaukurs C++ ALLA",
             "name_short": "iAufC",
             "std_start": 1,
-            "duration": 2,
+            "duration": 1,
             "date": {
-                "start": "2021-04-30",
+                "start": "2021-05-01",
                 "repeatedly": 0,
                 "end": "2021-05-01",
                 "infinity": true
@@ -113,7 +113,7 @@
             "std_start": 3,
             "duration": 1,
             "date": {
-                "start": "2021-03-15",
+                "start": "2021-05-03",
                 "repeatedly": 1,
                 "end": "",
                 "infinity": true
@@ -244,25 +244,25 @@
     ],
     "announcements": [
         {
-            "date": "2021-04-20",
+            "date": "2021-05-01",
             "time": "11:45",
             "content": "Hier steht irdengwann mal Text!!!",
             "creator": "Alex",
             "title": "USB-Stick 32GB",
             "pinned": true,
-            "countDownDate": "2021-04-30T22:03",
+            "countDownDate": "2021-05-01T22:03",
             "timerActive": true,
             "started": false,
             "ended": false
         },
         {
-            "date": "2021-04-19",
+            "date": "2021-05-01",
             "time": "13:51",
             "content": "Auch hier kann Text stehen",
             "creator": "Visar",
             "title": "Test Titel",
             "pinned": true,
-            "countDownDate": "2021-04-30T20:05",
+            "countDownDate": "2021-05-02T22:45",
             "timerActive": true,
             "started": false,
             "ended": false
@@ -280,7 +280,7 @@
             "ended": false
         },
         {
-            "date": "2021-05-02",
+            "date": "2021-05-01",
             "time": "",
             "content": "Lost2",
             "creator": "Visar",

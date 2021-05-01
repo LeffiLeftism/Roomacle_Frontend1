@@ -1,5 +1,8 @@
 <template>
-  <div id="roomnumberComp">
+  <div
+    id="roomnumberComp"
+    :class="[this.$store.state.upcomming_Meeting == true ? 'red' : '']"
+  >
     <span id="roomnumber" class="textline">{{
       this.$store.state.setup.room.num
     }}</span>
@@ -9,6 +12,16 @@
 <script>
 export default {
   props: {},
+  data() {
+    return {
+      red: false,
+    };
+  },
+  watch: {
+    "$store.state.upcomming_Meeting": function () {
+      this.red = this.$store.state.upcomming_Meeting;
+    },
+  },
 };
 </script>
 
@@ -26,5 +39,8 @@ export default {
 .textline {
   font-size: 6em;
   font-weight: bold;
+}
+.red {
+  background: rgb(255, 0, 0);
 }
 </style>

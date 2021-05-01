@@ -3,7 +3,7 @@
     <span class="textline">{{ termin.num }} | {{ termin.name }}</span
     ><br />
     Von {{ time[termin.std_start - 1].tStart }} bis
-    {{ time[termin.std_start - 1].tEnd }} Uhr
+    {{ time[termin.std_start + termin.duration - 1 - 1].tEnd }} Uhr
     <br />
     Studiengänge: {{ termin.studigang }}
     <br />

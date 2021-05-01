@@ -73,14 +73,10 @@ export default {
       /*console.log("Connect-Array auf 0 gesetzt");
       console.log(connection);*/
 
-      let weekStartDay = this.$store.state.calendar.weekStart.day;
-      let weekStartMonth = this.$store.state.calendar.weekStart.month;
-      let weekStartYear = this.$store.state.calendar.weekStart.year;
-
       let weekStartDate = new Date(
-        weekStartYear,
-        weekStartMonth - 1,
-        weekStartDay
+        this.$store.state.calendar.weekStart.year,
+        this.$store.state.calendar.weekStart.month - 1,
+        this.$store.state.calendar.weekStart.day
       );
       //console.log('WeekStartDate '+weekStartDate);
 
@@ -98,23 +94,24 @@ export default {
         //let dateStart = new Date(element.date);
         let dateStart = new Date(element.date.start);
         let dateEnd = new Date(element.date.end);
-        let WdateStart = this.ISOweek(dateStart);
-        let WweekStartDate = this.ISOweek(weekStartDate);
+        let W_dateStart = this.ISOweek(dateStart);
+        let W_weekStartDate = this.ISOweek(weekStartDate);
         let weekDif;
         if (element.date.repeatedly == 0) {
           weekDif = 0;
         } else {
-          weekDif = (WweekStartDate - WdateStart) % element.date.repeatedly;
+          weekDif = (W_weekStartDate - W_dateStart) % element.date.repeatedly;
         }
-        //console.log("dateStart " + dateStart);
-        //console.log("dateEnd " + dateEnd);
-        //console.log("WdateStart " + dateStart);
-        //console.log("WweekStartDate " + weekStartDate);
-        //console.log("weekDif " + weekDif);
+        /*console.log("dateStart " + dateStart);
+        console.log("dateEnd " + dateEnd);
+        console.log("W_dateStart " + dateStart);
+        console.log("W_weekStartDate " + weekStartDate);
+        console.log("weekDif " + weekDif);
         //console.log(dt);
-        //console.log(weekEndDate);
+        console.log(weekEndDate);*/
+
         if (
-          (element.date.infinity == true || weekStartDate < dateEnd) &&
+          (element.date.infinity == true || weekStartDate <= dateEnd) &&
           weekEndDate > dateStart &&
           weekDif == 0
         ) {
