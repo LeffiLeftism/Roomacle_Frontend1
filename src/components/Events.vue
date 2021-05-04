@@ -47,31 +47,32 @@ export default {
       let Week_dS = this.ISOweek(dateStart);
       let Week_today = this.ISOweek(this.today);
       let Week_dif;
-      if (dS.repeatedly > 0) {
+      if (dS.date.repeatedly > 0) {
         Week_dif = (Week_today - Week_dS) % dS.date.repeatedly;
       } else {
         Week_dif = Week_today - Week_dS;
       }
 
       /*console.log("_______________");
+      console.log(dS);
       console.log(this.today);
       console.log(dateStart);
       console.log(dateEnd);
       console.log(this.today.getDay());
       console.log(dateStart.getDay());
       console.log("------------");
-      console.log(dS.repeatedly);
+      console.log(dS.date.repeatedly);
       console.log(Week_dS);
       console.log(Week_today);
       console.log(Week_dif);*/
 
-      let start_time = this.$store.state.timings[dS.std_start - 1].tStart;
+      //let start_time = this.$store.state.timings[dS.std_start - 1].tStart;
       let end_time = this.$store.state.timings[
         dS.std_start + dS.duration - 1 - 1
       ].tEnd;
 
-      let start_hour = start_time.substr(0, 2);
-      /*let start_minute = start_time.substr(3, 2);*/
+      //let start_hour = start_time.substr(0, 2);
+      //let start_minute = start_time.substr(3, 2);
 
       let end_hour = end_time.substr(0, 2);
       let end_minute = end_time.substr(3, 2);
@@ -79,29 +80,55 @@ export default {
       /*console.log(start_hour + " | " + start_minute);
       console.log(end_hour + " | " + end_minute);*/
 
-      let checkEnd = false;
-      let checkStart = start_hour >= this.$store.state.calendar.today.hour;
-      //start_minute <= this.$store.state.calendar.today.minute;
-      //console.log("Start: " + checkStart);
 
-      if (checkStart) {
-        checkEnd =
-          end_hour >= this.$store.state.calendar.today.hour &&
-          end_minute >= this.$store.state.calendar.today.minute;
+
+      //if true, if clock is ahead of time. When meeting started, false
+
+      /*let checkStart; 
+      if (start_hour == this.$store.state.calendar.today.hour) {
+        if (start_minute < this.$store.state.calendar.today.minute) {
+          checkStart = false;
+        } else {
+          checkStart = true;
+        }
+      } else if (start_hour > this.$store.state.calendar.today.hour) {
+        checkStart = true;
+      } else {
+        checkStart = false;
+      }*/
+
+      //console.log("Start: " + checkStart);
+      //console.log(start_hour);
+      //console.log(this.$store.state.calendar.today.hour);
+
+      let checkEnd;
+      if (end_hour == this.$store.state.calendar.today.hour) {
+        if (end_minute >= this.$store.state.calendar.today.minute) {
+          checkEnd = true;
+        } else {
+          checkEnd = false;
+        }
+      } else if (end_hour > this.$store.state.calendar.today.hour) {
+        checkEnd = true;
+      } else {
+        checkEnd = false;
       }
 
       //console.log("End: " + checkEnd);
+      /*console.log(end_hour);
+      console.log(this.$store.state.calendar.today.hour);
+      console.log(end_minute);
+      console.log(this.$store.state.calendar.today.minute);*/
 
       let result =
         this.today.getDay() == dateStart.getDay() &&
         Week_dif == 0 &&
         (this.today < dateEnd || dS.date.infinity) &&
-        checkStart &&
         checkEnd;
 
       /*console.log(index + " | " + (this.$store.state.meetings.length - 1));
       console.log(result);*/
-      console.log("Check Meeting");
+      //console.log("Check Meeting");
       if (result) {
         //console.log(dS);
         this.show_meeting = true;
@@ -132,8 +159,8 @@ export default {
     },
   },
   mounted() {
-    console.log("------------");
-    console.log("Mounted");
+    //console.log("------------");
+    //console.log("Mounted");
     /*
           (item.date.infinity == true || today < item.date.end) &&
           today > item.date.start &&
@@ -143,7 +170,7 @@ export default {
 */
   },
   beforeUpdate() {
-    console.log("Before Update");
+    //console.log("Before Update");
     this.$store.state.upcomming_Meeting = false;
   },
   updated() {

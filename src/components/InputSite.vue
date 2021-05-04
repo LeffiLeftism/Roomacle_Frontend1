@@ -1,3 +1,3 @@
 <template>
-    <iframe src="http://192.168.8.123:3001" class="maxSize"></iframe>
+  <iframe src="http://localhost:3001" class="maxSize"></iframe>
 </template>
