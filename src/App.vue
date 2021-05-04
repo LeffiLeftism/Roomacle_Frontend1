@@ -19,9 +19,18 @@
         <!-- Calendar view -->
         <div class="maxSize" v-else-if="this.$store.state.screen == 1">
           <Header />
-          <div class="top" style="display: flex; height: 20%"></div>
+          <div class="top" style="display: flex; height: 20%">
+            <PersonSwitch />
+          </div>
           <div class="bottom">
-            <div class="bottomSpacer"></div>
+            <!--div class="bottomSpacer"></div-->
+            <Calendar
+              :meetings="
+                this.$store.state.persons[
+                  this.$store.state.person_index_calendar
+                ].meetings
+              "
+            />
             <Navigation />
           </div>
         </div>
@@ -74,7 +83,7 @@
             <CalendarSwitch />
           </div>
           <div class="bottom">
-            <Calendar />
+            <Calendar :meetings="this.$store.state.meetings" />
             <Navigation />
           </div>
         </div>
@@ -121,6 +130,7 @@ import Roominfo from "./components/Roominfo";
 import Calendar from "./components/Calendar.vue";
 import CalendarSwitch from "./components/CalendarSwitch.vue";
 import PersonsAll from "./components/PersonsAll.vue";
+import PersonSwitch from "./components/PersonSwitch.vue";
 import InputSite from "./components/InputSite.vue";
 
 import db from "./assets/data.json";
@@ -137,6 +147,7 @@ export default {
     Calendar,
     CalendarSwitch,
     PersonsAll,
+    PersonSwitch,
   },
   data() {
     return {

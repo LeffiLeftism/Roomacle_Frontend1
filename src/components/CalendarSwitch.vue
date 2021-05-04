@@ -94,6 +94,7 @@ export default {
 .textline {
   font-size: 3em;
   text-align: center;
+  width: 70%;
 }
 .textbutton {
   font-size: 40px;

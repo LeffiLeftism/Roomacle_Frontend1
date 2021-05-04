@@ -34,6 +34,7 @@ export default new Vuex.Store({
         timer_running: '0',
         room_bussy: false,
         upcomming_Meeting: false,
+        person_index_calendar: 0,
     },
     getters: {},
     mutations: {

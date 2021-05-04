@@ -63,11 +63,14 @@ export default {
       button_db_connect: [],
     };
   },
+  props: {
+    meetings: Array,
+  },
   computed: {},
   methods: {
     writeCalendar() {
+      console.log("Write calendar");
       this.resetCalendar();
-      //console.log('write calendar');
       //console.log(this.button_data_connect);
       let connection = [];
       /*console.log("Connect-Array auf 0 gesetzt");
@@ -89,8 +92,8 @@ export default {
       //console.log('WeekEndDate '+weekEndDate);
 
       //console.log("Comlete meetings: " + this.$store.state.meetings);
-      for (const vIndex in this.$store.state.meetings) {
-        const element = this.$store.state.meetings[vIndex];
+      for (const vIndex in this.meetings) {
+        const element = this.meetings[vIndex];
         //let dateStart = new Date(element.date);
         let dateStart = new Date(element.date.start);
         let dateEnd = new Date(element.date.end);
@@ -110,6 +113,7 @@ export default {
         //console.log(dt);
         console.log(weekEndDate);*/
 
+        console.log(element);
         if (
           (element.date.infinity == true || weekStartDate <= dateEnd) &&
           weekEndDate > dateStart &&
@@ -163,7 +167,7 @@ export default {
       //
     },
     resetCalendar() {
-      //console.log("Reset Calendar");
+      console.log("Reset Calendar");
       for (
         let hour_index = 0;
         hour_index < this.$store.state.timings.length;
@@ -191,7 +195,7 @@ export default {
         );
         let vIndex = this.button_db_connect[index][1];
         this.$modal.show(CalendarPopup, {
-          termin: this.$store.state.meetings[vIndex],
+          termin: this.meetings[vIndex],
           times: this.$store.state.timings,
         });
       } catch (err) {
@@ -243,6 +247,50 @@ export default {
       console.log(json);
     },*/
     //////////////////////////////////////////////////////////////////////////////////////////
+
+    setWeek(date) {
+      this.startOfWeek(date);
+      this.endOfWeek(date);
+    },
+    startOfWeek(date) {
+      let diff =
+        date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
+      let nom = new Date(date.setDate(diff));
+      this.$store.commit("changeWeekStart", {
+        day: this.fillUpTens(nom.getDate()),
+        month: this.fillUpTens(nom.getMonth() + 1),
+        year: this.fillUpTens(nom.getFullYear()),
+      });
+      return this.shortDate(nom);
+    },
+    endOfWeek(date) {
+      let diff =
+        date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1) + 5;
+      let nom = new Date(date.setDate(diff));
+      this.$store.commit("changeWeekEnd", {
+        day: this.fillUpTens(nom.getDate()),
+        month: this.fillUpTens(nom.getMonth() + 1),
+        year: this.fillUpTens(nom.getFullYear()),
+      });
+      return this.shortDate(nom);
+    },
+    shortDate(date) {
+      let day = date.getDate();
+      if (day < 10) {
+        day = "0" + day;
+      }
+      let month = date.getMonth() + 1;
+      if (month < 10) {
+        month = "0" + month;
+      }
+      let year = date.getFullYear();
+      return `${day}.${month}.${year}`;
+    },
+    fillUpTens(number) {
+      if (number < 10) number = "0" + number;
+      else number = String(number);
+      return number;
+    },
   },
   watch: {
     "$store.state.calendar.weekStart.day": {
@@ -252,9 +300,20 @@ export default {
         this.writeCalendar();
       },
     },
+
+    "$store.state.person_index_calendar": {
+      handler: function () {
+        this.writeCalendar();
+      },
+    },
   },
   created() {},
   mounted() {
+    this.setWeek(new Date());
+    this.writeCalendar();
+  },
+  beforeUpdate() {
+    console.log("Before Update");
     this.writeCalendar();
   },
   updated() {

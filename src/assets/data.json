@@ -57,7 +57,43 @@
             "homepage": "https://www.hs-rm.de/de/hochschule/personen/januzaj-visar/",
             "telefon": "+49 (0) 6142 898 4433",
             "room": "A2-118",
-            "visitTime": "Nach Vereinbarung"
+            "visitTime": "Nach Vereinbarung",
+            "meetings": [
+                {
+                    "id": 0,
+                    "num": "0123",
+                    "name": "Person 0 Test Meeting",
+                    "name_short": "t_Meet",
+                    "std_start": 1,
+                    "duration": 2,
+                    "date": {
+                        "start": "2021-05-04",
+                        "repeatedly": 0,
+                        "end": "2021-05-20",
+                        "infinity": true
+                    },
+                    "semester": "3+4",
+                    "studigang": "MB, iING, IWI",
+                    "dozent": "Januzaj, Visar"
+                },
+                {
+                    "id": 1,
+                    "num": "4567",
+                    "name": "New Meeting",
+                    "name_short": "new mett",
+                    "std_start": 3,
+                    "duration": 2,
+                    "date": {
+                        "start": "2021-05-05",
+                        "repeatedly": 0,
+                        "end": "2021-05-20",
+                        "infinity": true
+                    },
+                    "semester": "3+4",
+                    "studigang": "MB, iING, IWI",
+                    "dozent": "Januzaj, Visar"
+                }
+            ]
         },
         {
             "name": "Snoopy",
@@ -66,7 +102,8 @@
             "homepage": "https://de.wikipedia.org/wiki/Die_Peanuts",
             "telefon": "0123",
             "room": "ZDF",
-            "visitTime": "Täglich um 15 Uhr"
+            "visitTime": "Täglich um 15 Uhr",
+            "meetings": []
         },
         {
             "name": "Dolittle",
@@ -75,7 +112,8 @@
             "homepage": "",
             "telefon": "0815-313234",
             "room": "USA-Filme",
-            "visitTime": "Gestern"
+            "visitTime": "Gestern",
+            "meetings": []
         },
         {
             "name": "Vielzulangername",
@@ -84,27 +122,11 @@
             "homepage": "https://vielvielvielvielzuvieltextzeichen.net",
             "telefon": "123456789123456",
             "room": "GB-Filme",
-            "visitTime": "Gestern"
+            "visitTime": "Gestern",
+            "meetings": []
         }
     ],
     "meetings": [
-        {
-            "id": 0,
-            "num": "3344",
-            "name": "Aufbaukurs C++ ALLA",
-            "name_short": "iAufC",
-            "std_start": 1,
-            "duration": 1,
-            "date": {
-                "start": "2021-05-01",
-                "repeatedly": 0,
-                "end": "2021-05-01",
-                "infinity": true
-            },
-            "semester": "3+4",
-            "studigang": "MB, iING, IWI",
-            "dozent": "Januzaj, Visar"
-        },
         {
             "id": 2,
             "num": "0815",
@@ -113,7 +135,7 @@
             "std_start": 3,
             "duration": 1,
             "date": {
-                "start": "2021-05-03",
+                "start": "2021-03-15",
                 "repeatedly": 1,
                 "end": "",
                 "infinity": true
@@ -244,25 +266,25 @@
     ],
     "announcements": [
         {
-            "date": "2021-05-01",
-            "time": "11:45",
+            "date": "2021-05-04",
+            "time": "16:35",
             "content": "Hier steht irdengwann mal Text!!!",
             "creator": "Alex",
             "title": "USB-Stick 32GB",
             "pinned": true,
-            "countDownDate": "2021-05-01T22:03",
+            "countDownDate": "2021-05-04T17:50",
             "timerActive": true,
             "started": false,
             "ended": false
         },
         {
-            "date": "2021-05-01",
+            "date": "2021-04-19",
             "time": "13:51",
             "content": "Auch hier kann Text stehen",
             "creator": "Visar",
             "title": "Test Titel",
             "pinned": true,
-            "countDownDate": "2021-05-02T22:45",
+            "countDownDate": "2021-04-30T20:05",
             "timerActive": true,
             "started": false,
             "ended": false
@@ -280,7 +302,7 @@
             "ended": false
         },
         {
-            "date": "2021-05-01",
+            "date": "2021-05-02",
             "time": "",
             "content": "Lost2",
             "creator": "Visar",
@@ -295,7 +317,7 @@
     "setup": {
         "room": {
             "num": "A-317",
-            "type": "vl",
+            "type": "buero",
             "seats": "30",
             "desc": "Sekretariat"
         },
