@@ -47,9 +47,38 @@
               <div class="notifications" style="width: 55%">
                 <Announcements />
               </div>
-              <button @click="openModal()">Open InputSite</button>
-              <button @click="readFile()">Import Data</button>
-              <button @click="recieveData()">Recieve Data</button>
+              <button
+                @click="openModal()"
+                disabled="this.$store.state.logged_in"
+                id="bt_buero_openInputSite_data"
+              >
+                Open InputSite
+              </button>
+              <button
+                @click="readFile()"
+                disabled="this.$store.state.logged_in"
+                id="bt_buero_import_data"
+              >
+                Import Data
+              </button>
+              <button
+                @click="recieveData()"
+                disabled="this.$store.state.logged_in"
+                id="bt_buero_recieve_data"
+              >
+                Recieve Data
+              </button>
+              <br />
+              <label for="pw">Passwort:</label>
+              <input type="text" id="pw" name="pw" style="margin: 0 5px" />
+              <button @click="checkPW()" id="bt_buero_login">Login</button>
+              <button
+                @click="logout()"
+                disabled="this.$store.state.logged_in"
+                id="bt_buero_logout"
+              >
+                Logout
+              </button>
             </div>
             <Navigation />
           </div>
@@ -97,9 +126,38 @@
           </div>
           <div class="bottom">
             <div style="width: 85%">
-              <button @click="openModal()">Open InputSite</button>
-              <button @click="readFile()">Import Data</button>
-              <button @click="recieveData()">Recieve Data</button>
+              <button
+                @click="openModal()"
+                disabled="this.$store.state.logged_in"
+                id="bt_vl_openInputSite_data"
+              >
+                Open InputSite
+              </button>
+              <button
+                @click="readFile()"
+                disabled="this.$store.state.logged_in"
+                id="bt_vl_import_data"
+              >
+                Import Data
+              </button>
+              <button
+                @click="recieveData()"
+                disabled="this.$store.state.logged_in"
+                id="bt_vl_recieve_data"
+              >
+                Recieve Data
+              </button>
+              <br />
+              <label for="pw">Passwort:</label>
+              <input type="text" id="pw" name="pw" style="margin: 0 5px" />
+              <button @click="checkPW()" id="bt_vl_login">Login</button>
+              <button
+                @click="logout()"
+                disabled="this.$store.state.logged_in"
+                id="bt_vl_logout"
+              >
+                Logout
+              </button>
             </div>
             <Navigation />
           </div>
@@ -156,6 +214,58 @@ export default {
   },
   computed: {},
   methods: {
+    checkPW: async function () {
+      console.log("Login");
+      let data = {};
+      data.input = document.getElementById("pw").value;
+      console.log("Check PW");
+      console.log("Input: ");
+      console.log(data);
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+      const response = await fetch("/pw", options);
+      const json = await response.json();
+      console.log("Response:");
+      console.log(json);
+      if (json == "correct password") {
+        console.log("Correct Password");
+        this.$store.state.logged_in = true;
+      } else {
+        console.log("Wrong Password");
+        document.getElementById("pw").value = "";
+        this.$store.state.logged_in = false;
+      }
+      console.log(this.$store.state.logged_in);
+      this.updateButton();
+    },
+    logout() {
+      console.log("Logout");
+      document.getElementById("pw").value = "";
+      this.$store.state.logged_in = false;
+    },
+    updateButton() {
+      console.log(this.$store.state.setup.room.type);
+      let state = !this.$store.state.logged_in;
+      console.log(state);
+      if (this.$store.state.setup.room.type == "vl") {
+        document.getElementById("bt_vl_openInputSite_data").disabled = state;
+        document.getElementById("bt_vl_import_data").disabled = state;
+        document.getElementById("bt_vl_recieve_data").disabled = state;
+        document.getElementById("bt_vl_login").disabled = !state;
+        document.getElementById("bt_vl_logout").disabled = state;
+      } else if (this.$store.state.setup.room.type == "buero") {
+        document.getElementById("bt_buero_openInputSite_data").disabled = state;
+        document.getElementById("bt_buero_import_data").disabled = state;
+        document.getElementById("bt_buero_recieve_data").disabled = state;
+        document.getElementById("bt_buero_login").disabled = !state;
+        document.getElementById("bt_buero_logout").disabled = state;
+      }
+    },
     startTimer(postContent) {
       let x;
       if (postContent.timerActive && !postContent.started) {
@@ -364,6 +474,10 @@ export default {
       this.$store.state.announcements.forEach((element) => {
         this.startTimer(element);
       });
+    },
+    "$store.state.logged_in": function () {
+      console.log("Watching");
+      this.updateButton();
     },
   },
 };
