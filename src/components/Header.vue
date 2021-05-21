@@ -4,7 +4,7 @@
       id="logo"
       src="../assets/logo.png"
       alt="Logo HSRM"
-      style="padding: 2px"
+      style="margin: 3px"
     />
     <span class="evenSpacing">
       <span class="headertext"
