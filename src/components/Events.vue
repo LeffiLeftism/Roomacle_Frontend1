@@ -191,8 +191,9 @@ export default {
 <style scoped>
 #events {
   display: inline-block;
-  padding: 5px;
+  padding: 5px 0px;
   overflow: scroll;
   /*background-color: darkseagreen;*/
+  width: 100%;
 }
 </style>

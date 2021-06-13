@@ -1,8 +1,23 @@
 <template>
   <div id="navigation">
-    <Button imgName="home.png" screen="0" />
-    <Button imgName="calendar.png" screen="1" />
-    <Button imgName="info.png" screen="2" />
+    <Button
+      activatedcolor="rgb(75, 190, 225)"
+      imgName="home.png"
+      screen="0"
+      name="HOME"
+    />
+    <Button
+      activatedcolor="rgb(130, 20, 80)"
+      imgName="calendar.png"
+      screen="1"
+      name="PLAN"
+    />
+    <Button
+      activatedcolor="rgb(155, 195, 40)"
+      imgName="info.png"
+      screen="2"
+      name="INFO"
+    />
     <div
       class="ring-container"
       style="block"

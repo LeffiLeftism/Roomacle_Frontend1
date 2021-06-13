@@ -1,12 +1,14 @@
 <template>
   <div class="announcementsPopup">
     <header>
-      {{ postContent.date }}
-      <span v-if="postContent.time">| {{ postContent.time }}</span>
+      {{ postContent.title }}
     </header>
     {{ postContent.content }}
     <br />
+    Gültig ab: {{ postContent.date }}
+    <br />
     Erstellt von: {{ postContent.creator }}
+    <br />
   </div>
 </template>
 
@@ -20,7 +22,7 @@ export default {
 
 <style scoped>
 .announcementsPopup {
-  border: 5px grey solid;
+  border: 5px solid rgb(155, 195, 40);
   padding: 5px;
   height: 100%;
 }

@@ -1,13 +1,15 @@
 <template>
   <div id="personswitch">
-    <button class="textbutton" @click="switchPerson('-')">&lt;</button>
+    <button class="switchbutton" @click="switchPerson('-')">
+      <span> &lt;</span>
+    </button>
     <span class="textline"
       >{{
         this.$store.state.persons[this.$store.state.person_index_calendar].name
       }}
     </span>
     <!--<span class="textline"> {{ this.weekStart }} - {{ this.weekEnd }}</span>-->
-    <button class="textbutton" @click="switchPerson('+')">&gt;</button>
+    <button class="switchbutton" @click="switchPerson('+')">&gt;</button>
   </div>
 </template>
 
@@ -22,11 +24,16 @@ export default {
           this.$store.state.persons.length - 1
         ) {
           this.$store.state.person_index_calendar++;
+        } else {
+          this.$store.state.person_index_calendar = 0;
         }
       } else if (direction == "-") {
         console.log(direction);
         if (this.$store.state.person_index_calendar > 0) {
           this.$store.state.person_index_calendar--;
+        } else {
+          this.$store.state.person_index_calendar = this.$store.state.persons.length - 1;
+
         }
       }
       console.log(this.$store.state.person_index_calendar);
@@ -40,7 +47,6 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: space-around;
-  border: grey solid 2px;
 
   width: 100%;
   height: 100%;
@@ -50,20 +56,21 @@ export default {
   text-align: center;
   width: 70%;
 }
-.textbutton {
+.switchbutton {
   font-size: 40px;
   width: 10%;
-
-  background-color: rgb(163, 163, 163);
+  background-color: rgb(255, 255, 255);
   border-radius: 13px;
-  border: 3px solid rgb(104, 104, 104);
+  border: 3px solid rgb(130, 20, 80);
   display: inline-block;
   cursor: pointer;
-  color: #ffffff;
   font-family: Arial;
   font-weight: bold;
   font-style: italic;
   text-decoration: none;
   overflow: hidden;
+}
+button:active {
+  background-color: rgb(130, 20, 80);
 }
 </style>

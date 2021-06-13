@@ -1,5 +1,5 @@
 <template>
-  <div style="overflow: scroll; width: 85%">
+  <div style="overflow: scroll; width: 100%">
     <!--<v-dialog />-->
     <!--button @click="recieveData()" style="height: 40px">Recieve</button>
     <button @click="test()" style="height: 40px">Write</button-->
@@ -131,7 +131,11 @@ export default {
             cell.firstChild.disabled = false;*/
 
           cell.innerText = buttonName;
-          cell.style.background = "lightgrey";
+          if (element.pinned) {
+            cell.style.background = "rgb(155, 195, 40)";
+          } else {
+            cell.style.background = "rgb(75, 190, 225)";
+          }
           cell.style.color = "black";
           //cell.disabled = false;
 

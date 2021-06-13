@@ -1,15 +1,17 @@
 <template>
-  <div id="evpost" @click="openModal()">
+  <div
+    id="evpost"
+    @click="openModal()"
+    :class="[termin.pinned == true ? 'pinned' : 'notpinned']"
+  >
     <span class="textline">{{ termin.num }} | {{ termin.name }}</span
-    ><br />
+    >
+    <span v-show="termin.pinned" style="float: right">ANGEPINNT</span>
+    <br />
     Von {{ time[termin.std_start - 1].tStart }} bis
     {{ time[termin.std_start + termin.duration - 1 - 1].tEnd }} Uhr
     <br />
     Studiengänge: {{ termin.studigang }}
-    <br />
-    Semester: {{ termin.semester }}
-    <br />
-    DozentIn: {{ termin.dozent }}
   </div>
 </template>
 
@@ -34,6 +36,9 @@ export default {
       }
     },
   },
+  mounted() {
+    console.log(this.termin);
+  },
 };
 </script>
 
@@ -42,10 +47,15 @@ export default {
   padding: 7px;
   margin-bottom: 5px;
   text-align: left;
-  background-color: rgb(75, 204, 243);
 }
 .textline {
   font-size: 1em;
   font-weight: bold;
+}
+.pinned {
+  background-color: rgb(155, 195, 40);
+}
+.notpinned {
+  background-color: rgb(75, 190, 225);
 }
 </style>

@@ -45,7 +45,7 @@ export default {
 }
 .personPopup {
   display: flex;
-  border: 5px grey solid;
+  border: 5px solid rgb(75, 190, 255);
   padding: 5px;
   height: 100%;
 }

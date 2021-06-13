@@ -81,6 +81,7 @@ export default {
 <style scoped>
 #header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 10%;
@@ -90,6 +91,8 @@ export default {
 #logo {
   max-height: 100%;
   max-width: 25%;
+  padding: 3px;
+  
 }
 .headertext {
   font-weight: bold;
@@ -98,7 +101,7 @@ export default {
 .evenSpacing {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 75%;
 }
 </style>

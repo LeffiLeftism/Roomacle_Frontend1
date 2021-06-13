@@ -9,12 +9,9 @@
     <span class="textline" v-if="this.$store.state.setup.room.type == 'vl'">
       <span id="roomtype">Vorlesungsraum</span>
       <span v-if="this.$store.state.setup.room.desc != ''">
-        | {{ this.$store.state.setup.room.desc }}
+        <br />
+        {{ this.$store.state.setup.room.desc }}
       </span>
-      <br />
-      <span id="roomseats"
-        >Sitzplätze: {{ this.$store.state.setup.room.seats }}</span
-      >
     </span>
   </div>
 </template>

@@ -66,6 +66,7 @@
                     "name_short": "t_Meet",
                     "std_start": 1,
                     "duration": 2,
+                    "roomnumber": "A-350",
                     "date": {
                         "start": "2021-05-04",
                         "repeatedly": 0,
@@ -83,6 +84,7 @@
                     "name_short": "new mett",
                     "std_start": 3,
                     "duration": 2,
+                    "roomnumber": "D-321",
                     "date": {
                         "start": "2021-05-05",
                         "repeatedly": 0,
@@ -128,12 +130,29 @@
     ],
     "meetings": [
         {
+            "id": 0,
+            "num": "1234",
+            "name": "Prozedurale Programmier- & Problemlsungsstrategien",
+            "name_short": "PPP",
+            "std_start": 4,
+            "duration": 3,
+            "date": {
+                "start": "2021-05-26",
+                "repeatedly": 2,
+                "end": "2021-07-09",
+                "infinity": false
+            },
+            "semester": "3,4",
+            "studigang": "iING, MB",
+            "dozent": "M.Sc. Visar Januzaj"
+        },
+        {
             "id": 2,
             "num": "0815",
             "name": "Digitaltechnik",
             "name_short": "DT",
             "std_start": 1,
-            "duration": 1,
+            "duration": 3,
             "date": {
                 "start": "2021-05-14",
                 "repeatedly": 1,
@@ -145,14 +164,32 @@
             "dozent": "Profil von Prof. Dr.-Ing. Barbara Lhuillier"
         },
         {
+            "id": 9,
+            "num": "4711",
+            "name": "Kölnisch Wasser",
+            "name_short": "KW",
+            "std_start": 10,
+            "duration": 1,
+            "date": {
+                "start": "2021-06-02",
+                "repeatedly": 1,
+                "end": "2021-06-16",
+                "infinity": false
+            },
+            "semester": "5",
+            "studigang": "MB",
+            "dozent": "Prof. Dr. Cumhur Baspinar"
+        },
+        {
             "id": 3,
             "num": "1444",
             "name": "Microcomputertechnik",
             "name_short": "MC",
-            "std_start": 7,
-            "duration": 2,
+            "std_start": 11,
+            "duration": 1,
+            "pinned": false,
             "date": {
-                "start": "2021-03-15",
+                "start": "2021-06-02",
                 "repeatedly": 1,
                 "end": "2021-06-26",
                 "infinity": false
@@ -168,6 +205,7 @@
             "name_short": "KE",
             "std_start": 4,
             "duration": 5,
+            "roomnumber": "C999",
             "date": {
                 "start": "2021-03-23",
                 "repeatedly": 2,
@@ -176,17 +214,19 @@
             },
             "semester": "5+6",
             "studigang": "MB, iING, IWI",
-            "dozent": "Alex"
+            "dozent": "Alex",
+            "pinned": true
         },
         {
             "id": 4,
             "num": "6543",
             "name": "Mess-, Sensor-, Reglungstechnik",
             "name_short": "MSR",
-            "std_start": 9,
-            "duration": 2,
+            "std_start": 12,
+            "duration": 1,
+            "pinned": true,
             "date": {
-                "start": "2021-03-15",
+                "start": "2021-06-02",
                 "repeatedly": 1,
                 "end": "",
                 "infinity": true
@@ -214,11 +254,11 @@
         },
         {
             "id": 7,
-            "num": "6543",
+            "num": "6544",
             "name": "Mess-, Sensor-, Reglungstechnik",
             "name_short": "MSR",
             "std_start": 10,
-            "duration": 2,
+            "duration": 1,
             "date": {
                 "start": "2021-03-16",
                 "repeatedly": 1,
@@ -227,23 +267,6 @@
             },
             "semester": "4",
             "studigang": "IWI",
-            "dozent": "Prof. Dr. Cumhur Baspinar"
-        },
-        {
-            "id": 9,
-            "num": "4711",
-            "name": "Kölnisch Wasser",
-            "name_short": "KW",
-            "std_start": 5,
-            "duration": 4,
-            "date": {
-                "start": "2021-03-18",
-                "repeatedly": 1,
-                "end": "2021-06-16",
-                "infinity": false
-            },
-            "semester": "5",
-            "studigang": "MB",
             "dozent": "Prof. Dr. Cumhur Baspinar"
         },
         {
@@ -266,60 +289,32 @@
     ],
     "announcements": [
         {
-            "date": "2021-05-17",
-            "time": "15:30",
+            "date": "2021-06-06",
+            "time": "14:20",
             "content": "Bin Kaffee holen",
             "creator": "Visar",
             "title": "Kaffee-Tour durch die Mensa",
             "pinned": true,
-            "countDownDate": "2021-05-17T17:00",
-            "timerActive": true,
-            "started": false,
-            "ended": false
+            "countDownDate": "2021-06-08T19:00",
+            "timerActive": true
         },
         {
-            "date": "2021-05-17",
-            "time": "15:00",
+            "date": "2021-06-07",
+            "time": "14:00",
             "content": "Blauer USB Stick, gefunden hinten links am Fenster",
             "creator": "Alex",
             "title": "USB-Stick 32GB",
-            "pinned": false,
+            "pinned": true,
             "countDownDate": "",
-            "timerActive": false,
-            "started": false,
-            "ended": false
-        },
-        {
-            "date": "2021-05-01",
-            "time": "13:45",
-            "content": "Lost1",
-            "creator": "Alex",
-            "title": "Test Alex Titel",
-            "pinned": false,
-            "countDownDate": "",
-            "timerActive": false,
-            "started": false,
-            "ended": false
-        },
-        {
-            "date": "2021-05-02",
-            "time": "",
-            "content": "Lost2",
-            "creator": "Visar",
-            "title": "Titel Test",
-            "pinned": false,
-            "countDownDate": "",
-            "timerActive": false,
-            "started": false,
-            "ended": false
+            "timerActive": false
         }
     ],
     "setup": {
         "room": {
             "num": "A-317",
-            "type": "buero",
+            "type": "vl",
             "seats": "30",
-            "desc": "Sekretariat"
+            "desc": "Großer Saal"
         },
         "fachbereich": "Ing. Wissenschaften",
         "studienbereich": "Angewandte Physik und Medizintechnik"

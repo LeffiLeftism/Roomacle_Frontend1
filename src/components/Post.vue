@@ -1,14 +1,12 @@
 <template>
-  <div
-    @click="openModal()"
-    v-if="
-      (!this.postContent.pinned || this.postContent.timerActive) &&
-      checkDate(this.postContent.date)
-    "
-  >
+  <div @click="openModal()" v-if="checkDate(this.postContent.date)" id="post">
     <div
       class="lfpost"
-      :class="[this.postContent.pinned === true ? 'announcement' : '']"
+      :class="[
+        this.postContent.pinned || this.postContent.timerActive === true
+          ? 'pinned'
+          : 'notpinned',
+      ]"
     >
       <span class="textline">
         <!--span v-if="this.postContent.time">| {{ this.postContent.time }}</span-->
@@ -16,7 +14,7 @@
         <span
           class="timer"
           :id="this.index + 'timer'"
-          v-if="this.postContent.timerCountdown"
+          v-if="this.postContent.timerActive"
           >{{ this.postContent.timerCountdown }}</span
         >
       </span>
@@ -56,14 +54,7 @@ export default {
     checkDate(dt) {
       let date = new Date(dt);
       date.setHours(0, 0, 0, 0);
-
-      /*console.log("_______________");
-      console.log(this.today);
-      console.log(date);
-      console.log("------------");
-      console.log(date.getTime() == this.today.getTime());*/
-
-      if (date.getTime() == this.today.getTime()) {
+      if ((date.getTime() == this.today.getTime()) || (this.postContent.countDownDate && date.getTime() < this.today.getTime())) {
         return true;
       } else {
         return false;
@@ -96,9 +87,8 @@ export default {
       let y = setInterval(() => {
         if (this.postContent.started && !this.postContent.ended) {
           try {
-            document.getElementById(
-              this.index + "timer"
-            ).innerHTML = this.postContent.timerCountdown;
+            document.getElementById(this.index + "timer").innerHTML =
+              this.postContent.timerCountdown;
           } catch (error) {
             //console.log(error);
           }
@@ -113,7 +103,6 @@ export default {
 
 <style>
 .lfpost {
-  border: black dotted 2px;
   max-width: 100%;
   padding: 0 7px;
   margin-bottom: 5px;
@@ -122,9 +111,6 @@ export default {
 .textline {
   font-size: 1em;
   font-weight: bold;
-}
-.announcement {
-  background-color: rgba(255, 0, 0, 0.548);
 }
 .timer {
   float: right;

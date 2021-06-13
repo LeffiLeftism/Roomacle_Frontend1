@@ -1,5 +1,5 @@
 <template>
-  <div class="content PersonsAll">
+  <div class="PersonsAll">
     <PersonSingle
       v-for="(item, index) in this.$store.state.persons"
       :key="index"
@@ -23,7 +23,8 @@ export default {
 
 <style scoped>
 .PersonsAll {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
   padding: 0;
   overflow: scroll;
 }

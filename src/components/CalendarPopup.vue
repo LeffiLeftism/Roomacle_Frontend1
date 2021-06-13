@@ -10,6 +10,8 @@
       <div class="content">
         {{ times[termin.std_start + termin.duration - 1 - 1].tEnd }}
       </div>
+      <div class="description">Raum:</div>
+      <div class="content">{{ termin.roomnumber }}</div>
       <div class="description">Wdh.:</div>
       <div class="content" v-if="termin.date.repeatedly == 0">einmalig</div>
       <div class="content" v-else-if="termin.date.repeatedly == 1">wöchentlich</div>
@@ -50,7 +52,7 @@ export default {
 
 <style scoped>
 .calendarPopup {
-  border: 5px grey solid;
+  border: 5px solid rgb(75, 190, 255);
   padding: 5px;
   height: 100%;
 }

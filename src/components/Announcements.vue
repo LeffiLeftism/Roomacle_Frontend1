@@ -5,7 +5,6 @@
       :key="index"
       :postContent="item"
       :index="index"
-      @click="openModal()"
     />
   </div>
 </template>
@@ -28,7 +27,7 @@ export default {
 <style scoped>
 #announcement {
   justify-content: space-around;
-  padding: 5px;
+  padding: 5px 0px;
   width: auto;
   height: 100%;
   overflow: scroll;

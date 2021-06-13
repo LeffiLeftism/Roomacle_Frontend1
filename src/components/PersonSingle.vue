@@ -55,7 +55,7 @@ export default {
 .personSingle {
   /*padding: 25px;*/
   display: inline-flex;
-  border: 1px solid black;
+  border: 2px solid rgb(75, 190, 255);
   margin: 2px;
   width: calc(50% - 4px);
   height: calc(50% - 4px);
@@ -69,10 +69,13 @@ export default {
 }
 .personSingle .profilePic {
   padding: 5px;
+  max-width: 100%;
+  /*
+  padding: 5px;
   max-height: 100%;
   max-width: 100%;
   width: auto;
-  height: 80%;
+  height: auto;*/
 }
 .personSingle .personName {
   display: flex;
