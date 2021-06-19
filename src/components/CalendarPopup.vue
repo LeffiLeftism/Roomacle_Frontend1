@@ -1,5 +1,8 @@
 <template>
-  <div class="calendarPopup">
+  <div
+    class="calendarPopup"
+    :class="[this.termin.pinned === true ? 'pinnedTermin' : '']"
+  >
     <header>{{ termin.num }} | {{ termin.name }}</header>
     <div id="body">
       <div class="description">Beginn:</div>
@@ -14,7 +17,9 @@
       <div class="content">{{ termin.roomnumber }}</div>
       <div class="description">Wdh.:</div>
       <div class="content" v-if="termin.date.repeatedly == 0">einmalig</div>
-      <div class="content" v-else-if="termin.date.repeatedly == 1">wöchentlich</div>
+      <div class="content" v-else-if="termin.date.repeatedly == 1">
+        wöchentlich
+      </div>
       <div class="content" v-else>alle {{ termin.date.repeatedly }} Wochen</div>
       <div class="description">Studiengänge:</div>
       <div class="content">{{ termin.studigang }}</div>
@@ -55,6 +60,9 @@ export default {
   border: 5px solid rgb(75, 190, 255);
   padding: 5px;
   height: 100%;
+}
+.pinnedTermin {
+  border: 5px solid rgb(155, 195, 40);
 }
 #body {
   text-align: left;

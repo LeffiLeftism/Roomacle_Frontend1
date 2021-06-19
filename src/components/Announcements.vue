@@ -20,7 +20,10 @@ export default {
     Post,
   },
   methods: {},
-  created() {},
+  beforeMount() {
+    this.$store.state.timer_running = 0;
+    console.log("beforeMount Announcements.vue");
+  },
 };
 </script>
 

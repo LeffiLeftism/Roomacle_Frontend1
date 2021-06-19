@@ -1,11 +1,14 @@
 <template>
-  <div class="announcementsPopup">
+  <div
+    class="announcementsPopup"
+    :class="[postContent.pinned === true ? 'green' : 'blue']"
+  >
     <header>
       {{ postContent.title }}
     </header>
     {{ postContent.content }}
     <br />
-    Gültig ab: {{ postContent.date }}
+    Erstellt am: {{ postContent.date }} um {{ postContent.time }} Uhr
     <br />
     Erstellt von: {{ postContent.creator }}
     <br />
@@ -22,8 +25,14 @@ export default {
 
 <style scoped>
 .announcementsPopup {
-  border: 5px solid rgb(155, 195, 40);
+  border: 5px solid;
   padding: 5px;
   height: 100%;
+}
+.blue {
+  border-color: rgb(75, 190, 255);
+}
+.green {
+  border-color: rgb(155, 195, 40);
 }
 </style>

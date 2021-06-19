@@ -2,8 +2,8 @@
   <div id="header">
     <img
       id="logo"
-      src="../assets/logo.png"
-      alt="Logo HSRM"
+      :src="this.$store.state.setup.base64Code"
+      alt="Logo..."
       style="margin: 3px"
     />
     <span class="evenSpacing">
@@ -92,7 +92,6 @@ export default {
   max-height: 100%;
   max-width: 25%;
   padding: 3px;
-  
 }
 .headertext {
   font-weight: bold;

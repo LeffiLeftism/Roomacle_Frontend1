@@ -126,7 +126,7 @@ import Calendar from "./components/Calendar.vue";
 import CalendarSwitch from "./components/CalendarSwitch.vue";
 import PersonsAll from "./components/PersonsAll.vue";
 import PersonSwitch from "./components/PersonSwitch.vue";
-import InputSite from "./components/InputSite.vue";
+import Login from "./components/Login.vue";
 
 import db from "./assets/data.json";
 
@@ -151,80 +151,32 @@ export default {
   },
   computed: {},
   methods: {
-    startTimer(postContent) {
-      let x;
+    startTimer(/*postContent*/) {/*
       if (postContent.timerActive && !postContent.started) {
         postContent.show = true;
-        this.$store.state.timer_running++;
-        x = setInterval(() => {
-          /*console.log(
-            "Started: " + postContent.started + " | End: " + postContent.ended
-          );*/
+        let x = setInterval(() => {
+          console.log(
+            "Started: " + postContent.started + " | Ended: " + postContent.ended
+          );
+          //console.log(postContent.title)
           if (postContent.timerActive && !postContent.ended) {
             //console.log("Update Timer");
+            if (!postContent.started) {
+              postContent.started = true;
+              this.$store.state.timer_running++;
+            }
             this.setTimer(postContent);
-            postContent.started = true;
           } else if (postContent.ended) {
             clearInterval(x);
             console.log("End Timer");
             this.$store.state.timer_running--;
-            postContent.started = false;
-            postContent.ended = false;
             postContent.timerActive = false;
             postContent.show = false;
           }
         }, 1000);
-      }
+      }*/
     },
-    setTimer(postContent) {
-      let index = this.index;
-      // Set the date we're counting down to
-      let countDownDate = new Date(postContent.countDownDate);
-
-      // Get today's date and time
-      var now = new Date().getTime();
-
-      // Find the distance between now and the count down date
-      var distance = countDownDate.getTime() - now;
-
-      // Time calculations for days, hours, minutes and seconds
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      hours = this.fillUpTens(hours);
-      minutes = this.fillUpTens(minutes);
-      seconds = this.fillUpTens(seconds);
-
-      // Display the result in the element with id="demo"
-      let text = "";
-      if (days > 0) {
-        text += days + "d ";
-      }
-      text += hours + "h " + minutes + "m " + seconds + "s ";
-
-      postContent.timerCountdown = text;
-
-      try {
-        document.getElementById(index + "timer").innerHTML = text;
-      } catch (error) {
-        //console.log(error);
-      }
-
-      // If the count down is finished, write some text
-      if (distance < 0) {
-        try {
-          document.getElementById(index + "timer").innerHTML = "ABGELAUFEN";
-        } catch (error) {
-          //console.log(error);
-        }
-        postContent.ended = true;
-        //this.postContent.timerActive = false;
-      }
-    },
+    
     readFile() {
       this.$store.commit("importTimings", {
         data: db.timings,
@@ -309,13 +261,22 @@ export default {
     openModal() {
       try {
         this.$modal.show(
-          InputSite,
+          Login,
           {},
-          { adaptive: false, width: "800", height: "400" }
+          {
+            adaptive: false,
+            clickToClose: false,
+            width: "800",
+            height: "400",
+            name: "InputModal",
+          }
         );
       } catch (err) {
-        console.log("CError on InputSite Popup.");
+        console.log("Error on Login Popup.");
       }
+    },
+    closeModal() {
+      this.$modal.hide("InputModal");
     },
     setToday: function () {
       let dt = new Date();
@@ -337,9 +298,9 @@ export default {
   },
   mounted() {
     this.recieveData();
-    this.$store.state.announcements.forEach((element) => {
+    /*this.$store.state.announcements.forEach((element) => {
       this.startTimer(element);
-    });
+    });*/
   },
   watch: {
     "$store.state.announcements": function () {

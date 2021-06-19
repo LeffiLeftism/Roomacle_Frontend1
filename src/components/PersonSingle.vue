@@ -3,8 +3,8 @@
     <div class="picture">
       <img
         class="profilePic"
-        :src="img_url('Person' + num + '.jpg')"
-        alt="profile picture"
+        :src="this.person.base64Code"
+        alt="Profilbild..."
       />
     </div>
     <div class="personName">
@@ -34,14 +34,6 @@ export default {
       } catch (err) {
         console.log("Error on person.");
       }
-    },
-    img_url: function (path) {
-      let images = require.context(
-        "../assets/ProfilPictures/",
-        false,
-        /\.png$|\.jpg$/
-      );
-      return images("./" + path);
     },
     printConsole(num) {
       console.log(num);

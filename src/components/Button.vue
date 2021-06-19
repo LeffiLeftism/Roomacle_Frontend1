@@ -67,13 +67,6 @@ export default {
       this.$store.state.screen = this.screen;
     },
   },
-  mounted() {
-    /*
-    document.getElementById("navButton" + this.screen).style.border =
-      "5px solid";
-    document.getElementById("navButton" + this.screen).style.borderColor =
-      this.activatedcolor;*/
-  },
 };
 </script>
 
@@ -101,5 +94,6 @@ button:active {
   /*background-color: rgb(104, 104, 104);*/
   position: relative;
   top: 2px;
+  color: white;
 }
 </style>

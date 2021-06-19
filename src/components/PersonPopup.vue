@@ -1,7 +1,7 @@
 <template>
   <div class="personPopup">
     <div class="picture">
-      <img :src="img_url('Person' + num + '.jpg')" alt="profile picture" />
+      <img :src="this.person.base64Code" alt="profile picture" />
     </div>
     <div class="content">
       <h3>{{ this.person.name }}, {{ this.person.titel }}</h3>
@@ -24,16 +24,6 @@ export default {
   props: {
     num: Number,
     person: Object,
-  },
-  methods: {
-    img_url: function (path) {
-      let images = require.context(
-        "../assets/ProfilPictures/",
-        false,
-        /\.png$|\.jpg$/
-      );
-      return images("./" + path);
-    },
   },
 };
 </script>
