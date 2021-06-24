@@ -156,7 +156,7 @@ export default {
 
     if (
       this.postContent.pinned &&
-      this.postContent.timerActive &&
+      /*this.postContent.timerActive &&*/
       this.postEndDate > new Date() &&
       this.dateChecked &&
       !this.postContent.timer_started

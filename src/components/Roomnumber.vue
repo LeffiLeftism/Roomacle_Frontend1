@@ -1,7 +1,7 @@
 <template>
   <div
     id="roomnumberComp"
-    :class="[this.$store.state.upcomming_Meeting == true ? 'marked' : '']"
+    :class="[this.$store.state.upcomming_Meeting == true && this.$store.state.setup.room.type == 'vl' ? 'marked' : '']"
   >
     <span id="roomnumber" class="textline">{{
       this.$store.state.setup.room.num
@@ -12,16 +12,6 @@
 <script>
 export default {
   props: {},
-  data() {
-    return {
-      red: false,
-    };
-  },
-  watch: {
-    "$store.state.upcomming_Meeting": function () {
-      this.red = this.$store.state.upcomming_Meeting;
-    },
-  },
 };
 </script>
 

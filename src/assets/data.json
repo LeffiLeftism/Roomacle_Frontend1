@@ -334,7 +334,7 @@
     "setup": {
         "room": {
             "num": "A-317",
-            "type": "vl",
+            "type": "buero",
             "seats": "30",
             "desc": "Großer Saal"
         },

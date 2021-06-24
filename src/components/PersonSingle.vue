@@ -8,7 +8,10 @@
       />
     </div>
     <div class="personName">
-      {{this.person.name}}, {{this.person.titel}}
+      <span>
+        {{ this.person.name
+        }}<span v-if="this.person.titel">, {{ this.person.titel }}</span></span
+      >
     </div>
   </div>
 </template>
@@ -23,14 +26,17 @@ export default {
   },
   methods: {
     openModal() {
-      
       try {
-        this.$modal.show(PersonPopup, {
-          num: this.num,
-          person: this.person},
+        this.$modal.show(
+          PersonPopup,
           {
-            width: '700px',
-          });
+            num: this.num,
+            person: this.person,
+          },
+          {
+            width: "700px",
+          }
+        );
       } catch (err) {
         console.log("Error on person.");
       }

@@ -195,5 +195,6 @@ export default {
   overflow: scroll;
   /*background-color: darkseagreen;*/
   width: 100%;
+  height: 95%;
 }
 </style>

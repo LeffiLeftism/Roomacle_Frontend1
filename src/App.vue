@@ -6,7 +6,7 @@
         <!-- Home view -->
         <div class="maxSize" v-if="this.$store.state.screen == 0">
           <Header />
-          <div class="top" style="display: flex; height: 20%">
+          <div class="top">
             <Roomnumber />
             <Roominfo />
           </div>
@@ -19,7 +19,7 @@
         <!-- Calendar view -->
         <div class="maxSize" v-else-if="this.$store.state.screen == 1">
           <Header />
-          <div class="top" style="display: flex; height: 20%">
+          <div class="top">
             <PersonSwitch />
           </div>
           <div class="bottom">
@@ -38,7 +38,7 @@
         <!-- Info view -->
         <div class="maxSize" v-else-if="this.$store.state.screen == 2">
           <Header />
-          <div class="top" style="display: flex; height: 20%">
+          <div class="top">
             <Roomnumber />
             <Roominfo />
           </div>
@@ -76,7 +76,7 @@
         <!-- Calendar view -->
         <div class="maxSize" v-else-if="this.$store.state.screen == 1">
           <Header />
-          <div class="top" style="display: flex; height: 20%">
+          <div class="top">
             <CalendarSwitch />
           </div>
           <div class="bottom">
@@ -90,7 +90,7 @@
         <!-- Info view -->
         <div class="maxSize" v-else-if="this.$store.state.screen == 2">
           <Header />
-          <div class="top" style="display: flex; height: 20%">
+          <div class="top">
             <Roomnumber />
             <Roominfo />
           </div>
@@ -151,7 +151,8 @@ export default {
   },
   computed: {},
   methods: {
-    startTimer(/*postContent*/) {/*
+    startTimer(/*postContent*/) {
+      /*
       if (postContent.timerActive && !postContent.started) {
         postContent.show = true;
         let x = setInterval(() => {
@@ -176,7 +177,7 @@ export default {
         }, 1000);
       }*/
     },
-    
+
     readFile() {
       this.$store.commit("importTimings", {
         data: db.timings,
@@ -269,6 +270,11 @@ export default {
             width: "800",
             height: "400",
             name: "InputModal",
+          },
+          {
+            "before-close": () => {
+              this.recieveData();
+            },
           }
         );
       } catch (err) {
@@ -309,10 +315,6 @@ export default {
         this.startTimer(element);
       });
     },
-    "$store.state.screen": function () {
-      console.log("Recieve");
-      this.recieveData();
-    },
   },
 };
 </script>
@@ -351,6 +353,10 @@ header {
 .bottom {
   display: flex;
   height: 70%;
+}
+.top {
+  display: flex;
+  height: 20%;
 }
 .bottomSpacer {
   width: 85%;

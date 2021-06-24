@@ -48,6 +48,7 @@ export default {
 .personPopup .picture img {
   max-width: 100%;
   max-height: 300px;
+  min-width: 200px;
 }
 .personPopup .content {
   padding: 5px;

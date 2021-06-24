@@ -9,7 +9,9 @@
 <script>
 export default {
   methods: {
-    closeModal() {
+    closeModal() {/*
+      console.log("Recieve Data");
+      this.$parent.recieveData();*/
       console.log("Close InputModal");
       this.$modal.hide("InputModal");
     },
