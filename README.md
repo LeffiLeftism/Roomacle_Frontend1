@@ -28,7 +28,7 @@ vue ui
 Here u can import the the project to edit with vue.
 
 To edit Frontend 1, u need to import the Testdata.json file with the "Import File"-Button at start so get basic data so all components work properly.
-
+To change between roomtype "Büroraum" and "Vorlesungsraum" you have to change the Testdata.json-File. Change setup.room.type to "buero" or "vl".
 
 ### Compiles and hot-reloads for development
 ```
