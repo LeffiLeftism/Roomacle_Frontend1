@@ -52,7 +52,6 @@
 </template>
 
 <script>
-//import db from "../assets/data.json";
 import CalendarPopup from "./CalendarPopup.vue";
 
 export default {

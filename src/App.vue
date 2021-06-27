@@ -139,12 +139,6 @@ export default {
     PersonsAll,
     PersonSwitch,
   },
-  data() {
-    return {
-      db,
-    };
-  },
-  computed: {},
   methods: {
     recieveData: async function () {
       //Fragt alle Kategorien einzeln aus dem Backend ab und schreibt diese in den lokalen Speicher
