@@ -109,6 +109,11 @@
       </div>
       <!--------------------------------------Vorlesungsräume Ende--------------------------------------->
     </div>
+    <div v-else>
+      <button class="maxSize" @click="importFile()" id="importButton">
+        Import File
+      </button>
+    </div>
   </div>
 </template>
 
@@ -125,8 +130,15 @@ import PersonsAll from "./components/PersonsAll.vue";
 import PersonSwitch from "./components/PersonSwitch.vue";
 import Login from "./components/Login.vue";
 
+import db from "./assets/Testdata.json";
+
 export default {
   name: "App",
+  data() {
+    return {
+      db,
+    };
+  },
   components: {
     Header,
     Navigation,
@@ -140,6 +152,26 @@ export default {
     PersonSwitch,
   },
   methods: {
+    importFile() {
+      let json = db;
+      console.log(json);
+      this.$store.commit("importTimings", {
+        data: json.timings,
+      });
+      this.$store.commit("importMeetings", {
+        data: json.meetings,
+      });
+      this.$store.commit("importPersons", {
+        data: json.persons,
+      });
+      this.$store.commit("importAnnouncements", {
+        data: json.announcements,
+      });
+      this.$store.commit("importSetup", {
+        data: json.setup,
+      });
+      console.log(this.$store);
+    },
     recieveData: async function () {
       //Fragt alle Kategorien einzeln aus dem Backend ab und schreibt diese in den lokalen Speicher
       let response;
