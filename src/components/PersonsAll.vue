@@ -24,5 +24,6 @@ export default {
   flex-wrap: wrap;
   padding: 0;
   overflow: scroll;
+  width: 85%;
 }
 </style>
