@@ -25,7 +25,9 @@ npm update -g @vue/cli
 vue ui
 ```
 
-Here u can import the the project to edit with vue
+Here u can import the the project to edit with vue.
+
+To edit Frontend 1, u need to import the Testdata.json file with the "Import File"-Button at start so get basic data so all components work properly.
 
 
 ### Compiles and hot-reloads for development
