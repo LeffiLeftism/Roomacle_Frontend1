@@ -1,6 +1,13 @@
-# roomacle
+# Frontend1
 
 ## Project setup
+
+Install NodeJS from [NodeJS-Website](https://nodejs.org/en/)
+
+
+Go to your project directory and follow these steps:
+
+Update/Install Dependencies
 ```
 npm install
 ```
