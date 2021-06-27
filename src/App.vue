@@ -125,8 +125,6 @@ import PersonsAll from "./components/PersonsAll.vue";
 import PersonSwitch from "./components/PersonSwitch.vue";
 import Login from "./components/Login.vue";
 
-import db from "./assets/data.json";
-
 export default {
   name: "App",
   components: {
