@@ -25,7 +25,7 @@ npm update -g @vue/cli
 vue ui
 ```
 
-Here u can add the folders Frontend 1 and Frontend 2 to edit with vue
+Here u can import the the project to edit with vue
 
 
 ### Compiles and hot-reloads for development
