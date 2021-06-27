@@ -15,9 +15,6 @@ export default {
   components: {
     PersonSingle,
   },
-  data() {
-    return {};
-  },
 };
 </script>
 

@@ -9,9 +9,8 @@
 <script>
 export default {
   methods: {
-    closeModal() {/*
-      console.log("Recieve Data");
-      this.$parent.recieveData();*/
+    closeModal() {
+      //Schließt das Popup der Dateneingabeseite
       console.log("Close InputModal");
       this.$modal.hide("InputModal");
     },

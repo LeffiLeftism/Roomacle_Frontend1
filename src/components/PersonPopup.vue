@@ -4,7 +4,11 @@
       <img :src="this.person.base64Code" alt="profile picture" />
     </div>
     <div class="content">
-      <h3>{{ this.person.name }}, {{ this.person.titel }}</h3>
+      <h3>
+        {{ this.person.name }}
+        <span v-if="this.person.title">, {{ this.person.titel }}</span
+        >
+      </h3>
       E-Mail: {{ this.person.email }}
       <br />
       Telefon: {{ this.person.telefon }}

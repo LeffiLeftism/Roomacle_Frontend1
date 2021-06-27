@@ -39,6 +39,7 @@ export default {
   },
   computed: {
     tomorrow: function () {
+      //Gibt den künftigen Tag zurück
       let date = new Date(
         this.$store.state.calendar.today.year,
         this.$store.state.calendar.today.month,
@@ -52,6 +53,7 @@ export default {
       return date;
     },
     postDate: function () {
+      //Gibt das Startdatum der Benachrichtung zurück, da Datum und Uhrzeit in getrenten Variablen gespeichert sind
       let postDate = new Date(this.postContent.date);
       let postHour = this.postContent.time;
       postHour = postHour.slice(0, 2);
@@ -63,21 +65,15 @@ export default {
       return postDate;
     },
     postEndDate: function () {
+      //Gibt das Enddatum der Benachrichtitung zurück
       let postEndDate = new Date(this.postContent.countDownDate);
       return postEndDate;
     },
   },
   methods: {
     checkDate() {
+      //Überprüft, ob die Benachrichtigung angezeigt werden soll, anhand von Datum und Uhrzeit
       let now = new Date();
-      console.log("PostDate");
-      console.log(this.postDate);
-      console.log("PostEndDate");
-      console.log(this.postEndDate);
-      console.log("Now");
-      console.log(now);
-      console.log(this.$store.state.announcements);
-
       if (
         !this.postContent.pinned ||
         (this.postContent.pinned && !this.postContent.timerActive) ||
@@ -98,6 +94,7 @@ export default {
       }
     },
     openModal() {
+      //Öffnet das Popup der Benachrichtigungen
       try {
         this.$modal.show(
           AnnouncementsPopupVue,
@@ -111,10 +108,12 @@ export default {
       }
     },
     setTimer() {
-      // Find the distance between now and the count down date
+      //Setzt die Restzeit des Timers und schreibt diese neben die Benachrichtigung
+
+      //Bestimme Abstand von Endzeit und aktueller Zeit
       var distance = this.postEndDate.getTime() - new Date();
 
-      // Time calculations for days, hours, minutes and seconds
+      //Bestimme Tage, Stunden, Minuten und Sekunden des Abstands
       var days = Math.floor(distance / (1000 * 60 * 60 * 24));
       var hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -126,7 +125,7 @@ export default {
       minutes = this.$parent.$parent.fillUpTens(minutes);
       seconds = this.$parent.$parent.fillUpTens(seconds);
 
-      // Display the result in the element with id="demo"
+      //Zeige den Abstand neben der Benachrichtigung an
       let text = "";
       if (days > 0) {
         text += days + "d ";
@@ -141,7 +140,7 @@ export default {
         //console.log(error);
       }
 
-      // If the count down is finished, write some text
+      //Wenn der Timer ausgelaufen wird dies hinterlegt
       if (distance < 0) {
         this.postContent.timer_ended = true;
         this.checkDate();
@@ -150,37 +149,34 @@ export default {
     },
   },
   mounted() {
-    console.log("mounted Post.vue");
-
     this.checkDate();
-
+    //Überprüft ob Benachrichtigung einen Timer hat
     if (
       this.postContent.pinned &&
-      /*this.postContent.timerActive &&*/
       this.postEndDate > new Date() &&
       this.dateChecked &&
       !this.postContent.timer_started
     ) {
+      //Hinterlegt die Anzahl der laufenden Timer
       this.$store.state.timer_running++;
       this.postContent.timer_started = true;
       this.postContent.timer_ended = false;
       console.log(this.$store.state.timer_running);
       console.log("Hurra");
 
+      //Startet die Aktualisierung jede 1000ms des Timers
       let x = setInterval(() => {
         console.log(this.postContent.timer_ended);
         if (this.postContent.timer_started && !this.postContent.timer_ended) {
           this.setTimer();
         } else if (this.postContent.timer_ended) {
+          //Wenn Timer endet, wird die regelmäßige Aktualisierung beendet
           clearInterval(x);
           console.log("End Timer");
           this.$store.state.timer_running--;
         }
       }, 1000);
     }
-  },
-  beforeDestroy() {
-    console.log("Destroyed, Bye...");
   },
 };
 </script>

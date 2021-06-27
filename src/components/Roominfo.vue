@@ -20,12 +20,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {},
-};
-</script>
-
 <style scoped>
 #roominfo {
   /*border: grey solid 2px;*/

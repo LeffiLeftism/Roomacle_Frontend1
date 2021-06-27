@@ -26,6 +26,7 @@ export default {
   },
   methods: {
     openModal() {
+      //Öffnet das Popup für Veranstaltungen
       try {
         this.$modal.show(CalendarPopup, {
           termin: this.termin,

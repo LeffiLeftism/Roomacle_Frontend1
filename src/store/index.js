@@ -3,6 +3,7 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+//Vuex Store mit Arrays für jede Kategorie und zusätzliche Informationen
 export default new Vuex.Store({
     state: {
         timings: [],

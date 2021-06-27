@@ -37,21 +37,6 @@ export default {
     termin: Object,
     times: Array,
   },
-  computed: {
-    endOfWeek() {
-      let eow =
-        this.$store.state.calendar.weekEnd.year +
-        "-" +
-        this.$store.state.calendar.weekEnd.month +
-        "-" +
-        this.$store.state.calendar.weekEnd.day;
-      return eow;
-    },
-  },
-  methods: {
-    writeContent() {},
-  },
-  created() {},
 };
 </script>
 

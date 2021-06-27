@@ -14,15 +14,12 @@
         width: 100%;
       "
     >
-      <!--img :src="img_url(imgName)" /-->
       {{ this.name }}
     </div>
   </button>
 </template>
 
 <script>
-//import Home from "../assets/home"
-
 export default {
   data() {
     return {};
@@ -42,6 +39,7 @@ export default {
   },
   computed: {
     buttonStyle() {
+      //Setzt CSS-Styling als Text zusammen, welcher einem HTML-Element übergeben werden kann
       if (this.$store.state.screen == this.screen) {
         return {
           "background-color": this.activatedcolor,
@@ -59,11 +57,8 @@ export default {
     },
   },
   methods: {
-    img_url: function (path) {
-      let images = require.context("../assets/", false, /\.png$|\.jpg$/);
-      return images("./" + path);
-    },
     setScreen() {
+      //Der zugewiesene Screen wird aktiviert und lokal hinterlegt 
       this.$store.state.screen = this.screen;
     },
   },

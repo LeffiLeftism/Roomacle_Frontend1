@@ -109,9 +109,6 @@
       </div>
       <!--------------------------------------Vorlesungsräume Ende--------------------------------------->
     </div>
-    <div class="maxSize" v-else>
-      <button class="maxSize" @click="readFile()">IMPORT</button>
-    </div>
   </div>
 </template>
 
@@ -151,51 +148,8 @@ export default {
   },
   computed: {},
   methods: {
-    startTimer(/*postContent*/) {
-      /*
-      if (postContent.timerActive && !postContent.started) {
-        postContent.show = true;
-        let x = setInterval(() => {
-          console.log(
-            "Started: " + postContent.started + " | Ended: " + postContent.ended
-          );
-          //console.log(postContent.title)
-          if (postContent.timerActive && !postContent.ended) {
-            //console.log("Update Timer");
-            if (!postContent.started) {
-              postContent.started = true;
-              this.$store.state.timer_running++;
-            }
-            this.setTimer(postContent);
-          } else if (postContent.ended) {
-            clearInterval(x);
-            console.log("End Timer");
-            this.$store.state.timer_running--;
-            postContent.timerActive = false;
-            postContent.show = false;
-          }
-        }, 1000);
-      }*/
-    },
-
-    readFile() {
-      this.$store.commit("importTimings", {
-        data: db.timings,
-      });
-      this.$store.commit("importMeetings", {
-        data: db.meetings,
-      });
-      this.$store.commit("importPersons", {
-        data: db.persons,
-      });
-      this.$store.commit("importAnnouncements", {
-        data: db.announcements,
-      });
-      this.$store.commit("importSetup", {
-        data: db.setup,
-      });
-    },
     recieveData: async function () {
+      //Fragt alle Kategorien einzeln aus dem Backend ab und schreibt diese in den lokalen Speicher
       let response;
       console.log("Recieve all Data");
       const options = {
@@ -256,10 +210,8 @@ export default {
       console.log(json);
       console.log(this.$store.state);
     },
-    print2console(content) {
-      console.log(content);
-    },
     openModal() {
+      //Öffnet das Login Popup, welches das Frontend 2 zeigt
       try {
         this.$modal.show(
           Login,
@@ -273,6 +225,7 @@ export default {
           },
           {
             "before-close": () => {
+              //Bevor es geschlossen wird werden die Daten aus dem Backend neu abgefragt
               this.recieveData();
             },
           }
@@ -281,10 +234,8 @@ export default {
         console.log("Error on Login Popup.");
       }
     },
-    closeModal() {
-      this.$modal.hide("InputModal");
-    },
     setToday: function () {
+      //Hinterlegt das aktuelle Datum im lokalen Speicher
       let dt = new Date();
       this.$store.commit("setToday", {
         day: this.fillUpTens(dt.getDate()),
@@ -293,6 +244,7 @@ export default {
       });
     },
     fillUpTens(number) {
+      //Gibt übergebene Zahl als Text zurück und fügt vorn eine "0" hinzu, sollte sie unter 10 sein (Bsp.: 7 -> "07")
       if (number < 10) number = "0" + number;
       else number = String(number);
       return number;
@@ -300,21 +252,10 @@ export default {
   },
   created() {
     this.setToday();
-    console.log("Create APP");
   },
   mounted() {
+    //Fragt beim Aufruf die Daten des Backends ab
     this.recieveData();
-    /*this.$store.state.announcements.forEach((element) => {
-      this.startTimer(element);
-    });*/
-  },
-  watch: {
-    "$store.state.announcements": function () {
-      //console.log("Got new Timer");
-      this.$store.state.announcements.forEach((element) => {
-        this.startTimer(element);
-      });
-    },
   },
 };
 </script>

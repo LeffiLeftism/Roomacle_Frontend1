@@ -19,8 +19,8 @@ export default {
   components: {
     Post,
   },
-  methods: {},
   beforeMount() {
+    //Setzt lokalen Zähler für laufende Timer auf 0
     this.$store.state.timer_running = 0;
     console.log("beforeMount Announcements.vue");
   },

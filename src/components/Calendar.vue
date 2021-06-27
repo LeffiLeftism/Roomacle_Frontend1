@@ -66,111 +66,86 @@ export default {
   props: {
     meetings: Array,
   },
-  computed: {},
   methods: {
     writeCalendar() {
+      //Schreibt die Veranstaltungsdaten aus dem lokalen Speicher in die Kalenderzellen
       console.log("Write calendar");
       this.resetCalendar();
-      //console.log(this.button_data_connect);
+      //Speichert Verbindung zwischen Veranstaltungsindex und Zellenindex
       let connection = [];
-      /*console.log("Connect-Array auf 0 gesetzt");
-      console.log(connection);*/
 
+      //Erstellt Startdatum der Woche aus hinterlegtem Datum des Kalenderwechslers
       let weekStartDate = new Date(
         this.$store.state.calendar.weekStart.year,
         this.$store.state.calendar.weekStart.month - 1,
         this.$store.state.calendar.weekStart.day
       );
-      //console.log('WeekStartDate '+weekStartDate);
 
       let weekEndDay = this.$store.state.calendar.weekEnd.day;
       let weekEndMonth = this.$store.state.calendar.weekEnd.month;
       let weekEndYear = this.$store.state.calendar.weekEnd.year;
 
+      //Erstellt Enddatum der Woche aus hinterlegtem Datum des Kalenderwechslers
       let weekEndDate = new Date(weekEndYear, weekEndMonth - 1, weekEndDay);
       weekEndDate.setHours(23, 59, 59, 999);
-      //console.log('WeekEndDate '+weekEndDate);
 
-      //console.log("Comlete meetings: " + this.$store.state.meetings);
       for (const vIndex in this.meetings) {
         const element = this.meetings[vIndex];
-        //let dateStart = new Date(element.date);
         let dateStart = new Date(element.date.start);
         let dateEnd = new Date(element.date.end);
         let W_dateStart = this.ISOweek(dateStart);
         let W_weekStartDate = this.ISOweek(weekStartDate);
         let weekDif;
+        //Überprüft die Kalenderwoche, ob eine Veranstaltung in der ausgewählten Woche stattfindet und hinterlegt diese als Wochendifferenz
         if (element.date.repeatedly == 0) {
           weekDif = 0;
         } else {
           weekDif = (W_weekStartDate - W_dateStart) % element.date.repeatedly;
         }
-        /*console.log("dateStart " + dateStart);
-        console.log("dateEnd " + dateEnd);
-        console.log("W_dateStart " + dateStart);
-        console.log("W_weekStartDate " + weekStartDate);
-        console.log("weekDif " + weekDif);
-        //console.log(dt);
-        console.log(weekEndDate);*/
 
         console.log(element);
+        //Überprüft folgende Eigenschaften:
+        //Veranstaltung entwender dauerhaft stattfindet oder Startdatum der Woch vor dem Enddatum der Veranstaltung liegt
+        //UND Enddatum der Woche hinter dem Startdatum der Veranstaltung liegt
+        //UND die Wochendifferenz gleich 0 ist und Veranstaltung in der Woche stattfindet
         if (
           (element.date.infinity == true || weekStartDate <= dateEnd) &&
           weekEndDate > dateStart &&
           weekDif == 0
         ) {
-          //console.log(element);
           let day = new Date(element.date.start).getDay();
-          //console.log(day);
           let cellID = element.std_start * 10 + day;
           let buttonName = element.name_short;
           let cell = document.getElementById(cellID);
-          /*cell.firstChild.innerText = buttonName;
-            cell.firstChild.style.background = "lightgrey";
-            cell.firstChild.style.color = "black";
-            cell.firstChild.disabled = false;*/
 
           cell.innerText = buttonName;
+          //Setzt die Farbe für angepinnte, nicht gepinnte Veranstaltungen
           if (element.pinned) {
             cell.style.background = "rgb(155, 195, 40)";
           } else {
             cell.style.background = "rgb(75, 190, 225)";
           }
           cell.style.color = "black";
-          //cell.disabled = false;
 
           let duration = element.duration;
+          //Vergrößert die Zelle für die Länge der Veranstaltung
           if (duration > 1) {
-            //console.log("Duration " + _id + " " + duration);
             cell.rowSpan = duration;
             for (let index = 1; index < duration; index++) {
+              //Versteckt die Zellen, welche von einer Langen Veranstaltung überschrieben wurden, damit das Layout bleibt
               let hiddenID = cellID + 10 * index;
-              //console.log("CellID: " + cellID);
-              //console.log("Duration: " + index);
-              //console.log("Hidden: " + hiddenID);
-              //console.log("Index: " + index);
               document.getElementById(hiddenID).style.display = "none";
             }
           }
-
-          /*console.log(
-            "Updated Button-text in cell with ID: " +
-              cellID +
-              " to " +
-              buttonName
-          );*/
           let combi = [cellID, vIndex];
           connection.push(combi);
         }
       }
-      /*console.log("Connect-Array erstellt");
-      console.log(connection);*/
+      //Schreibt das Verbindungsarray in eine Variable, welche in der gesamten Komponente verfügbar ist
       this.button_db_connect = connection;
-
-      //document.getElementById("62").rowSpan = "2";
-      //
     },
     resetCalendar() {
+      //Stellt den standardmäßigen Kalender ohne Veranstaltungen wieder her (Zellengrößen, -farben, etc.)
       console.log("Reset Calendar");
       for (
         let hour_index = 0;
@@ -193,6 +168,7 @@ export default {
       }
     },
     openModal(CellID) {
+      //Öffnet das Popup der Veranstaltungen im Kalender über den betätigten Zellenindex und das Verbindungsarray zu den Veranstaltungen
       try {
         let index = this.button_db_connect.findIndex((element) =>
           element.includes(CellID)
@@ -206,18 +182,9 @@ export default {
         console.log("Clicked on Non-Event cell in calendar.");
       }
     },
-    getRandomRgb(index) {
-      var num = Math.round(0xffffff * Math.random());
-      var r = num >> 16;
-      var g = (num >> 8) & 255;
-      var b = num & 255;
-      document.getElementById(index).style.backgroundColor =
-        "rgb(" + r + ", " + g + ", " + b + ")";
-    },
 
     ISOweek(dt) {
-      //console.log("Date " + dt);
-      //console.log("Date.day " + dt.getDay());
+      //Bestimmt die Kalenderwoche eines Datums und gibt diese zurück
       var tdt = new Date(dt.valueOf());
       var dayn = (dt.getDay() + 6) % 7;
       tdt.setDate(tdt.getDate() - dayn + 3);
@@ -229,34 +196,13 @@ export default {
       return 1 + Math.ceil((firstThursday - tdt) / 604800000);
     },
 
-    //////////////////////////////////////////////////////////////////////////////////////////
-    /*
-    sendData: async function () {
-      console.log("Send all Data");
-      const data = {};
-      data.timings = this.$store.state.timings;
-      data.meetings = this.$store.state.meetings;
-      data.persons = this.$store.state.persons;
-      console.log(data);
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      };
-      const response = await fetch("/send", options);
-      const json = await response.json();
-      console.log("Response:");
-      console.log(json);
-    },*/
-    //////////////////////////////////////////////////////////////////////////////////////////
-
     setWeek(date) {
+      //Hinterlegt Start und Enddatum der Woche des übergebenen Datums
       this.startOfWeek(date);
       this.endOfWeek(date);
     },
     startOfWeek(date) {
+      //Hinterlegt das Startdatum der Woche in lokalen Speicher
       let diff =
         date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
       let nom = new Date(date.setDate(diff));
@@ -268,6 +214,7 @@ export default {
       return this.shortDate(nom);
     },
     endOfWeek(date) {
+      //Hinterlegt das Enddatum der Woche in lokalen Speicher
       let diff =
         date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1) + 5;
       let nom = new Date(date.setDate(diff));
@@ -279,6 +226,7 @@ export default {
       return this.shortDate(nom);
     },
     shortDate(date) {
+      //Formt das übergebene Datum zum Format DD.MM.YY und gibt dieses als Text zurück
       let day = date.getDate();
       if (day < 10) {
         day = "0" + day;
@@ -291,6 +239,7 @@ export default {
       return `${day}.${month}.${year}`;
     },
     fillUpTens(number) {
+      //Gibt übergebene Zahl als Text zurück und fügt vorn eine "0" hinzu, sollte sie unter 10 sein
       if (number < 10) number = "0" + number;
       else number = String(number);
       return number;
@@ -298,20 +247,19 @@ export default {
   },
   watch: {
     "$store.state.calendar.weekStart.day": {
+      //Überwacht den Starttag der Woche und schreibt den Kalender bei einer Änderung neu
       handler: function () {
-        /*console.log("Changed weekStartDay");
-        console.log(this.$store.state.calendar.weekStart.day);*/
         this.writeCalendar();
       },
     },
 
     "$store.state.person_index_calendar": {
+      //Überwacht den Index der Ausgewählten Person bei Büroräumen und schreibt den Kalender bei einer Änderung neu
       handler: function () {
         this.writeCalendar();
       },
     },
   },
-  created() {},
   mounted() {
     this.setWeek(new Date());
     this.writeCalendar();

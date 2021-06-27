@@ -17,6 +17,8 @@
 export default {
   methods: {
     switchPerson(direction) {
+      //Wechselt die angezeigte Person, indem der Index einer Person im lokalen Speicher hinterlegt wird
+      //Die Personen können im Ring umgeschaltet werden
       if (direction == "+") {
         console.log(direction);
         if (

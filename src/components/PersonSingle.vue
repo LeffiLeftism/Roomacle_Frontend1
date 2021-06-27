@@ -26,6 +26,7 @@ export default {
   },
   methods: {
     openModal() {
+      //Öffnet das Popop für die Personen
       try {
         this.$modal.show(
           PersonPopup,
@@ -41,11 +42,7 @@ export default {
         console.log("Error on person.");
       }
     },
-    printConsole(num) {
-      console.log(num);
-    },
   },
-  created() {},
 };
 </script>
 

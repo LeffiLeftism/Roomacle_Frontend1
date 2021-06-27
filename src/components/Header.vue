@@ -39,6 +39,7 @@ export default {
     };
   },
   computed: {
+    //Setzt die Zeit und das Datum in die Formen : DD.MM.YY  HH.MM.SS
     time() {
       return `${this.hour}:${this.minute}:${this.second}`;
     },
@@ -46,9 +47,9 @@ export default {
       return `${this.day}.${this.month}.${this.year}`;
     },
   },
-  props: {},
   methods: {
     refreshTime: function () {
+      //Liest das aktuelle Datum und Uhrzeit und hinterlegt diese im lokalen Speicher
       var date = new Date();
       this.year = date.getFullYear();
       this.month = date.getMonth() + 1;
@@ -56,14 +57,15 @@ export default {
       this.hour = date.getHours();
       this.minute = date.getMinutes();
       this.second = date.getSeconds();
-      this.month = this.checkTime(this.month);
-      this.day = this.checkTime(this.day);
-      this.minute = this.checkTime(this.minute);
-      this.second = this.checkTime(this.second);
+      this.month = this.fillUpTens(this.month);
+      this.day = this.fillUpTens(this.day);
+      this.minute = this.fillUpTens(this.minute);
+      this.second = this.fillUpTens(this.second);
       this.$store.state.calendar.today.hour = this.hour;
       this.$store.state.calendar.today.minute = this.minute;
     },
-    checkTime: function (i) {
+    fillUpTens: function (i) {
+      //Fügt bei Zahlen < 10 eine "0" davor hinzu
       if (i < 10) {
         i = "0" + i;
       }
@@ -72,6 +74,7 @@ export default {
   },
   created() {
     setInterval(() => {
+      //Führt jede Sekunde die Funktion "refreshTime" aus
       this.refreshTime();
     }, 1000);
   },

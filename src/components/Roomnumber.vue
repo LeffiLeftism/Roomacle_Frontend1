@@ -1,7 +1,12 @@
 <template>
   <div
     id="roomnumberComp"
-    :class="[this.$store.state.upcomming_Meeting == true && this.$store.state.setup.room.type == 'vl' ? 'marked' : '']"
+    :class="[
+      this.$store.state.upcomming_Meeting == true &&
+      this.$store.state.setup.room.type == 'vl'
+        ? 'marked'
+        : '',
+    ]"
   >
     <span id="roomnumber" class="textline">{{
       this.$store.state.setup.room.num
@@ -9,11 +14,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {},
-};
-</script>
 
 <style scoped>
 #roomnumberComp {
@@ -22,7 +22,6 @@ export default {
   align-items: center;
   justify-content: space-around;
   width: calc((85% / 2) + 1px);
-  /*background-color: rgb(126, 70, 165);*/
 }
 
 .textline {
