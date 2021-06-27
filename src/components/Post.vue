@@ -1,5 +1,5 @@
 <template>
-  <div @click="openModal()" v-if="this.dateChecked" id="post">
+  <div @click="openModal()" v-show="this.dateChecked" id="post">
     <div
       class="lfpost"
       :class="[
@@ -80,15 +80,16 @@ export default {
         (this.postContent.pinned &&
           this.postContent.timerActive &&
           this.postDate < now &&
-          this.postEndDate > now)
+          this.postEndDate > now &&
+          !this.postContent.timer_ended)
       ) {
-        console.log("Wird angezeigt:");
-        console.log(this.postContent.title);
+        //console.log("Wird angezeigt:");
+        //console.log(this.postContent.title);
         this.dateChecked = true;
         return true;
       } else {
-        console.log(this.postContent.title);
-        console.log("stop");
+        //console.log(this.postContent.title);
+        //console.log("stop");
         this.dateChecked = false;
         return false;
       }
@@ -104,7 +105,7 @@ export default {
           { height: "auto" }
         );
       } catch (err) {
-        //console.log("Clicked on Non-Event cell in calendar.");
+        console.log("Error on AnnouncementsPopup.");
       }
     },
     setTimer() {
@@ -161,18 +162,14 @@ export default {
       this.$store.state.timer_running++;
       this.postContent.timer_started = true;
       this.postContent.timer_ended = false;
-      console.log(this.$store.state.timer_running);
-      console.log("Hurra");
 
       //Startet die Aktualisierung jede 1000ms des Timers
       let x = setInterval(() => {
-        console.log(this.postContent.timer_ended);
         if (this.postContent.timer_started && !this.postContent.timer_ended) {
           this.setTimer();
         } else if (this.postContent.timer_ended) {
           //Wenn Timer endet, wird die regelmäßige Aktualisierung beendet
           clearInterval(x);
-          console.log("End Timer");
           this.$store.state.timer_running--;
         }
       }, 1000);

@@ -39,7 +39,7 @@ export default {
           }
         );
       } catch (err) {
-        console.log("Error on person.");
+        console.log("Error on PersonPopup.");
       }
     },
   },

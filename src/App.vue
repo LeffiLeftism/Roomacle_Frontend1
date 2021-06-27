@@ -154,7 +154,7 @@ export default {
   methods: {
     importFile() {
       let json = db;
-      console.log(json);
+      //console.log(json);
       this.$store.commit("importTimings", {
         data: json.timings,
       });
@@ -170,7 +170,7 @@ export default {
       this.$store.commit("importSetup", {
         data: json.setup,
       });
-      console.log(this.$store);
+      //console.log(this.$store);
     },
     recieveData: async function () {
       //Fragt alle Kategorien einzeln aus dem Backend ab und schreibt diese in den lokalen Speicher
@@ -228,11 +228,11 @@ export default {
         data: json.setup[0],
       });
 
-      console.log(this.$store.state.setup);
+      //console.log(this.$store.state.setup);
 
-      console.log("Response:");
+      /*console.log("Response:");
       console.log(json);
-      console.log(this.$store.state);
+      console.log(this.$store.state);*/
     },
     openModal() {
       //Öffnet das Login Popup, welches das Frontend 2 zeigt

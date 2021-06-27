@@ -111,7 +111,6 @@ export default {
     this.$store.state.upcomming_Meeting = false;
   },
   updated() {
-    console.log("Update");
     this.todayDate = new Date(
       this.$store.state.calendar.today.year,
       this.$store.state.calendar.today.month,

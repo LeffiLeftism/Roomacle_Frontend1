@@ -68,7 +68,7 @@ export default {
   methods: {
     writeCalendar() {
       //Schreibt die Veranstaltungsdaten aus dem lokalen Speicher in die Kalenderzellen
-      console.log("Write calendar");
+      //console.log("Write calendar");
       this.resetCalendar();
       //Speichert Verbindung zwischen Veranstaltungsindex und Zellenindex
       let connection = [];
@@ -102,7 +102,7 @@ export default {
           weekDif = (W_weekStartDate - W_dateStart) % element.date.repeatedly;
         }
 
-        console.log(element);
+        //console.log(element);
         //Überprüft folgende Eigenschaften:
         //Veranstaltung entwender dauerhaft stattfindet oder Startdatum der Woch vor dem Enddatum der Veranstaltung liegt
         //UND Enddatum der Woche hinter dem Startdatum der Veranstaltung liegt
@@ -145,7 +145,7 @@ export default {
     },
     resetCalendar() {
       //Stellt den standardmäßigen Kalender ohne Veranstaltungen wieder her (Zellengrößen, -farben, etc.)
-      console.log("Reset Calendar");
+      //console.log("Reset Calendar");
       for (
         let hour_index = 0;
         hour_index < this.$store.state.timings.length;
@@ -264,7 +264,6 @@ export default {
     this.writeCalendar();
   },
   beforeUpdate() {
-    console.log("Before Update");
     this.writeCalendar();
   },
   updated() {

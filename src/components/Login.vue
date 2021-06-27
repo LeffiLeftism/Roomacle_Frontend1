@@ -11,7 +11,6 @@ export default {
   methods: {
     closeModal() {
       //Schließt das Popup der Dateneingabeseite
-      console.log("Close InputModal");
       this.$modal.hide("InputModal");
     },
   },

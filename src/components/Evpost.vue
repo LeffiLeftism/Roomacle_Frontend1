@@ -37,9 +37,6 @@ export default {
       }
     },
   },
-  mounted() {
-    console.log(this.termin);
-  },
 };
 </script>
 

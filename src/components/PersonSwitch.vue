@@ -20,7 +20,7 @@ export default {
       //Wechselt die angezeigte Person, indem der Index einer Person im lokalen Speicher hinterlegt wird
       //Die Personen können im Ring umgeschaltet werden
       if (direction == "+") {
-        console.log(direction);
+        //console.log(direction);
         if (
           this.$store.state.person_index_calendar <
           this.$store.state.persons.length - 1
@@ -30,7 +30,7 @@ export default {
           this.$store.state.person_index_calendar = 0;
         }
       } else if (direction == "-") {
-        console.log(direction);
+        //console.log(direction);
         if (this.$store.state.person_index_calendar > 0) {
           this.$store.state.person_index_calendar--;
         } else {
@@ -38,7 +38,7 @@ export default {
 
         }
       }
-      console.log(this.$store.state.person_index_calendar);
+      //console.log(this.$store.state.person_index_calendar);
     },
   },
 };
